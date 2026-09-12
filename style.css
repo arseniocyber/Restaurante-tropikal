@@ -1383,3 +1383,13 @@ a {
   }
 
 }
+/* CORREÇÃO DE VISIBILIDADE */
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.reveal.visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
