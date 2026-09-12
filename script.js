@@ -511,9 +511,9 @@ if (menuSearch) {
 /* =========================================================
    MENU DE 3 BARRAS — MOBILE
 ========================================================= */
-
 const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("mainNav");
+const mainNav = document.getElementById("nav");
+
 
 if (menuToggle) {
 
