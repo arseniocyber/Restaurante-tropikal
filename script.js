@@ -474,7 +474,8 @@ if (modalClose) {
    FILTROS DO MENU
 ========================================================= */
 
-const menuFilters = document.querySelectorAll(".menu-filter");
+
+const menuFilters = document.querySelectorAll(".filter");
 
 menuFilters.forEach(function(button) {
 
@@ -488,16 +489,11 @@ menuFilters.forEach(function(button) {
 
     selectedCategory = this.dataset.category || "Todos";
 
-    if (!selectedCategory) {
-      selectedCategory = "Todos";
-    }
-
     renderMenu();
 
   });
 
 });
-
 
 /* =========================================================
    PESQUISA DO MENU
