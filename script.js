@@ -1,7 +1,6 @@
 /* =========================================================
    CALOR TROPICAL
-   SCRIPT.JS — PARTE 1/2
-   ========================================================= */
+========================================================= */
 
 const WA_NUMBER = "258874220984";
 
@@ -13,814 +12,299 @@ const money = value =>
 
 
 /* =========================================================
-   MENU — PORTUGUÊS / ENGLISH
+   IMAGENS POR CATEGORIA
 ========================================================= */
 
-const menuData = [
-
-  /* ================= CAFÉ / CHÁ ================= */
-
-  {
-    category: "Café / Chá",
-    name: "Café e leite",
-    english: "Coffee with milk",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Café / Chá",
-    name: "Chá e leite",
-    english: "Tea with milk",
-    price: 125,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Café / Chá",
-    name: "Capuchinho",
-    english: "Cappuccino",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Café / Chá",
-    name: "Expresso",
-    english: "Espresso",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Café / Chá",
-    name: "Chocolate quente",
-    english: "Hot chocolate",
-    price: 175,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= SALADAS ================= */
-
-  {
-    category: "Saladas",
-    name: "Salada grega",
-    english: "Greek salad",
-    price: 250,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Saladas",
-    name: "Salada de atum",
-    english: "Tuna salad",
-    price: 250,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Saladas",
-    name: "Salada russa",
-    english: "Russian salad",
-    price: 250,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Saladas",
-    name: "Salada tropical",
-    english: "Tropical salad",
-    price: 200,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= ENTRADAS ================= */
-
-  {
-    category: "Entradas",
-    name: "Shamussas de peixe (1 uni)",
-    english: "Fish samosas (1 pc)",
-    price: 220,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Entradas",
-    name: "Caranguejo ao natural",
-    english: "Fresh crab",
-    price: 500,
-    image: "images/seafood.jpg"
-  },
-  {
-    category: "Entradas",
-    name: "Pão de alho",
-    english: "Garlic bread",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Entradas",
-    name: "Rissóis de camarão (4 uni)",
-    english: "Prawn rissoles (4 pcs)",
-    price: 220,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Entradas",
-    name: "Camarão alhinho",
-    english: "Garlic prawns",
-    price: 550,
-    image: "images/camarao.jpg"
-  },
-  {
-    category: "Entradas",
-    name: "Caril de camarão",
-    english: "Prawn curry",
-    price: 880,
-    image: "images/camarao.jpg"
-  },
-  {
-    category: "Entradas",
-    name: "Caril de caranguejo",
-    english: "Crab curry",
-    price: 650,
-    image: "images/seafood.jpg"
-  },
-
-
-  /* ================= SNACKS ================= */
-
-  {
-    category: "Snacks & Sandwich",
-    name: "Tosta de queijo",
-    english: "Cheese toast",
-    price: 250,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Snacks & Sandwich",
-    name: "Tosta mista",
-    english: "Ham & cheese toast",
-    price: 300,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Snacks & Sandwich",
-    name: "Prego no pão",
-    english: "Steak N Roll",
-    price: 285,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Snacks & Sandwich",
-    name: "Cheese N Bacon sandwich",
-    english: "Cheese & bacon sandwich",
-    price: 300,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Snacks & Sandwich",
-    name: "Chicken Mayo / Hamburger",
-    english: "Chicken Mayo / Hamburger",
-    price: 300,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= OMELETES ================= */
-
-  {
-    category: "Omeletes",
-    name: "Omelete simples",
-    english: "Plain omelette",
-    price: 200,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Omeletes",
-    name: "Omelete de queijo",
-    english: "Cheese omelette",
-    price: 200,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Omeletes",
-    name: "Omelete misto",
-    english: "Mixed omelette",
-    price: 250,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Omeletes",
-    name: "Pequeno almoço",
-    english: "Breakfast",
-    price: 425,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= COMBOS ================= */
-
-  {
-    category: "Combo's",
-    name: "Chicken & calamari",
-    english: "Chicken & calamari",
-    price: 875,
-    image: "images/frango.jpg"
-  },
-  {
-    category: "Combo's",
-    name: "Chicken & prawns",
-    english: "Chicken & prawns",
-    price: 875,
-    image: "images/frango.jpg"
-  },
-  {
-    category: "Combo's",
-    name: "Prawns & calamari",
-    english: "Prawns & calamari",
-    price: 875,
-    image: "images/camarao.jpg"
-  },
-  {
-    category: "Combo's",
-    name: "Prawns & fish fillet",
-    english: "Prawns & fish fillet",
-    price: 875,
-    image: "images/camarao.jpg"
-  },
-  {
-    category: "Combo's",
-    name: "Calamari & fish fillet",
-    english: "Calamari & fish fillet",
-    price: 875,
-    image: "images/peixe.jpg"
-  },
-  {
-    category: "Combo's",
-    name: "Chicken & fish fillet",
-    english: "Chicken & fish fillet",
-    price: 875,
-    image: "images/frango.jpg"
-  },
-  {
-    category: "Combo's",
-    name: "1/2 frango & prawns",
-    english: "Half chicken & prawns",
-    price: 1325,
-    image: "images/frango.jpg"
-  },
-
-
-  /* ================= PRINCIPAIS ================= */
-
-  {
-    category: "Principais",
-    name: "1/4 frango",
-    english: "Quarter chicken",
-    price: 305,
-    image: "images/frango.jpg"
-  },
-  {
-    category: "Principais",
-    name: "1/2 frango",
-    english: "Half chicken",
-    price: 450,
-    image: "images/frango.jpg"
-  },
-  {
-    category: "Principais",
-    name: "Frango inteiro",
-    english: "Whole chicken",
-    price: 850,
-    image: "images/frango.jpg"
-  },
-  {
-    category: "Principais",
-    name: "Peixe inteiro",
-    english: "Whole fish",
-    price: 850,
-    image: "images/peixe.jpg"
-  },
-  {
-    category: "Principais",
-    name: "Filete de peixe",
-    english: "Fish fillet",
-    price: 600,
-    image: "images/peixe.jpg"
-  },
-  {
-    category: "Principais",
-    name: "Lula grelhada",
-    english: "Grilled calamari",
-    price: 550,
-    image: "images/seafood.jpg"
-  },
-  {
-    category: "Principais",
-    name: "Posta de peixe",
-    english: "Fish steak",
-    price: 500,
-    image: "images/peixe.jpg"
-  },
-  {
-    category: "Principais",
-    name: "Panado",
-    english: "Fish fingers",
-    price: 550,
-    image: "images/peixe.jpg"
-  },
-  {
-    category: "Principais",
-    name: "Camarão",
-    english: "Prawns",
-    price: 895,
-    image: "images/camarao.jpg"
-  },
-  {
-    category: "Principais",
-    name: "Bife",
-    english: "Beef steak",
-    price: 850,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= MARISCOS ================= */
-
-  {
-    category: "Mariscos",
-    name: "4 (fish, prawns, calamari)",
-    english: "Fish, prawns & calamari",
-    price: 1525,
-    image: "images/seafood.jpg"
-  },
-  {
-    category: "Mariscos",
-    name: "Marisco",
-    english: "Seafood for 2 pax",
-    price: 2500,
-    image: "images/seafood.jpg"
-  },
-  {
-    category: "Mariscos",
-    name: "Lobstar & 6 prawns",
-    english: "Lobster & 6 prawns",
-    price: 1975,
-    image: "images/seafood.jpg"
-  },
-  {
-    category: "Mariscos",
-    name: "Marisco",
-    english: "Seafood for 3 pax",
-    price: 3500,
-    image: "images/seafood.jpg"
-  },
-  {
-    category: "Mariscos",
-    name: "12 camarões",
-    english: "12 prawns with chips",
-    price: 1275,
-    image: "images/camarao.jpg"
-  },
-
-
-  /* ================= REFRESCOS ================= */
-
-  {
-    category: "Refrescos",
-    name: "330 ml",
-    english: "330 ml soft drink",
-    price: 70,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Refrescos",
-    name: "Soda & Tônica",
-    english: "Soda & tonic",
-    price: 75,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Refrescos",
-    name: "Appletiser",
-    english: "Appletiser",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= SUMOS / ÁGUAS ================= */
-
-  {
-    category: "Sumos / Águas",
-    name: "Sumo Cappy",
-    english: "Cappy juice",
-    price: 125,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Sumos / Águas",
-    name: "Sumo 500 ml",
-    english: "Juice 500 ml",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Sumos / Águas",
-    name: "Sumo 1 L",
-    english: "Juice 1 L",
-    price: 165,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Sumos / Águas",
-    name: "Água 500 ml",
-    english: "Water 500 ml",
-    price: 50,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Sumos / Águas",
-    name: "Água 1,5 L",
-    english: "Water 1.5 L",
-    price: 95,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Sumos / Águas",
-    name: "Água gaseificada",
-    english: "Sparkling water",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= CERVEJAS ================= */
-
-  {
-    category: "Cervejas",
-    name: "JC lata 250 ml",
-    english: "JC can 250 ml",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Ciders / Cidras",
-    english: "Ciders",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Heineken",
-    english: "Heineken",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Breezer / Brutal",
-    english: "Breezer / Brutal",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Corona",
-    english: "Corona",
-    price: 120,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Txilar / Preta",
-    english: "Txilar / Dark beer",
-    price: 85,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Manica / Impala 330 ml",
-    english: "Manica / Impala 330 ml",
-    price: 80,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Fly-fishing / Spin",
-    english: "Fly-fishing / Spin",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Castle Lite",
-    english: "Castle Lite",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Castle D. Malte",
-    english: "Castle Dark Malt",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Bermin",
-    english: "Bermin",
-    price: 125,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Red Bull",
-    english: "Red Bull",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cervejas",
-    name: "Monster",
-    english: "Monster",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= COCKTAIL ================= */
-
-  {
-    category: "Cocktail",
-    name: "Vodka / Sumo",
-    english: "Vodka / Juice",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cocktail",
-    name: "R & R",
-    english: "R & R",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cocktail",
-    name: "Passion fruit / Sprite",
-    english: "Passion fruit / Sprite",
-    price: 125,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cocktail",
-    name: "Milk Pedro",
-    english: "Milk Pedro",
-    price: 325,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Cocktail",
-    name: "Caipirinha",
-    english: "Caipirinha",
-    price: 350,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= APERITIVOS ================= */
-
-  {
-    category: "Aperitivos",
-    name: "May Fair",
-    english: "May Fair",
-    price: 125,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Aperitivos",
-    name: "Gin Gordon / Belgravia",
-    english: "Gordon's / Belgravia Gin",
-    price: 80,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Aperitivos",
-    name: "Gin Tanquery",
-    english: "Tanqueray Gin",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Aperitivos",
-    name: "Whisky Novo",
-    english: "Young Whisky",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Aperitivos",
-    name: "Whisky Velho",
-    english: "Aged Whisky",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Aperitivos",
-    name: "Captain Morgan / Bacardi",
-    english: "Captain Morgan / Bacardi",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Aperitivos",
-    name: "Klipdrift",
-    english: "Klipdrift",
-    price: 80,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Aperitivos",
-    name: "Amarula DBL",
-    english: "Amarula Double",
-    price: 190,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Aperitivos",
-    name: "Vodka Absolut",
-    english: "Absolut Vodka",
-    price: 100,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Aperitivos",
-    name: "Vodka Smirnoff",
-    english: "Smirnoff Vodka",
-    price: 80,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= DIGESTIVOS ================= */
-
-  {
-    category: "Digestivos",
-    name: "1920 / S. Domingos",
-    english: "1920 / S. Domingos",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Digestivos",
-    name: "Vinho do Porto",
-    english: "Port wine",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= SHOOTS ================= */
-
-  {
-    category: "Shoots",
-    name: "Sambuca",
-    english: "Sambuca",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Shoots",
-    name: "Tequila",
-    english: "Tequila",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Shoots",
-    name: "Vinho do Porto",
-    english: "Port wine",
-    price: 300,
-    image: "images/menu.jpg"
-  },
-
-
-  /* ================= VINHOS ================= */
-
-  {
-    category: "Vinhos",
-    name: "Vinho a copo",
-    english: "Wine by the glass",
-    price: 150,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Vinhos",
-    name: "Boschendal / Kadete",
-    english: "Boschendal / Kadete",
-    price: 1350,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Vinhos",
-    name: "F. Bostsrd / Roodenberg",
-    english: "F. Bostsrd / Roodenberg",
-    price: 1250,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Vinhos",
-    name: "G. Carlou / C. Sauvignon",
-    english: "G. Carlou / Cabernet Sauvignon",
-    price: 1350,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Vinhos",
-    name: "Cabriz, Gatão, Graça",
-    english: "Cabriz, Gatão, Graça",
-    price: 850,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Vinhos",
-    name: "G. Garcia, Aveleda",
-    english: "G. Garcia, Aveleda",
-    price: 850,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Vinhos",
-    name: "Portada",
-    english: "Portada",
-    price: 850,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Vinhos",
-    name: "Chocolate Bloc",
-    english: "Chocolate Bloc",
-    price: 1750,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Vinhos",
-    name: "JC - Keuroux grf.",
-    english: "JC - Keuroux bottle",
-    price: 650,
-    image: "images/menu.jpg"
-  },
-  {
-    category: "Vinhos",
-    name: "Krone, Tosti, Anabela",
-    english: "Krone, Tosti, Anabela",
-    price: 1100,
-    image: "images/menu.jpg"
-  }
-
-];
+const categoryImages = {
+  "Café / Chá": "images/menu.jpg",
+  "Saladas": "images/galeria1.jpg",
+  "Entradas": "images/camarao.jpg",
+  "Snacks & Sandwich": "images/menu.jpg",
+  "Omeletes": "images/menu.jpg",
+  "Combo's": "images/seafood.jpg",
+  "Principais": "images/peixe.jpg",
+  "Mariscos": "images/seafood.jpg",
+  "Refrescos": "images/menu.jpg",
+  "Sumos / Águas": "images/menu.jpg",
+  "Cervejas": "images/menu.jpg",
+  "Cocktail": "images/galeria2.jpg",
+  "Aperitivos": "images/menu.jpg",
+  "Digestivos": "images/menu.jpg",
+  "Shoots": "images/menu.jpg",
+  "Vinhos": "images/galeria3.jpg"
+};
 
 
 /* =========================================================
-   ELEMENTOS DO SITE
+   DADOS DO MENU
+   Os preços são os reais do restaurante.
 ========================================================= */
 
+const menuData = [
+  ["Café e leite", "Coffee with milk", 150, "Café / Chá"],
+  ["Chá e leite", "Tea with milk", 125, "Café / Chá"],
+  ["Capuchinho", "Cappuccino", 150, "Café / Chá"],
+  ["Expresso", "Espresso", 150, "Café / Chá"],
+  ["Chocolate quente", "Hot chocolate", 175, "Café / Chá"],
+
+  ["Salada grega", "Greek salad", 250, "Saladas"],
+  ["Salada de atum", "Tuna salad", 250, "Saladas"],
+  ["Salada russa", "Russian salad", 250, "Saladas"],
+  ["Salada tropical", "Tropical salad", 200, "Saladas"],
+
+  ["Shamussas de peixe (1 uni)", "Fish samosas (1 pc)", 220, "Entradas"],
+  ["Caranguejo ao natural", "Fresh crab", 500, "Entradas"],
+  ["Pão de alho", "Garlic bread", 150, "Entradas"],
+  ["Rissóis de camarão (4 uni)", "Prawn rissoles (4 pcs)", 220, "Entradas"],
+  ["Camarão alhinho", "Garlic prawns", 550, "Entradas"],
+  ["Caril de camarão", "Prawn curry", 880, "Entradas"],
+  ["Caril de caranguejo", "Crab curry", 650, "Entradas"],
+
+  ["Tosta de queijo", "Cheese toast", 250, "Snacks & Sandwich"],
+  ["Tosta mista", "Ham & cheese toast", 300, "Snacks & Sandwich"],
+  ["Prego no pão", "Steak N Roll", 285, "Snacks & Sandwich"],
+  ["Cheese N Bacon sandwich", "", 300, "Snacks & Sandwich"],
+  ["Chicken Mayo / Hamburger", "", 300, "Snacks & Sandwich"],
+
+  ["Omelete simples", "Plain omelette", 200, "Omeletes"],
+  ["Omelete de queijo", "Cheese omelette", 200, "Omeletes"],
+  ["Omelete misto", "Mixed omelette", 250, "Omeletes"],
+  ["Pequeno almoço", "Breakfast", 425, "Omeletes"],
+
+  ["Chicken & calamari", "", 875, "Combo's"],
+  ["Chicken & prawns", "", 875, "Combo's"],
+  ["Prawns & calamari", "", 875, "Combo's"],
+  ["Prawns & fish fillet", "", 875, "Combo's"],
+  ["Calamari & fish fillet", "", 875, "Combo's"],
+  ["Chicken & fish fillet", "", 875, "Combo's"],
+  ["1/2 frango & prawns", "", 1325, "Combo's"],
+
+  ["1/4 frango", "Chicken", 305, "Principais"],
+  ["1/2 frango", "Chicken", 450, "Principais"],
+  ["Frango inteiro", "Whole chicken", 850, "Principais"],
+  ["Peixe inteiro", "Whole fish", 850, "Principais"],
+  ["Filete de peixe", "Fish fillet", 600, "Principais"],
+  ["Lula grelhada", "Grilled calamari", 550, "Principais"],
+  ["Posta de peixe", "Fish steak", 500, "Principais"],
+  ["Panado", "Fish fingers", 550, "Principais"],
+  ["Camarão", "Prawns", 895, "Principais"],
+  ["Bife", "Beef steak", 850, "Principais"]
+];
+  ["4 (fish, prawns, calamari)", "", 1525, "Mariscos"],
+  ["Marisco", "Seafood p2 pax", 2500, "Mariscos"],
+  ["Lobstar & 6 prawns", "", 1975, "Mariscos"],
+  ["Marisco", "Seafood for 3 pax", 3500, "Mariscos"],
+  ["12 camarões", "Prawns with chips", 1275, "Mariscos"],
+
+  ["330 ml", "", 70, "Refrescos"],
+  ["Soda & Tônica", "", 75, "Refrescos"],
+  ["Appletiser", "", 100, "Refrescos"],
+       ["Sumo Cappy", "", 125, "Sumos / Águas"],
+  ["Sumo 500 ml", "", 100, "Sumos / Águas"],
+  ["Sumo 1 L", "", 165, "Sumos / Águas"],
+  ["Água 500 ml", "", 50, "Sumos / Águas"],
+  ["Água 1,5 L", "", 95, "Sumos / Águas"],
+  ["Água gaseificada", "", 100, "Sumos / Águas"],
+
+  ["JC lata 250 ml", "", 150, "Cervejas"],
+  ["Ciders / Cidras", "", 100, "Cervejas"],
+  ["Heineken", "", 100, "Cervejas"],
+  ["Breezer / Brutal", "", 100, "Cervejas"],
+  ["Corona", "", 120, "Cervejas"],
+       ["Txilar / Preta", "", 85, "Cervejas"],
+  ["Manica / Impala 330 ml", "", 80, "Cervejas"],
+  ["Fly-fishing / Spin", "", 100, "Cervejas"],
+  ["Castle Lite", "", 100, "Cervejas"],
+  ["Castle D. Malte", "", 100, "Cervejas"],
+  ["Bermin", "", 125, "Cervejas"],
+  ["Red Bull", "", 100, "Cervejas"],
+  ["Monster", "", 100, "Cervejas"],
+      ["Vodka / Sumo", "", 150, "Cocktail"],
+  ["R & R", "", 150, "Cocktail"],
+  ["Passion fruit / Sprite", "", 125, "Cocktail"],
+  ["Milk Pedro", "", 325, "Cocktail"],
+  ["Caipirinha", "", 350, "Cocktail"],
+
+  ["May Fair", "", 125, "Aperitivos"],
+  ["Gin Gordon / Belgravia", "", 80, "Aperitivos"],
+  ["Gin Tanquery", "", 100, "Aperitivos"],
+  ["Whisky Novo", "", 100, "Aperitivos"],
+  ["Whisky Velho", "", 150, "Aperitivos"],
+      ["Captain Morgan / Bacardi", "", 100, "Aperitivos"],
+  ["Klipdrift", "", 80, "Aperitivos"],
+  ["Amarula DBL", "", 190, "Aperitivos"],
+  ["Vodka Absolut", "", 100, "Aperitivos"],
+  ["Vodka Smirnoff", "", 80, "Aperitivos"],
+
+  ["1920 / S. Domingos", "", 150, "Digestivos"],
+  ["Vinho do Porto", "", 150, "Digestivos"],
+       ["Sambuca", "", 150, "Shoots"],
+  ["Tequila", "", 150, "Shoots"],
+  ["Vinho do Porto", "", 300, "Shoots"],
+
+  ["Vinho a copo", "", 150, "Vinhos"],
+  ["Boschendal / Kadete", "", 1350, "Vinhos"],
+  ["F. Bostsrd / Roodenberg", "", 1250, "Vinhos"],
+       ["G. Carlou / C. Sauvignon", "", 1350, "Vinhos"],
+  ["Cabriz, Gatão, Graça", "", 850, "Vinhos"],
+  ["G. Garcia, Aveleda", "", 850, "Vinhos"],
+  ["Portada", "", 850, "Vinhos"],
+  ["Chocolate Bloc", "", 1750, "Vinhos"],
+  ["JC - Keuroux grf.", "", 650, "Vinhos"],
+  ["Krone, Tosti, Anabela", "", 1100, "Vinhos"]
+];
+const products = menuData.map(
+  ([name, english, price, category]) => ({
+    name,
+    english,
+    price,
+    category,
+    image: categoryImages[category] || "images/menu.jpg"
+  })
+);
+const categoryIcons = {
+  "Café / Chá": "☕",
+  "Saladas": "🥗",
+  "Entradas": "🥟",
+  "Snacks & Sandwich": "🥪",
+  "Omeletes": "🍳",
+  "Combo's": "🍽️",
+  "Principais": "🍛",
+  "Mariscos": "🦐",
+  "Refrescos": "🥤",
+  "Sumos / Águas": "🧃",
+  "Cervejas": "🍺",
+  "Cocktail": "🍹"
+};
 const menuGrid = document.getElementById("menuGrid");
 const menuSearch = document.getElementById("menuSearch");
-const filters = document.getElementById("filters");
 
-const productModal =
-  document.getElementById("productModal");
+function getProductName(item) {
+  if (!item.english) return item.name;
 
-const modalClose =
-  document.getElementById("modalClose");
+  if (
+    item.english.toLowerCase() ===
+    item.name.toLowerCase()
+  ) {
+    return item.name;
+  }
 
-const modalProductImage =
-  document.getElementById("modalProductImage");
+  return `${item.name}<small>${item.english}</small>`;
+}
+function renderMenu(list = products) {
+  menuGrid.innerHTML = "";
 
-const modalProductCategory =
-  document.getElementById("modalProductCategory");
+  list.forEach((item, index) => {
+    const icon = categoryIcons[item.category] || "🍽️";
 
-const modalProductName =
-  document.getElementById("modalProductName");
+    const card = document.createElement("article");
+    card.className = "menu-card";
 
-const modalProductPrice =
-  document.getElementById("modalProductPrice");
+    card.innerHTML = `
+      <div class="menu-card-image">
+        <img src="${item.image}" alt="${item.name}">
+        <span class="menu-icon">${icon}</span>
+      </div>
 
-const modalProductDescription =
-  document.getElementById("modalProductDescription");
+      <div class="menu-card-content">
+        <span class="menu-category">${item.category}</span>
 
+        <h3>${getProductName(item)}</h3>
+
+        <strong>${item.price.toLocaleString("pt-MZ")} MTS</strong>
+
+        <button class="menu-item-btn" data-index="${index}">
+          Ver detalhes
+        </button>
+      </div>
+    `;
+
+    menuGrid.appendChild(card);
+  });
+}
+function filterMenu(category) {
+  selectedCategory = category;
+
+  const search =
+    menuSearch?.value.toLowerCase().trim() || "";
+
+  const filtered = products.filter(item => {
+    const matchCategory =
+      category === "Todos" ||
+      item.category === category;
+
+    const matchSearch =
+      item.name.toLowerCase().includes(search) ||
+      item.category.toLowerCase().includes(search);
+
+    return matchCategory && matchSearch;
+  });
+
+  renderMenu(filtered);
+}
+menuGrid.addEventListener("click", e => {
+  const button = e.target.closest(".menu-item-btn");
+
+  if (!button) return;
+
+  const index = Number(button.dataset.index);
+  const item = products[index];
+
+  openProduct(item);
+});
+function openProduct(item) {
+  const modal = document.getElementById("productModal");
+  const image = document.getElementById("modalProductImage");
+  const category = document.getElementById("modalProductCategory");
+  const name = document.getElementById("modalProductName");
+  const price = document.getElementById("modalProductPrice");
+  const description = document.getElementById("modalProductDescription");
+
+  image.src = item.image;
+  image.alt = item.name;
+  category.textContent = item.category;
+  name.innerHTML = getProductName(item);
+  price.textContent = `${item.price.toLocaleString("pt-MZ")} MTS`;
+
+  description.textContent =
+    "Uma excelente opção do menu Calor Tropical.";
+    
+  modal.classList.add("active");
+}
+const modalClose = document.getElementById("modalClose");
+const overlay = document.getElementById("overlay");
+
+function closeProduct() {
+  document
+    .getElementById("productModal")
+    .classList.remove("active");
+}
+
+modalClose?.addEventListener("click", closeProduct);
+
+overlay?.addEventListener("click", closeProduct);
 const modalAddButton =
   document.getElementById("modalAddButton");
 
-const overlay =
-  document.getElementById("overlay");
+let selectedProduct = null;
 
-const cartDrawer =
-  document.getElementById("cartDrawer");
+modalAddButton?.addEventListener("click", () => {
+  if (!selectedProduct) return;
 
-const openCart =
-  document.getElementById("openCart");
+  addToCart(selectedProduct);
+  closeProduct();
+});
+function selectProduct(item) {
+  selectedProduct = item;
+  openProduct(item);
+}
 
-const closeCart =
-  document.getElementById("closeCart");
+const originalOpenProduct = openProduct;
 
+openProduct = function(item) {
+  selectedProduct = item;
+  originalOpenProduct(item);
+};
 const cartItems =
   document.getElementById("cartItems");
 
@@ -830,371 +314,174 @@ const cartCount =
 const cartTotal =
   document.getElementById("cartTotal");
 
-const customerName =
-  document.getElementById("customerName");
+let cart = [];
 
-const customerNote =
-  document.getElementById("customerNote");
+function addToCart(item) {
+  const existing = cart.find(
+    product => product.name === item.name
+  );
 
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({
+      ...item,
+      quantity: 1
+    });
+  }
+
+  renderCart();
+}
+function renderCart() {
+  cartItems.innerHTML = "";
+
+  let total = 0;
+  let count = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.quantity;
+    count += item.quantity;
+
+    const div = document.createElement("div");
+    div.className = "cart-item";
+
+    div.innerHTML = `
+      <strong>${item.name}</strong>
+      <span>${item.price.toLocaleString("pt-MZ")} MTS</span>
+
+      <div class="quantity">
+        <button data-name="${item.name}" data-action="minus">−</button>
+        <span>${item.quantity}</span>
+        <button data-name="${item.name}" data-action="plus">+</button>
+      </div>
+    `;
+
+    cartItems.appendChild(div);
+  });
+
+  cartCount.textContent = count;
+  cartTotal.textContent =
+    `${total.toLocaleString("pt-MZ")} MTS`;
+}
+cartItems.addEventListener("click", e => {
+  const button = e.target.closest("button");
+
+  if (!button) return;
+
+  const name = button.dataset.name;
+  const action = button.dataset.action;
+
+  const item = cart.find(
+    product => product.name === name
+  );
+
+  if (!item) return;
+
+  if (action === "plus") {
+    item.quantity++;
+  }
+
+  if (action === "minus") {
+    item.quantity--;
+
+    if (item.quantity <= 0) {
+      cart = cart.filter(
+        product => product.name !== name
+      );
+    }
+  }
+
+  renderCart();
+});
+const cartDrawer =
+  document.getElementById("cartDrawer");
+
+const openCart =
+  document.getElementById("openCart");
+
+const closeCart =
+  document.getElementById("closeCart");
+
+openCart?.addEventListener("click", () => {
+  cartDrawer.classList.add("active");
+});
+
+closeCart?.addEventListener("click", () => {
+  cartDrawer.classList.remove("active");
+});
 const sendWhatsApp =
   document.getElementById("sendWhatsApp");
 
-const menuToggle =
-  document.getElementById("menuToggle");
-
-const nav =
-  document.getElementById("nav");
-
-const backToTop =
-  document.getElementById("backToTop");
-
-
-/* =========================================================
-   IMAGENS
-========================================================= */
-
-function getImage(item) {
-  return item.image || "images/menu.jpg";
-}
-
-
-/* =========================================================
-   LOCAL STORAGE
-========================================================= */
-
-function saveCart() {
-  try {
-    localStorage.setItem(
-      "calorTropicalCart",
-      JSON.stringify(cart)
-    );
-  } catch (error) {
-    console.warn(
-      "Não foi possível guardar o pedido."
-    );
+sendWhatsApp?.addEventListener("click", () => {
+  if (!cart.length) {
+    alert("O carrinho está vazio.");
+    return;
   }
+
+  let message = "Olá, Calor Tropical!%0A%0A";
+  message += "Gostaria de fazer este pedido:%0A%0A";
+
+  cart.forEach(item => {
+    message += `• ${item.name} x${item.quantity} - `;
+    message += `${(item.price * item.quantity)
+      .toLocaleString("pt-MZ")} MTS%0A`;
+  });
+
+  message += `%0ATotal: ${cartTotal.textContent}`;
+
+  window.open(
+    `https://wa.me/${WA_NUMBER}?text=${message}`,
+    "_blank"
+  );
+});
+function saveCart() {
+  localStorage.setItem(
+    "calorTropicalCart",
+    JSON.stringify(cart)
+  );
 }
 
 function loadCart() {
   try {
-    const saved =
-      localStorage.getItem("calorTropicalCart");
-
-    if (saved) {
-      cart = JSON.parse(saved);
-    }
-
-    if (!Array.isArray(cart)) {
-      cart = [];
-    }
-
-  } catch (error) {
+    cart =
+      JSON.parse(
+        localStorage.getItem("calorTropicalCart")
+      ) || [];
+  } catch {
     cart = [];
   }
+
+  renderCart();
+}
+function updateCart() {
+  saveCart();
+  renderCart();
 }
 
-
-/* =========================================================
-   RENDERIZAR MENU
-========================================================= */
-
-function renderMenu() {
-
-  if (!menuGrid) return;
-
-  const searchTerm =
-    menuSearch
-      ? menuSearch.value.trim().toLowerCase()
-      : "";
-
-  const filtered =
-    menuData.filter(item => {
-
-      const matchesCategory =
-        selectedCategory === "Todos" ||
-        item.category === selectedCategory;
-
-      const text =
-        `${item.name} ${item.english}`
-          .toLowerCase();
-
-      const matchesSearch =
-        text.includes(searchTerm);
-
-      return matchesCategory &&
-             matchesSearch;
-    });
-
-
-  if (!filtered.length) {
-
-    menuGrid.innerHTML = `
-      <div class="empty-cart"
-           style="grid-column:1/-1">
-
-        <span>🔎</span>
-
-        <p>
-          Nenhum item encontrado.
-          <br>
-          No item found.
-        </p>
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  menuGrid.innerHTML =
-    filtered.map(item => {
-
-      const realIndex =
-        menuData.indexOf(item);
-
-      return `
-
-        <article
-          class="menu-card reveal visible"
-          data-index="${realIndex}"
-          tabindex="0"
-        >
-
-          <div class="menu-card-image">
-
-            <img
-              src="${getImage(item)}"
-              alt="${item.name} — ${item.english}"
-              loading="lazy"
-            >
-
-          </div>
-
-
-          <div class="menu-card-content">
-
-            <span class="menu-category">
-              ${item.category}
-            </span>
-
-            <h3>
-              ${item.name}
-            </h3>
-
-            <p class="menu-english">
-              ${item.english}
-            </p>
-
-
-            <div class="menu-card-bottom">
-
-              <strong class="menu-price">
-                ${money(item.price)}
-              </strong>
-
-              <span class="menu-view">
-                VER DETALHES →
-              </span>
-
-            </div>
-
-          </div>
-
-        </article>
-
-      `;
-
-    }).join("");
-}
-
-/* =========================================================
-   FILTRO DO MENU
-========================================================= */
-
-if (filters) {
-  filters.addEventListener("click", event => {
-
-    const button = event.target.closest(".filter");
-    if (!button) return;
-
-    selectedCategory =
-      button.dataset.category;
-
+cartItems.addEventListener("click", () => {
+  saveCart();
+});
+document.querySelectorAll(".menu-filter").forEach(button => {
+  button.addEventListener("click", () => {
     document
-      .querySelectorAll(".filter")
-      .forEach(btn =>
-        btn.classList.remove("active")
-      );
+      .querySelectorAll(".menu-filter")
+      .forEach(btn => btn.classList.remove("active"));
 
     button.classList.add("active");
 
-    renderMenu();
+    filterMenu(button.dataset.category);
   });
-}
+});
+menuSearch?.addEventListener("input", () => {
+  filterMenu(selectedCategory);
+});
+loadCart();
 
-
-/* =========================================================
-   PESQUISA DO MENU
-========================================================= */
-
-if (menuSearch) {
-  menuSearch.addEventListener(
-    "input",
-    renderMenu
-  );
-}
-
-
-/* =========================================================
-   ABRIR PRODUTO
-========================================================= */
-
-function openProduct(item) {
-
-  if (!item || !productModal) return;
-
-  if (modalProductImage) {
-    modalProductImage.src = getImage(item);
-    modalProductImage.alt =
-      `${item.name} — ${item.english}`;
-  }
-
-  if (modalProductCategory) {
-    modalProductCategory.textContent =
-      item.category;
-  }
-
-  if (modalProductName) {
-    modalProductName.innerHTML =
-      `${item.name}
-       <small>${item.english}</small>`;
-  }
-
-  if (modalProductPrice) {
-    modalProductPrice.textContent =
-      money(item.price);
-  }
-
-  let pt =
-    "Uma opção disponível no menu do Calor Tropical.";
-
-  let en =
-    "An option available on the Calor Tropical menu.";
-
-  if (item.category === "Principais") {
-    pt =
-      "Prato principal servido com arroz, batatas fritas e salada.";
-
-    en =
-      "Main course served with rice, chips and salad.";
-  }
-
-  if (
-    item.category === "Combo's" ||
-    item.category === "Mariscos"
-  ) {
-    pt =
-      "Servido com 1 ou 2 shamussas, conforme indicado no menu.";
-
-    en =
-      "Served with 1 or 2 samosas, as indicated on the menu.";
-  }
-
-  if (modalProductDescription) {
-    modalProductDescription.innerHTML =
-      `${pt}<br><span>${en}</span>`;
-  }
-
-  if (modalAddButton) {
-    modalAddButton.onclick = () => {
-      addToCart(item);
-      closeProduct();
-    };
-  }
-
-  productModal.classList.add("active");
-  overlay?.classList.add("active");
-
-  document.body.classList.add("no-scroll");
-}
-
-
-/* =========================================================
-   FECHAR PRODUTO
-========================================================= */
-
-function closeProduct() {
-
-  productModal?.classList.remove("active");
-
-  if (
-    !cartDrawer ||
-    !cartDrawer.classList.contains("active")
-  ) {
-    overlay?.classList.remove("active");
-
-    document.body.classList.remove(
-      "no-scroll"
-    );
-  }
-}
-
-
-/* =========================================================
-   CLIQUE NOS ITENS DO MENU
-========================================================= */
-
-if (menuGrid) {
-
-  menuGrid.addEventListener(
-    "click",
-    event => {
-
-      const card =
-        event.target.closest(".menu-card");
-
-      if (!card) return;
-
-      const item =
-        menuData[
-          Number(card.dataset.index)
-        ];
-
-      if (item) {
-        openProduct(item);
-      }
-    }
-  );
-
-}
-
-
-/* =========================================================
-   FECHAR MODAL
-========================================================= */
-
-if (modalClose) {
-  modalClose.addEventListener(
-    "click",
-    closeProduct
-  );
-}
-
-
-/* =========================================================
-   CARRINHO
-========================================================= */
-
+renderMenu();
 function addToCart(item) {
-
-  if (!item) return;
-
-  const existing =
-    cart.find(
-      product =>
-        product.name === item.name
-    );
+  const existing = cart.find(
+    product => product.name === item.name
+  );
 
   if (existing) {
     existing.quantity++;
@@ -1207,429 +494,464 @@ function addToCart(item) {
 
   saveCart();
   renderCart();
-  openCartDrawer();
 }
-
-
-function removeFromCart(name) {
-
-  cart = cart.filter(
-    item => item.name !== name
-  );
-
-  saveCart();
-  renderCart();
-}
-
-
-function changeQuantity(name, amount) {
-
-  const item =
-    cart.find(
-      product => product.name === name
-    );
-
-  if (!item) return;
-
-  item.quantity += amount;
-
-  if (item.quantity <= 0) {
-    removeFromCart(name);
-    return;
-  }
-
-  saveCart();
-  renderCart();
-}
-
-
-function getCartTotal() {
-
-  return cart.reduce(
-    (total, item) =>
-      total + item.price * item.quantity,
-    0
-  );
-}
-
-
-function getCartCount() {
-
-  return cart.reduce(
-    (total, item) =>
-      total + item.quantity,
-    0
-  );
-}
-
-
-/* =========================================================
-   RENDERIZAR CARRINHO
-========================================================= */
-
-function renderCart() {
-
-  if (!cartItems) return;
-
-  if (!cart.length) {
-
-    cartItems.innerHTML = `
-      <div class="empty-cart">
-        <span>🛒</span>
-        <p>
-          Seu pedido está vazio.<br>
-          Your order is empty.
-        </p>
-      </div>
-    `;
-
-  } else {
-
-    cartItems.innerHTML =
-      cart.map(item => `
-
-        <div class="cart-item">
-
-          <img
-            src="${getImage(item)}"
-            alt="${item.name}"
-          >
-
-          <div>
-
-            <h4>
-              ${item.name}
-            </h4>
-
-            <small>
-              ${item.english}
-            </small>
-
-            <div class="cart-item-price">
-              ${money(item.price)}
-            </div>
-
-            <div class="quantity">
-
-              <button
-                type="button"
-                data-action="minus"
-                data-name="${item.name}"
-              >
-                −
-              </button>
-
-              <span>
-                ${item.quantity}
-              </span>
-
-              <button
-                type="button"
-                data-action="plus"
-                data-name="${item.name}"
-              >
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-          <button
-            type="button"
-            class="remove-cart-item"
-            data-action="remove"
-            data-name="${item.name}"
-          >
-            ×
-          </button>
-
-        </div>
-
-      `).join("");
-  }
-
-  if (cartCount) {
-    cartCount.textContent =
-      getCartCount();
-  }
-
-  if (cartTotal) {
-    cartTotal.textContent =
-      money(getCartTotal());
-  }
-
-  cartItems
-    .querySelectorAll("[data-action]")
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          const action =
-            button.dataset.action;
-
-          const name =
-            button.dataset.name;
-
-          if (action === "plus") {
-            changeQuantity(name, 1);
-          }
-
-          if (action === "minus") {
-            changeQuantity(name, -1);
-          }
-
-          if (action === "remove") {
-            removeFromCart(name);
-          }
-
-        }
-      );
-
-    });
-}
-/* =========================================================
-   CARRINHO — ABRIR / FECHAR
-========================================================= */
-
-function openCartDrawer() {
-  if (!cartDrawer) return;
-
-  cartDrawer.classList.add("active");
-  overlay?.classList.add("active");
-  document.body.classList.add("modal-open");
-}
-
-function closeCartDrawer() {
-  if (!cartDrawer) return;
-
-  cartDrawer.classList.remove("active");
-  document.body.classList.remove("modal-open");
-
-  if (!productModal?.classList.contains("active")) {
-    overlay?.classList.remove("active");
-    document.body.classList.remove("no-scroll");
-  }
-}
-
-if (openCart) {
-  openCart.addEventListener("click", openCartDrawer);
-}
-
-if (closeCart) {
-  closeCart.addEventListener("click", closeCartDrawer);
-}
-
-
-/* =========================================================
-   QUICK ORDER
-========================================================= */
-
-document.addEventListener("click", event => {
-
-  const button = event.target.closest(".quick-order");
+cartItems.addEventListener("click", e => {
+  const button = e.target.closest("button");
 
   if (!button) return;
 
   const name = button.dataset.name;
+  const action = button.dataset.action;
 
-  const item = menuData.find(
+  const item = cart.find(
     product => product.name === name
   );
 
   if (!item) return;
 
-  addToCart(item);
+  if (action === "plus") {
+    item.quantity++;
+  }
+
+  if (action === "minus") {
+    item.quantity--;
+
+    if (item.quantity <= 0) {
+      cart = cart.filter(
+        product => product.name !== name
+      );
+    }
+  }
+
+  saveCart();
+  renderCart();
+});
+document.querySelectorAll(".quick-order").forEach(button => {
+  button.addEventListener("click", () => {
+    const name = button.dataset.name;
+
+    const item = products.find(
+      product => product.name === name
+    );
+
+    if (item) {
+      addToCart(item);
+      cartDrawer.classList.add("active");
+    }
+  });
+});
+const backToTop =
+  document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 500) {
+    backToTop?.classList.add("show");
+  } else {
+    backToTop?.classList.remove("show");
+  }
+});
+
+backToTop?.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+const menuToggle =
+  document.getElementById("menuToggle");
+
+const mainNav =
+  document.getElementById("mainNav");
+
+menuToggle?.addEventListener("click", () => {
+  mainNav?.classList.toggle("active");
+});
+document.querySelectorAll(".main-nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+  });
+});
+
+document.addEventListener("click", e => {
+  if (
+    !mainNav?.contains(e.target) &&
+    !menuToggle?.contains(e.target)
+  ) {
+    mainNav?.classList.remove("active");
+  }
+});
+/* =========================================================
+   CONTROLO DO MODAL
+========================================================= */
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeProduct();
+    cartDrawer?.classList.remove("active");
+  }
 });
 
 
 /* =========================================================
-   OVERLAY
+   BOTÃO "VER DETALHES"
 ========================================================= */
 
-if (overlay) {
+menuGrid.addEventListener("click", e => {
+  const button = e.target.closest(".menu-item-btn");
 
-  overlay.addEventListener("click", () => {
-    closeProduct();
-    closeCartDrawer();
-  });
+  if (!button) return;
 
-}
+  const index = Number(button.dataset.index);
+
+  if (products[index]) {
+    selectProduct(products[index]);
+  }
+});
 
 
 /* =========================================================
-   WHATSAPP — ENVIAR PEDIDO
+   FECHAR MODAL AO CLICAR NO OVERLAY
 ========================================================= */
 
-if (sendWhatsApp) {
+overlay?.addEventListener("click", () => {
+  closeProduct();
+});
+/* =========================================================
+   ATUALIZAR FILTROS DO MENU
+========================================================= */
 
-  sendWhatsApp.addEventListener("click", () => {
+function updateMenuFilters() {
+  document.querySelectorAll(".menu-filter").forEach(button => {
+    const category = button.dataset.category;
 
-    if (!cart.length) {
-      alert("Adicione pelo menos um produto ao pedido.");
-      return;
+    if (category === selectedCategory) {
+      button.classList.add("active");
+    } else {
+      button.classList.remove("active");
     }
-
-    const name =
-      customerName?.value.trim() || "Cliente";
-
-    const note =
-      customerNote?.value.trim();
-
-    let message =
-      "Olá, Calor Tropical! 👋\n\n";
-
-    message += "*NOVO PEDIDO*\n\n";
-    message += `Cliente: ${name}\n\n`;
-
-    cart.forEach(item => {
-
-      const subtotal =
-        item.price * item.quantity;
-
-      message +=
-        `• ${item.name} / ${item.english} x${item.quantity} — ${money(subtotal)}\n`;
-    });
-
-    message +=
-      `\n*Total: ${money(getCartTotal())}*`;
-
-    if (note) {
-      message += `\n\nObservação: ${note}`;
-    }
-
-    const url =
-      `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
-
-    window.open(url, "_blank");
   });
-
 }
 
 
 /* =========================================================
-   MENU MOBILE
+   FILTRAR MENU
 ========================================================= */
 
-if (menuToggle && nav) {
+function filterMenu(category) {
+  selectedCategory = category;
 
-  menuToggle.addEventListener("click", () => {
+  const search =
+    menuSearch?.value.toLowerCase().trim() || "";
 
-    nav.classList.toggle("active");
-    menuToggle.classList.toggle("active");
+  const filtered = products.filter(item => {
 
+    const matchCategory =
+      category === "Todos" ||
+      item.category === category;
+
+    const matchSearch =
+      item.name.toLowerCase().includes(search) ||
+      item.category.toLowerCase().includes(search) ||
+      (item.english || "").toLowerCase().includes(search);
+
+    return matchCategory && matchSearch;
   });
 
-  nav.querySelectorAll("a").forEach(link => {
-
-    link.addEventListener("click", () => {
-
-      nav.classList.remove("active");
-      menuToggle.classList.remove("active");
-
-    });
-
-  });
-
+  renderMenu(filtered);
+  updateMenuFilters();
 }
 
 
 /* =========================================================
-   ANIMAÇÕES
+   PESQUISA DO MENU
 ========================================================= */
 
-function initReveal() {
+menuSearch?.addEventListener("input", () => {
+  filterMenu(selectedCategory);
+});
 
-  const elements =
-    document.querySelectorAll(".reveal");
 
-  if (!elements.length) return;
+/* =========================================================
+   BOTÕES DAS CATEGORIAS
+========================================================= */
 
-  if (!("IntersectionObserver" in window)) {
+document.querySelectorAll(".menu-filter").forEach(button => {
 
-    elements.forEach(element => {
-      element.classList.add("visible");
-    });
+  button.addEventListener("click", () => {
 
+    const category =
+      button.dataset.category || "Todos";
+
+    filterMenu(category);
+
+  });
+
+});
+
+
+/* =========================================================
+   MENU INICIAL
+========================================================= */
+
+filterMenu("Todos");
+/* =========================================================
+   ATUALIZAÇÃO COMPLETA DO CARRINHO
+========================================================= */
+
+function refreshCart() {
+  let total = 0;
+  let quantity = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.quantity;
+    quantity += item.quantity;
+  });
+
+  if (cartCount) {
+    cartCount.textContent = quantity;
+  }
+
+  if (cartTotal) {
+    cartTotal.textContent =
+      `${total.toLocaleString("pt-MZ")} MTS`;
+  }
+
+  saveCart();
+}
+
+
+/* =========================================================
+   ATUALIZAR CARRINHO APÓS QUALQUER ALTERAÇÃO
+========================================================= */
+
+function syncCart() {
+  renderCart();
+  refreshCart();
+}
+
+
+/* =========================================================
+   GARANTIR QUE O CARRINHO COMEÇA CORRETAMENTE
+========================================================= */
+
+if (!Array.isArray(cart)) {
+  cart = [];
+}
+
+syncCart();
+/* =========================================================
+   PEDIDO RÁPIDO DOS PRODUTOS EM DESTAQUE
+========================================================= */
+
+document.querySelectorAll(".quick-order").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const productName =
+      button.dataset.name;
+
+    const product =
+      products.find(
+        item => item.name === productName
+      );
+
+    if (!product) return;
+
+    selectedProduct = product;
+
+    addToCart(product);
+
+    cartDrawer?.classList.add("active");
+
+  });
+
+});
+
+
+/* =========================================================
+   ADICIONAR PRODUTO PELO MODAL
+========================================================= */
+
+modalAddButton?.addEventListener("click", () => {
+
+  if (!selectedProduct) return;
+
+  addToCart(selectedProduct);
+
+  closeProduct();
+
+  cartDrawer?.classList.add("active");
+
+});
+
+
+/* =========================================================
+   FECHAR CARRINHO AO CLICAR NO OVERLAY
+========================================================= */
+
+overlay?.addEventListener("click", () => {
+
+  cartDrawer?.classList.remove("active");
+
+});
+
+
+/* =========================================================
+   FECHAR CARRINHO COM ESC
+========================================================= */
+
+document.addEventListener("keydown", event => {
+
+  if (event.key === "Escape") {
+
+    cartDrawer?.classList.remove("active");
+
+  }
+
+});
+/* =========================================================
+   PEDIDO PROFISSIONAL PELO WHATSAPP
+========================================================= */
+
+sendWhatsApp?.addEventListener("click", () => {
+
+  if (!cart.length) {
+    alert("O carrinho está vazio.");
     return;
   }
 
-  const observer =
-    new IntersectionObserver(entries => {
+  const customerName =
+    document.getElementById("customerName")?.value.trim() || "";
 
-      entries.forEach(entry => {
+  const customerNote =
+    document.getElementById("customerNote")?.value.trim() || "";
 
-        if (entry.isIntersecting) {
+  let message =
+    "Olá, Calor Tropical! 👋%0A%0A";
 
-          entry.target.classList.add("visible");
+  if (customerName) {
+    message += `Nome: ${customerName}%0A%0A`;
+  }
 
-          observer.unobserve(entry.target);
-        }
+  message += "🍽️ *Meu pedido:*%0A%0A";
 
-      });
+  cart.forEach(item => {
 
-    }, {
-      threshold: 0.12
-    });
+    const subtotal =
+      item.price * item.quantity;
 
-  elements.forEach(element => {
-    observer.observe(element);
+    message +=
+      `• ${item.name} x${item.quantity} — ` +
+      `${subtotal.toLocaleString("pt-MZ")} MTS%0A`;
+
   });
 
+  message +=
+    `%0A💰 *Total: ${cartTotal.textContent}*`;
+
+  if (customerNote) {
+    message +=
+      `%0A%0A📝 Observação: ${customerNote}`;
+  }
+
+  message +=
+    "%0A%0AObrigado!";
+
+  window.open(
+    `https://wa.me/${WA_NUMBER}?text=${message}`,
+    "_blank"
+  );
+
+});
+/* =========================================================
+   LIMPAR FORMULÁRIO DO CARRINHO
+========================================================= */
+
+function clearOrderForm() {
+
+  const customerName =
+    document.getElementById("customerName");
+
+  const customerNote =
+    document.getElementById("customerNote");
+
+  if (customerName) {
+    customerName.value = "";
+  }
+
+  if (customerNote) {
+    customerNote.value = "";
+  }
 }
 
 
 /* =========================================================
-   VOLTAR AO TOPO
+   LIMPAR CARRINHO
 ========================================================= */
 
-if (backToTop) {
+function clearCart() {
 
-  window.addEventListener("scroll", () => {
+  cart = [];
 
-    if (window.scrollY > 500) {
-      backToTop.classList.add("show");
-    } else {
-      backToTop.classList.remove("show");
+  saveCart();
+  renderCart();
+
+  clearOrderForm();
+}
+
+
+/* =========================================================
+   LIMPAR CARRINHO QUANDO O PEDIDO FOR ENVIADO
+========================================================= */
+
+sendWhatsApp?.addEventListener("click", () => {
+
+  if (!cart.length) return;
+
+  setTimeout(() => {
+    clearCart();
+  }, 1000);
+
+});
+/* =========================================================
+   PROTEÇÃO DAS IMAGENS
+========================================================= */
+
+document.querySelectorAll("img").forEach(image => {
+
+  image.addEventListener("error", () => {
+
+    if (
+      !image.src.includes("images/menu.jpg")
+    ) {
+      image.src = "images/menu.jpg";
     }
 
   });
 
-  backToTop.addEventListener("click", () => {
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  });
-
-}
+});
 
 
 /* =========================================================
-   INICIALIZAÇÃO
-========================================================= */
-
-loadCart();
-renderMenu();
-renderCart();
-initReveal();
-/* =========================================================
-   LINKS INTERNOS
+   ROLAGEM SUAVE DO SITE
 ========================================================= */
 
 document.querySelectorAll('a[href^="#"]').forEach(link => {
 
   link.addEventListener("click", event => {
 
-    const targetId = link.getAttribute("href");
+    const targetId =
+      link.getAttribute("href");
 
-    if (!targetId || targetId === "#") return;
+    if (
+      !targetId ||
+      targetId === "#"
+    ) {
+      return;
+    }
 
-    const target = document.querySelector(targetId);
+    const target =
+      document.querySelector(targetId);
 
     if (!target) return;
 
@@ -1646,30 +968,212 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
 
 /* =========================================================
-   FALLBACK DAS IMAGENS
+   ATUALIZAÇÃO INICIAL
 ========================================================= */
 
-if (modalProductImage) {
+window.addEventListener("load", () => {
 
-  modalProductImage.addEventListener("error", () => {
+  renderMenu();
+  renderCart();
 
-    modalProductImage.src = "images/menu.jpg";
+  console.log(
+    "Calor Tropical — site carregado com sucesso."
+  );
 
-  });
+});
+/* =========================================================
+   DESCRIÇÕES PROFISSIONAIS DO MENU
+========================================================= */
 
+const categoryDescriptions = {
+
+  "Café / Chá":
+    "Uma seleção quente para começar a experiência no Calor Tropical.",
+
+  "Saladas":
+    "Opções frescas e leves, preparadas para acompanhar a sua refeição.",
+
+  "Entradas":
+    "Entradas saborosas para começar a sua experiência gastronómica.",
+
+  "Snacks & Sandwich":
+    "Uma opção prática e saborosa para uma refeição rápida.",
+
+  "Omeletes":
+    "Preparações feitas para uma refeição simples, saborosa e reconfortante.",
+
+  "Combo's":
+    "Combinações especiais de sabores do mar e da terra.",
+
+  "Principais":
+    "Pratos principais preparados para uma refeição completa no Calor Tropical.",
+
+  "Mariscos":
+    "Uma seleção especial de mariscos para apreciar os sabores da Ilha de Inhaca.",
+
+  "Refrescos":
+    "Bebidas refrescantes para acompanhar a sua refeição.",
+
+  "Sumos / Águas":
+    "Bebidas para acompanhar a sua experiência no restaurante.",
+
+  "Cervejas":
+    "Seleção de bebidas para desfrutar num ambiente tropical.",
+
+  "Cocktail":
+    "Cocktails preparados para tornar a sua experiência ainda mais especial.",
+
+  "Aperitivos":
+    "Uma seleção de aperitivos para desfrutar antes ou durante a refeição.",
+
+  "Digestivos":
+    "Opções para finalizar a refeição de forma agradável.",
+
+  "Shoots":
+    "Seleção de shots para momentos especiais.",
+
+  "Vinhos":
+    "Vinhos selecionados para acompanhar diferentes momentos e refeições."
+
+};
+
+
+/* =========================================================
+   MELHORAR O MODAL DOS PRODUTOS
+========================================================= */
+
+const oldOpenProduct = openProduct;
+
+openProduct = function(item) {
+
+  oldOpenProduct(item);
+
+  const description =
+    document.getElementById(
+      "modalProductDescription"
+    );
+
+  if (!description) return;
+
+  description.textContent =
+    categoryDescriptions[item.category] ||
+    "Uma excelente opção do menu Calor Tropical.";
+
+};
+
+
+/* =========================================================
+   ÍCONES DAS CATEGORIAS QUE FALTAVAM
+========================================================= */
+
+categoryIcons["Aperitivos"] = "🥃";
+categoryIcons["Digestivos"] = "🥃";
+categoryIcons["Shoots"] = "🥃";
+categoryIcons["Vinhos"] = "🍷";
+/* =========================================================
+   PREÇOS DO MENU — ESTILO PREMIUM
+========================================================= */
+
+.menu-card-content strong {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 12px;
+  padding: 7px 12px;
+  border-radius: 999px;
+
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: .3px;
+
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .18);
+
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+.menu-card:hover .menu-card-content strong {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, .14);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
 }
 
 
 /* =========================================================
-   INICIALIZAÇÃO FINAL
+   BOTÃO VER DETALHES
 ========================================================= */
 
-loadCart();
-renderMenu();
-renderCart();
-initReveal();
+.menu-item-btn {
+  margin-top: 14px;
+  width: 100%;
+  min-height: 44px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, .16);
+
+  font-weight: 700;
+  cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+.menu-item-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
+}
+
+.menu-item-btn:active {
+  transform: scale(.97);
+}
+
+
 /* =========================================================
-   FIM DO SCRIPT
+   IMAGENS DOS PRATOS
 ========================================================= */
 
-console.log("Calor Tropical — site carregado com sucesso! 🌴");
+.menu-card-image {
+  overflow: hidden;
+}
+
+.menu-card-image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+
+  transition:
+    transform .6s ease,
+    filter .6s ease;
+}
+
+.menu-card:hover .menu-card-image img {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+}
+
+
+/* =========================================================
+   NO TELEMÓVEL
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .menu-card-image img {
+    height: 200px;
+  }
+
+  .menu-card-content strong {
+    font-size: .95rem;
+  }
+
+  .menu-item-btn {
+    min-height: 46px;
+  }
+
+}
+
+
