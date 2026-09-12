@@ -938,23 +938,6 @@ document.addEventListener("click", function(event) {
 
   if (!button) return;
 
-  const id = button.dataset.id;
-
-  if (id !== undefined) {
-
-    const product = products.find(function(item) {
-      return item.id === Number(id);
-    });
-
-    if (product) {
-      addToCart(product);
-      openCart();
-    }
-
-    return;
-  }
-
-
   const card = button.closest(".featured-card");
 
   if (!card) return;
@@ -963,18 +946,43 @@ document.addEventListener("click", function(event) {
 
   if (!title) return;
 
-  const product = products.find(function(item) {
+  const titleText = title.textContent.trim().toLowerCase();
 
-    return item.name.toLowerCase() ===
-      title.textContent.trim().toLowerCase();
+  let category = null;
 
+  if (titleText.includes("camarão")) {
+    category = "Principais";
+  } 
+  else if (titleText.includes("peixe")) {
+    category = "Principais";
+  } 
+  else if (titleText.includes("marisco")) {
+    category = "Mariscos";
+  }
+
+  if (!category) return;
+
+  selectedCategory = category;
+
+  const filters = document.querySelectorAll(".filter");
+
+  filters.forEach(function(filter) {
+    filter.classList.remove("active");
+
+    if (filter.dataset.category === category) {
+      filter.classList.add("active");
+    }
   });
 
-  if (product) {
+  renderMenu();
 
-    addToCart(product);
-    openCart();
+  const menuSection = document.getElementById("menu");
 
+  if (menuSection) {
+    menuSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
   }
 
 });
