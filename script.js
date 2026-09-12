@@ -1069,35 +1069,32 @@ menuGrid.addEventListener("click", event => {
 });
 
 
-menuGrid.addEventListener("keydown", event => {
+/* =========================================================
+   CLIQUE NOS ITENS DO MENU
+========================================================= */
 
-  if (
-    event.key !== "Enter" &&
-    event.key !== " "
-  ) {
-    return;
-  }
+if (menuGrid) {
 
+  menuGrid.addEventListener("click", event => {
 
-  const card =
-    event.target.closest(".menu-card");
+    const card =
+      event.target.closest(".menu-card");
 
+    if (!card) return;
 
-  if (!card) return;
+    const index =
+      Number(card.dataset.index);
 
+    const item =
+      menuData[index];
 
-  event.preventDefault();
+    if (item) {
+      openProduct(item);
+    }
 
+  });
 
-  const item =
-    menuData[Number(card.dataset.index)];
-
-
-  if (item) {
-    openProduct(item);
-  }
-
-});
+}
 
 
 modalClose.addEventListener("click", closeProduct);
