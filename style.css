@@ -1309,4 +1309,77 @@ a {
     background-position: center;
   }
 
-  .hero-conten
+    .hero-content {
+    width: min(92%, 900px);
+    padding: 120px 0 80px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.4rem, 9vw, 4.5rem);
+    line-height: 1.05;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-buttons a,
+  .hero-buttons button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .advantages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .modal {
+    width: 94%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .cart-drawer {
+    width: min(92%, 400px);
+  }
+
+  .menu-filters {
+    gap: 8px;
+  }
+
+  .menu-filter {
+    font-size: .85rem;
+    padding: 9px 13px;
+  }
+
+}
