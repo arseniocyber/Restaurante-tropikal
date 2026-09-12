@@ -1359,6 +1359,27 @@ function renderCart() {
 
 }
 
+/* =========================================================
+   CLIQUE NOS ITENS DO MENU
+========================================================= */
+
+if (menuGrid) {
+
+  menuGrid.addEventListener("click", (event) => {
+
+    const card = event.target.closest(".menu-card");
+
+    if (!card) return;
+
+    const index = Number(card.dataset.index);
+
+    if (Number.isNaN(index)) return;
+
+    openProduct(index);
+
+  });
+
+       }
  /* =========================================================
    BOTÃO DO MODAL — ADICIONAR AO PEDIDO
 ========================================================= */
