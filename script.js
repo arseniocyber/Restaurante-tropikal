@@ -21,22 +21,38 @@ const menuGrid = document.getElementById("menuGrid");
 const menuSearch = document.getElementById("menuSearch");
 
 const categoryImages = {
+
   "Café / Chá": "images/menu.jpg",
+
   "Saladas": "images/galeria1.jpg",
+
   "Entradas": "images/camarao.jpg",
-  "Snacks & Sandwich": "images/menu.jpg",
-  "Omeletes": "images/menu.jpg",
-  "Combo's": "images/seafood.jpg",
+
+  "Snacks & Sandwich": "images/galeria2.jpg",
+
+  "Omeletes": "images/galeria3.jpg",
+
+  "Combo's": "images/frango.jpg",
+
   "Principais": "images/peixe.jpg",
+
   "Mariscos": "images/seafood.jpg",
-  "Refrescos": "images/menu.jpg",
-  "Sumos / Águas": "images/menu.jpg",
-  "Cervejas": "images/menu.jpg",
+
+  "Refrescos": "images/galeria4.jpg",
+
+  "Sumos / Águas": "images/galeria5.jpg",
+
+  "Cervejas": "images/galeria6.jpg",
+
   "Cocktail": "images/galeria2.jpg",
-  "Aperitivos": "images/menu.jpg",
-  "Digestivos": "images/menu.jpg",
-  "Shoots": "images/menu.jpg",
-  "Vinhos": "images/galeria3.jpg"
+
+  "Aperitivos": "images/galeria6.jpg",
+
+  "Digestivos": "images/galeria6.jpg",
+
+  "Shoots": "images/galeria6.jpg",
+
+  "Vinhos": "images/galeria5.jpg"
 };
 
 /* =========================================================
@@ -470,9 +486,7 @@ menuFilters.forEach(function(button) {
 
     this.classList.add("active");
 
-    selectedCategory =
-      this.dataset.category ||
-      this.textContent.trim();
+    selectedCategory = this.dataset.category || "Todos";
 
     if (!selectedCategory) {
       selectedCategory = "Todos";
@@ -505,20 +519,41 @@ if (menuSearch) {
 const menuToggle = document.getElementById("menuToggle");
 const mainNav = document.getElementById("mainNav");
 
-if (menuToggle && mainNav) {
+if (menuToggle) {
 
   menuToggle.addEventListener("click", function(event) {
 
+    event.preventDefault();
     event.stopPropagation();
 
-    const isOpen = mainNav.classList.toggle("active");
+    if (mainNav) {
+      mainNav.classList.toggle("active");
+    }
 
-    mainNav.classList.toggle("open", isOpen);
+    menuToggle.classList.toggle("active");
 
-    menuToggle.setAttribute(
-      "aria-expanded",
-      isOpen ? "true" : "false"
-    );
+  });
+
+}
+
+
+/* Fechar o menu ao clicar num link */
+
+if (mainNav) {
+
+  const navLinks = mainNav.querySelectorAll("a");
+
+  navLinks.forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+      mainNav.classList.remove("active");
+
+      if (menuToggle) {
+        menuToggle.classList.remove("active");
+      }
+
+    });
 
   });
 
