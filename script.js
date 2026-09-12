@@ -1264,4 +1264,538 @@ function renderCart() {
             <button
               data-action="minus"
               data-name="${item.name}"
-  
+                        <div class="quantity">
+
+            <button
+              type="button"
+              data-action="minus"
+              data-name="${item.name}"
+              aria-label="Diminuir quantidade"
+            >
+              −
+            </button>
+
+            <span>
+              ${item.quantity}
+            </span>
+
+            <button
+              type="button"
+              data-action="plus"
+              data-name="${item.name}"
+              aria-label="Aumentar quantidade"
+            >
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+        <button
+          type="button"
+          class="remove-cart-item"
+          data-action="remove"
+          data-name="${item.name}"
+          aria-label="Remover ${item.name}"
+        >
+          ×
+        </button>
+
+      </div>
+
+    `).join("");
+
+  }
+
+
+  if (cartCount) {
+
+    cartCount.textContent =
+      getCartCount();
+
+  }
+
+
+  if (cartTotal) {
+
+    cartTotal.textContent =
+      money(getCartTotal());
+
+  }
+
+
+  cartItems
+    .querySelectorAll("[data-action]")
+    .forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        const action =
+          button.dataset.action;
+
+        const name =
+          button.dataset.name;
+
+
+        if (action === "plus") {
+
+          changeQuantity(name, 1);
+
+        }
+
+        if (action === "minus") {
+
+          changeQuantity(name, -1);
+
+        }
+
+        if (action === "remove") {
+
+          removeFromCart(name);
+
+        }
+
+      });
+
+    });
+
+}
+
+ /* =========================================================
+   BOTÃO DO MODAL — ADICIONAR AO PEDIDO
+========================================================= */
+
+if (modalAddButton) {
+
+  modalAddButton.addEventListener("click", () => {
+
+    const index = Number(
+      productModal?.dataset.index
+    );
+
+    if (!Number.isNaN(index)) {
+
+      addToCart(index);
+
+      closeProduct();
+
+      openCartDrawer();
+
+    }
+
+  });
+
+}
+
+
+/* =========================================================
+   ABRIR CARRINHO
+========================================================= */
+
+function openCartDrawer() {
+
+  if (!cartDrawer) return;
+
+  cartDrawer.classList.add("active");
+
+  overlay?.classList.add("active");
+
+  document.body.classList.add("modal-open");
+
+}
+
+
+/* =========================================================
+   FECHAR CARRINHO
+========================================================= */
+
+function closeCartDrawer() {
+
+  if (!cartDrawer) return;
+
+  cartDrawer.classList.remove("active");
+
+  overlay?.classList.remove("active");
+
+  document.body.classList.remove("modal-open");
+
+}
+
+
+if (openCart) {
+
+  openCart.addEventListener(
+    "click",
+    openCartDrawer
+  );
+
+}
+
+
+if (closeCart) {
+
+  closeCart.addEventListener(
+    "click",
+    closeCartDrawer
+  );
+
+}
+
+
+/* =========================================================
+   BOTÕES "MARCAR" / PEDIDO RÁPIDO
+========================================================= */
+
+document.addEventListener("click", (event) => {
+
+  const button =
+    event.target.closest(".quick-order");
+
+  if (!button) return;
+
+  const name =
+    button.dataset.name;
+
+  const item =
+    menuData.find(
+      (product) =>
+        product.name === name
+    );
+
+  if (!item) return;
+
+  const index =
+    menuData.indexOf(item);
+
+  addToCart(index);
+
+  openCartDrawer();
+
+});
+
+
+/* =========================================================
+   ENVIAR PEDIDO PELO WHATSAPP
+========================================================= */
+
+if (sendWhatsApp) {
+
+  sendWhatsApp.addEventListener("click", () => {
+
+    if (!cart.length) {
+
+      alert(
+        "Adicione pelo menos um produto ao pedido."
+      );
+
+      return;
+
+    }
+
+
+    const name =
+      customerName?.value.trim() ||
+      "Cliente";
+
+
+    const note =
+      customerNote?.value.trim();
+
+
+    let message =
+      "Olá, Calor Tropical! 👋\n\n";
+
+    message +=
+      "*NOVO PEDIDO*\n\n";
+
+
+    message +=
+      `Cliente: ${name}\n\n`;
+
+
+    cart.forEach((item) => {
+
+      const subtotal =
+        item.price * item.quantity;
+
+      message +=
+        `• ${item.name} x${item.quantity} — ${money(subtotal)}\n`;
+
+    });
+
+
+    message +=
+      `\n*Total: ${money(getCartTotal())}*`;
+
+
+    if (note) {
+
+      message +=
+        `\n\nObservação: ${note}`;
+
+    }
+
+
+    message +=
+      "\n\nObrigado!";
+
+
+    const url =
+      `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+
+
+    window.open(
+      url,
+      "_blank"
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   MENU MOBILE
+========================================================= */
+
+if (menuToggle && nav) {
+
+  menuToggle.addEventListener("click", () => {
+
+    nav.classList.toggle("active");
+
+    menuToggle.classList.toggle("active");
+
+  });
+
+
+  nav
+    .querySelectorAll("a")
+    .forEach((link) => {
+
+      link.addEventListener("click", () => {
+
+        nav.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+      });
+
+    });
+
+}
+
+
+/* =========================================================
+   ANIMAÇÕES REVEAL
+========================================================= */
+
+function initReveal() {
+
+  const elements =
+    document.querySelectorAll(".reveal");
+
+
+  if (!elements.length) return;
+
+
+  if (!("IntersectionObserver" in window)) {
+
+    elements.forEach((element) => {
+
+      element.classList.add("visible");
+
+    });
+
+    return;
+
+  }
+
+
+  const observer =
+    new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add(
+              "visible"
+            );
+
+            observer.unobserve(
+              entry.target
+            );
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+  elements.forEach((element) => {
+
+    observer.observe(element);
+
+  });
+
+}
+
+
+/* =========================================================
+   BOTÃO VOLTAR AO TOPO
+========================================================= */
+
+if (backToTop) {
+
+  window.addEventListener(
+    "scroll",
+    () => {
+
+      if (window.scrollY > 500) {
+
+        backToTop.classList.add("show");
+
+      } else {
+
+        backToTop.classList.remove("show");
+
+      }
+
+    }
+  );
+
+
+  backToTop.addEventListener(
+    "click",
+    () => {
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LINKS INTERNOS SUAVES
+========================================================= */
+
+document
+  .querySelectorAll('a[href^="#"]')
+  .forEach((link) => {
+
+    link.addEventListener("click", (event) => {
+
+      const targetId =
+        link.getAttribute("href");
+
+      if (
+        !targetId ||
+        targetId === "#"
+      ) {
+
+        return;
+
+      }
+
+
+      const target =
+        document.querySelector(targetId);
+
+      if (!target) return;
+
+      event.preventDefault();
+
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    });
+
+  });
+
+
+/* =========================================================
+   PROTEÇÃO DAS IMAGENS DO MODAL
+========================================================= */
+
+if (modalProductImage) {
+
+  modalProductImage.addEventListener(
+    "error",
+    () => {
+
+      modalProductImage.src =
+        "images/menu.jpg";
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   WHATSAPP — LINKS DO SITE
+========================================================= */
+
+document
+  .querySelectorAll(
+    '[data-whatsapp="true"]'
+  )
+  .forEach((link) => {
+
+    link.addEventListener("click", () => {
+
+      link.href =
+        `https://wa.me/${WA_NUMBER}`;
+
+    });
+
+  });
+
+
+/* =========================================================
+   INICIALIZAÇÃO DO SITE
+========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    loadCart();
+
+    renderMenu();
+
+    renderCart();
+
+    initReveal();
+
+  }
+);
+
+
+/* =========================================================
+   GARANTIR EXECUÇÃO MESMO COM DEFER
+========================================================= */
+
+loadCart();
+
+renderMenu();
+
+renderCart();
+
+initReveal(); 
