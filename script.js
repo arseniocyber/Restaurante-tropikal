@@ -364,8 +364,36 @@ function openProduct(productId) {
   const overlay = document.getElementById("overlay");
 
   if (image) {
-    image.src = product.image;
-    image.alt = product.name;
+
+  const categoryEmoji = {
+    "Café / Chá": "☕",
+    "Saladas": "🥗",
+    "Entradas": "🍤",
+    "Snacks & Sandwich": "🥪",
+    "Omeletes": "🍳",
+    "Combo's": "🍱",
+    "Principais": "🍽️",
+    "Mariscos": "🦐",
+    "Refrescos": "🥤",
+    "Sumos / Águas": "🧃",
+    "Cervejas": "🍺",
+    "Cocktail": "🍹",
+    "Aperitivos": "🥃",
+    "Digestivos": "🥃",
+    "Shoots": "🥂",
+    "Vinhos": "🍷"
+  };
+
+  image.removeAttribute("src");
+  image.alt = product.name;
+  image.style.display = "none";
+
+  const emoji = document.createElement("div");
+
+  emoji.className = "modal-product-emoji";
+  emoji.textContent = categoryEmoji[product.category] || "🍽️";
+
+  image.parentNode.insertBefore(emoji, image);
   }
 
   if (category) {
@@ -959,6 +987,9 @@ document.addEventListener("click", function(event) {
   else if (titleText.includes("marisco")) {
     category = "Mariscos";
   }
+   else if (titleText.includes("frango")) {
+  category = "Principais";
+}
 
   if (!category) return;
 
@@ -1331,4 +1362,23 @@ createGalleryLightbox();
 /* =========================================================
    FIM DO SCRIPT
 ========================================================= */
+// Clicar na imagem dos pratos em destaque
+document.addEventListener("click", function(event) {
 
+  const image = event.target.closest(".featured-card img");
+
+  if (!image) return;
+
+  const name = image.dataset.name;
+
+  if (!name) return;
+
+  const product = products.find(function(item) {
+    return item.name.toLowerCase() === name.toLowerCase();
+  });
+
+  if (product) {
+    openProduct(product);
+  }
+
+});
