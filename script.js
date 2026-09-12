@@ -1,19 +1,16 @@
 /* =========================================================
-   CALOR TROPICAL
+   CALOR TROPICAL — JAVASCRIPT
+   PARTE 1/5 — DADOS DO MENU
 ========================================================= */
 
-const WA_NUMBER = "258874220984";
+const WA_NUMBER = "258846220984";
 
 let cart = [];
 let selectedCategory = "Todos";
+let selectedProduct = null;
 
-const money = value =>
-  `${Number(value).toLocaleString("pt-MZ")} MTS`;
-
-
-/* =========================================================
-   IMAGENS POR CATEGORIA
-========================================================= */
+const menuGrid = document.getElementById("menuGrid");
+const menuSearch = document.getElementById("menuSearch");
 
 const categoryImages = {
   "Café / Chá": "images/menu.jpg",
@@ -34,13 +31,27 @@ const categoryImages = {
   "Vinhos": "images/galeria3.jpg"
 };
 
-
-/* =========================================================
-   DADOS DO MENU
-   Os preços são os reais do restaurante.
-========================================================= */
+const categoryIcons = {
+  "Café / Chá": "☕",
+  "Saladas": "🥗",
+  "Entradas": "🥟",
+  "Snacks & Sandwich": "🥪",
+  "Omeletes": "🍳",
+  "Combo's": "🍽️",
+  "Principais": "🍛",
+  "Mariscos": "🦐",
+  "Refrescos": "🥤",
+  "Sumos / Águas": "🧃",
+  "Cervejas": "🍺",
+  "Cocktail": "🍹",
+  "Aperitivos": "🥃",
+  "Digestivos": "🥃",
+  "Shoots": "🥃",
+  "Vinhos": "🍷"
+};
 
 const menuData = [
+
   ["Café e leite", "Coffee with milk", 150, "Café / Chá"],
   ["Chá e leite", "Tea with milk", 125, "Café / Chá"],
   ["Capuchinho", "Cappuccino", 150, "Café / Chá"],
@@ -88,8 +99,8 @@ const menuData = [
   ["Posta de peixe", "Fish steak", 500, "Principais"],
   ["Panado", "Fish fingers", 550, "Principais"],
   ["Camarão", "Prawns", 895, "Principais"],
-  ["Bife", "Beef steak", 850, "Principais"]
-];
+  ["Bife", "Beef steak", 850, "Principais"],
+
   ["4 (fish, prawns, calamari)", "", 1525, "Mariscos"],
   ["Marisco", "Seafood p2 pax", 2500, "Mariscos"],
   ["Lobstar & 6 prawns", "", 1975, "Mariscos"],
@@ -99,7 +110,8 @@ const menuData = [
   ["330 ml", "", 70, "Refrescos"],
   ["Soda & Tônica", "", 75, "Refrescos"],
   ["Appletiser", "", 100, "Refrescos"],
-       ["Sumo Cappy", "", 125, "Sumos / Águas"],
+
+  ["Sumo Cappy", "", 125, "Sumos / Águas"],
   ["Sumo 500 ml", "", 100, "Sumos / Águas"],
   ["Sumo 1 L", "", 165, "Sumos / Águas"],
   ["Água 500 ml", "", 50, "Sumos / Águas"],
@@ -111,7 +123,7 @@ const menuData = [
   ["Heineken", "", 100, "Cervejas"],
   ["Breezer / Brutal", "", 100, "Cervejas"],
   ["Corona", "", 120, "Cervejas"],
-       ["Txilar / Preta", "", 85, "Cervejas"],
+  ["Txilar / Preta", "", 85, "Cervejas"],
   ["Manica / Impala 330 ml", "", 80, "Cervejas"],
   ["Fly-fishing / Spin", "", 100, "Cervejas"],
   ["Castle Lite", "", 100, "Cervejas"],
@@ -119,7 +131,8 @@ const menuData = [
   ["Bermin", "", 125, "Cervejas"],
   ["Red Bull", "", 100, "Cervejas"],
   ["Monster", "", 100, "Cervejas"],
-      ["Vodka / Sumo", "", 150, "Cocktail"],
+
+  ["Vodka / Sumo", "", 150, "Cocktail"],
   ["R & R", "", 150, "Cocktail"],
   ["Passion fruit / Sprite", "", 125, "Cocktail"],
   ["Milk Pedro", "", 325, "Cocktail"],
@@ -130,7 +143,7 @@ const menuData = [
   ["Gin Tanquery", "", 100, "Aperitivos"],
   ["Whisky Novo", "", 100, "Aperitivos"],
   ["Whisky Velho", "", 150, "Aperitivos"],
-      ["Captain Morgan / Bacardi", "", 100, "Aperitivos"],
+  ["Captain Morgan / Bacardi", "", 100, "Aperitivos"],
   ["Klipdrift", "", 80, "Aperitivos"],
   ["Amarula DBL", "", 190, "Aperitivos"],
   ["Vodka Absolut", "", 100, "Aperitivos"],
@@ -138,14 +151,15 @@ const menuData = [
 
   ["1920 / S. Domingos", "", 150, "Digestivos"],
   ["Vinho do Porto", "", 150, "Digestivos"],
-       ["Sambuca", "", 150, "Shoots"],
+
+  ["Sambuca", "", 150, "Shoots"],
   ["Tequila", "", 150, "Shoots"],
   ["Vinho do Porto", "", 300, "Shoots"],
 
   ["Vinho a copo", "", 150, "Vinhos"],
   ["Boschendal / Kadete", "", 1350, "Vinhos"],
   ["F. Bostsrd / Roodenberg", "", 1250, "Vinhos"],
-       ["G. Carlou / C. Sauvignon", "", 1350, "Vinhos"],
+  ["G. Carlou / C. Sauvignon", "", 1350, "Vinhos"],
   ["Cabriz, Gatão, Graça", "", 850, "Vinhos"],
   ["G. Garcia, Aveleda", "", 850, "Vinhos"],
   ["Portada", "", 850, "Vinhos"],
@@ -153,8 +167,10 @@ const menuData = [
   ["JC - Keuroux grf.", "", 650, "Vinhos"],
   ["Krone, Tosti, Anabela", "", 1100, "Vinhos"]
 ];
+
 const products = menuData.map(
-  ([name, english, price, category]) => ({
+  ([name, english, price, category], index) => ({
+    id: index,
     name,
     english,
     price,
@@ -162,1018 +178,1342 @@ const products = menuData.map(
     image: categoryImages[category] || "images/menu.jpg"
   })
 );
-const categoryIcons = {
-  "Café / Chá": "☕",
-  "Saladas": "🥗",
-  "Entradas": "🥟",
-  "Snacks & Sandwich": "🥪",
-  "Omeletes": "🍳",
-  "Combo's": "🍽️",
-  "Principais": "🍛",
-  "Mariscos": "🦐",
-  "Refrescos": "🥤",
-  "Sumos / Águas": "🧃",
-  "Cervejas": "🍺",
-  "Cocktail": "🍹"
-};
-const menuGrid = document.getElementById("menuGrid");
-const menuSearch = document.getElementById("menuSearch");
 
-function getProductName(item) {
-  if (!item.english) return item.name;
+/* =========================================================
+   CALOR TROPICAL — JAVASCRIPT
+   PARTE 2/5 — MENU + MODAL DOS PRODUTOS
+========================================================= */
 
-  if (
-    item.english.toLowerCase() ===
-    item.name.toLowerCase()
-  ) {
-    return item.name;
+/* ---------- DESCRIÇÕES DOS PRODUTOS ---------- */
+
+function getProductDescription(product) {
+  const descriptions = {
+    "Camarão": "Camarão preparado com sabor especial, ideal para uma refeição deliciosa junto ao mar.",
+    "Peixe inteiro": "Peixe inteiro preparado ao estilo do Calor Tropical.",
+    "Frango inteiro": "Frango inteiro preparado e servido com acompanhamento.",
+    "Marisco": "Seleção de mariscos para uma experiência especial.",
+    "Salada tropical": "Salada fresca e tropical, perfeita para acompanhar a sua refeição.",
+    "Caipirinha": "Cocktail refrescante preparado com limão e ingredientes selecionados."
+  };
+
+  return descriptions[product.name] ||
+    `Deliciosa opção do menu Calor Tropical — ${product.name}.`;
+}
+
+
+/* ---------- RENDERIZAR MENU ---------- */
+
+function renderMenu() {
+  if (!menuGrid) return;
+
+  const searchTerm = menuSearch
+    ? menuSearch.value.trim().toLowerCase()
+    : "";
+
+  const filteredProducts = products.filter(product => {
+
+    const matchesCategory =
+      selectedCategory === "Todos" ||
+      product.category === selectedCategory;
+
+    const text =
+      `${product.name} ${product.english} ${product.category}`
+        .toLowerCase();
+
+    const matchesSearch =
+      !searchTerm || text.includes(searchTerm);
+
+    return matchesCategory && matchesSearch;
+  });
+
+  if (!filteredProducts.length) {
+    menuGrid.innerHTML = `
+      <div class="empty-menu">
+        <span>🍽️</span>
+        <h3>Nenhum prato encontrado</h3>
+        <p>Tente outra categoria ou pesquise outro prato.</p>
+      </div>
+    `;
+    return;
   }
 
-  return `${item.name}<small>${item.english}</small>`;
-}
-function renderMenu(list = products) {
-  menuGrid.innerHTML = "";
+  menuGrid.innerHTML = filteredProducts.map(product => `
+    <article class="menu-card" data-id="${product.id}">
 
-  list.forEach((item, index) => {
-    const icon = categoryIcons[item.category] || "🍽️";
-
-    const card = document.createElement("article");
-    card.className = "menu-card";
-
-    card.innerHTML = `
       <div class="menu-card-image">
-        <img src="${item.image}" alt="${item.name}">
-        <span class="menu-icon">${icon}</span>
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+          onerror="this.src='images/menu.jpg'"
+        >
       </div>
 
       <div class="menu-card-content">
-        <span class="menu-category">${item.category}</span>
 
-        <h3>${getProductName(item)}</h3>
+        <span class="menu-category">
+          ${categoryIcons[product.category] || "🍽️"}
+          ${product.category}
+        </span>
 
-        <strong>${item.price.toLocaleString("pt-MZ")} MTS</strong>
+        <h3>${product.name}</h3>
 
-        <button class="menu-item-btn" data-index="${index}">
-          Ver detalhes
-        </button>
+        ${
+          product.english
+            ? `<p class="menu-english">${product.english}</p>`
+            : ""
+        }
+
+        <div class="menu-card-bottom">
+          <strong>${product.price} MTS</strong>
+
+          <button
+            type="button"
+            class="menu-item-btn"
+            data-id="${product.id}"
+          >
+            Ver detalhes
+          </button>
+        </div>
+
       </div>
-    `;
-
-    menuGrid.appendChild(card);
-  });
+    </article>
+  `).join("");
 }
-function filterMenu(category) {
-  selectedCategory = category;
 
-  const search =
-    menuSearch?.value.toLowerCase().trim() || "";
 
-  const filtered = products.filter(item => {
-    const matchCategory =
-      category === "Todos" ||
-      item.category === category;
+/* ---------- ABRIR PRODUTO ---------- */
 
-    const matchSearch =
-      item.name.toLowerCase().includes(search) ||
-      item.category.toLowerCase().includes(search);
+function openProduct(productId) {
 
-    return matchCategory && matchSearch;
-  });
+  const product = products.find(
+    item => item.id === Number(productId)
+  );
 
-  renderMenu(filtered);
-}
-menuGrid.addEventListener("click", e => {
-  const button = e.target.closest(".menu-item-btn");
+  if (!product) return;
 
-  if (!button) return;
+  selectedProduct = product;
 
-  const index = Number(button.dataset.index);
-  const item = products[index];
-
-  openProduct(item);
-});
-function openProduct(item) {
   const modal = document.getElementById("productModal");
+
   const image = document.getElementById("modalProductImage");
   const category = document.getElementById("modalProductCategory");
   const name = document.getElementById("modalProductName");
   const price = document.getElementById("modalProductPrice");
   const description = document.getElementById("modalProductDescription");
 
-  image.src = item.image;
-  image.alt = item.name;
-  category.textContent = item.category;
-  name.innerHTML = getProductName(item);
-  price.textContent = `${item.price.toLocaleString("pt-MZ")} MTS`;
-
-  description.textContent =
-    "Uma excelente opção do menu Calor Tropical.";
-    
-  modal.classList.add("active");
-}
-const modalClose = document.getElementById("modalClose");
-const overlay = document.getElementById("overlay");
-
-function closeProduct() {
-  document
-    .getElementById("productModal")
-    .classList.remove("active");
-}
-
-modalClose?.addEventListener("click", closeProduct);
-
-overlay?.addEventListener("click", closeProduct);
-const modalAddButton =
-  document.getElementById("modalAddButton");
-
-let selectedProduct = null;
-
-modalAddButton?.addEventListener("click", () => {
-  if (!selectedProduct) return;
-
-  addToCart(selectedProduct);
-  closeProduct();
-});
-function selectProduct(item) {
-  selectedProduct = item;
-  openProduct(item);
-}
-
-const originalOpenProduct = openProduct;
-
-openProduct = function(item) {
-  selectedProduct = item;
-  originalOpenProduct(item);
-};
-const cartItems =
-  document.getElementById("cartItems");
-
-const cartCount =
-  document.getElementById("cartCount");
-
-const cartTotal =
-  document.getElementById("cartTotal");
-
-let cart = [];
-
-function addToCart(item) {
-  const existing = cart.find(
-    product => product.name === item.name
-  );
-
-  if (existing) {
-    existing.quantity++;
-  } else {
-    cart.push({
-      ...item,
-      quantity: 1
-    });
+  if (image) {
+    image.src = product.image;
+    image.alt = product.name;
   }
 
-  renderCart();
+  if (category) {
+    category.textContent =
+      `${categoryIcons[product.category] || "🍽️"} ${product.category}`;
+  }
+
+  if (name) {
+    name.textContent = product.name;
+  }
+
+  if (price) {
+    price.textContent = `${product.price} MTS`;
+  }
+
+  if (description) {
+    description.textContent =
+      getProductDescription(product);
+  }
+
+  if (modal) {
+    modal.classList.add("active");
+  }
+
+  const overlay = document.getElementById("overlay");
+
+  if (overlay) {
+    overlay.classList.add("active");
+  }
+
+  document.body.classList.add("modal-open");
 }
+
+
+/* ---------- FECHAR MODAL ---------- */
+
+function closeProductModal() {
+
+  const modal = document.getElementById("productModal");
+  const overlay = document.getElementById("overlay");
+
+  if (modal) {
+    modal.classList.remove("active");
+  }
+
+  if (overlay) {
+    overlay.classList.remove("active");
+  }
+
+  document.body.classList.remove("modal-open");
+
+  selectedProduct = null;
+}
+
+
+/* ---------- CLIQUE NOS PRODUTOS ---------- */
+
+if (menuGrid) {
+
+  menuGrid.addEventListener("click", function(event) {
+
+    const button = event.target.closest(".menu-item-btn");
+
+    if (button) {
+      event.stopPropagation();
+
+      const id = button.dataset.id;
+
+      openProduct(id);
+
+      return;
+    }
+
+    const card = event.target.closest(".menu-card");
+
+    if (card) {
+      openProduct(card.dataset.id);
+    }
+
+  });
+
+}
+
+
+/* ---------- BOTÃO FECHAR DO MODAL ---------- */
+
+const modalClose = document.getElementById("modalClose");
+
+if (modalClose) {
+  modalClose.addEventListener("click", closeProductModal);
+}
+
+
+/* ---------- FECHAR CLICANDO NO OVERLAY ---------- */
+
+const overlay = document.getElementById("overlay");
+
+if (overlay) {
+
+  overlay.addEventListener("click", function() {
+
+    closeProductModal();
+
+    const cartDrawer = document.getElementById("cartDrawer");
+
+    if (cartDrawer) {
+      cartDrawer.classList.remove("active");
+    }
+
+  });
+
+}
+
+
+/* ---------- TECLA ESC ---------- */
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+    closeProductModal();
+
+    const cartDrawer = document.getElementById("cartDrawer");
+
+    if (cartDrawer) {
+      cartDrawer.classList.remove("active");
+    }
+
+    if (overlay) {
+      overlay.classList.remove("active");
+    }
+  }
+
+});
+
+
+/* =========================================================
+   CALOR TROPICAL — JAVASCRIPT
+   PARTE 3/5 — CARRINHO
+========================================================= */
+
+
+/* ---------- GUARDAR CARRINHO ---------- */
+
+function saveCart() {
+  localStorage.setItem("calorTropicalCart", JSON.stringify(cart));
+}
+
+
+/* ---------- CARREGAR CARRINHO ---------- */
+
+function loadCart() {
+
+  try {
+
+    const savedCart =
+      localStorage.getItem("calorTropicalCart");
+
+    if (savedCart) {
+      cart = JSON.parse(savedCart);
+    }
+
+  } catch (error) {
+
+    cart = [];
+
+  }
+
+}
+
+
+/* ---------- ADICIONAR AO CARRINHO ---------- */
+
+function addToCart(product) {
+
+  if (!product) return;
+
+  const existingItem = cart.find(
+    item => item.id === product.id
+  );
+
+  if (existingItem) {
+
+    existingItem.quantity += 1;
+
+  } else {
+
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      category: product.category,
+      quantity: 1
+    });
+
+  }
+
+  saveCart();
+  renderCart();
+  updateCartCount();
+
+}
+
+
+/* ---------- AUMENTAR QUANTIDADE ---------- */
+
+function increaseQuantity(productId) {
+
+  const item = cart.find(
+    product => product.id === Number(productId)
+  );
+
+  if (!item) return;
+
+  item.quantity += 1;
+
+  saveCart();
+  renderCart();
+  updateCartCount();
+
+}
+
+
+/* ---------- DIMINUIR QUANTIDADE ---------- */
+
+function decreaseQuantity(productId) {
+
+  const item = cart.find(
+    product => product.id === Number(productId)
+  );
+
+  if (!item) return;
+
+  item.quantity -= 1;
+
+  if (item.quantity <= 0) {
+
+    cart = cart.filter(
+      product => product.id !== Number(productId)
+    );
+
+  }
+
+  saveCart();
+  renderCart();
+  updateCartCount();
+
+}
+
+
+/* ---------- REMOVER ITEM ---------- */
+
+function removeFromCart(productId) {
+
+  cart = cart.filter(
+    product => product.id !== Number(productId)
+  );
+
+  saveCart();
+  renderCart();
+  updateCartCount();
+
+}
+
+
+/* ---------- TOTAL DO CARRINHO ---------- */
+
+function getCartTotal() {
+
+  return cart.reduce(
+    (total, item) =>
+      total + (item.price * item.quantity),
+    0
+  );
+
+}
+
+
+/* ---------- QUANTIDADE TOTAL ---------- */
+
+function getCartCount() {
+
+  return cart.reduce(
+    (total, item) =>
+      total + item.quantity,
+    0
+  );
+
+}
+
+
+/* ---------- ATUALIZAR CONTADOR ---------- */
+
+function updateCartCount() {
+
+  const cartCount =
+    document.getElementById("cartCount");
+
+  if (!cartCount) return;
+
+  const count = getCartCount();
+
+  cartCount.textContent = count;
+
+  if (count > 0) {
+    cartCount.classList.add("active");
+  } else {
+    cartCount.classList.remove("active");
+  }
+
+}
+
+
+/* ---------- MOSTRAR CARRINHO ---------- */
+
 function renderCart() {
-  cartItems.innerHTML = "";
 
-  let total = 0;
-  let count = 0;
+  const cartItems =
+    document.getElementById("cartItems");
 
-  cart.forEach(item => {
-    total += item.price * item.quantity;
-    count += item.quantity;
+  const cartTotal =
+    document.getElementById("cartTotal");
 
-    const div = document.createElement("div");
-    div.className = "cart-item";
+  if (!cartItems) return;
 
-    div.innerHTML = `
-      <strong>${item.name}</strong>
-      <span>${item.price.toLocaleString("pt-MZ")} MTS</span>
 
-      <div class="quantity">
-        <button data-name="${item.name}" data-action="minus">−</button>
-        <span>${item.quantity}</span>
-        <button data-name="${item.name}" data-action="plus">+</button>
+  /* CARRINHO VAZIO */
+
+  if (cart.length === 0) {
+
+    cartItems.innerHTML = `
+      <div class="empty-cart">
+        <div class="empty-cart-icon">🛒</div>
+
+        <h3>O seu carrinho está vazio</h3>
+
+        <p>
+          Escolha os seus pratos favoritos
+          no menu para fazer o pedido.
+        </p>
       </div>
     `;
 
-    cartItems.appendChild(div);
-  });
-
-  cartCount.textContent = count;
-  cartTotal.textContent =
-    `${total.toLocaleString("pt-MZ")} MTS`;
-}
-cartItems.addEventListener("click", e => {
-  const button = e.target.closest("button");
-
-  if (!button) return;
-
-  const name = button.dataset.name;
-  const action = button.dataset.action;
-
-  const item = cart.find(
-    product => product.name === name
-  );
-
-  if (!item) return;
-
-  if (action === "plus") {
-    item.quantity++;
-  }
-
-  if (action === "minus") {
-    item.quantity--;
-
-    if (item.quantity <= 0) {
-      cart = cart.filter(
-        product => product.name !== name
-      );
+    if (cartTotal) {
+      cartTotal.textContent = "0 MTS";
     }
-  }
 
-  renderCart();
-});
-const cartDrawer =
-  document.getElementById("cartDrawer");
+    updateCartCount();
 
-const openCart =
-  document.getElementById("openCart");
-
-const closeCart =
-  document.getElementById("closeCart");
-
-openCart?.addEventListener("click", () => {
-  cartDrawer.classList.add("active");
-});
-
-closeCart?.addEventListener("click", () => {
-  cartDrawer.classList.remove("active");
-});
-const sendWhatsApp =
-  document.getElementById("sendWhatsApp");
-
-sendWhatsApp?.addEventListener("click", () => {
-  if (!cart.length) {
-    alert("O carrinho está vazio.");
     return;
   }
 
-  let message = "Olá, Calor Tropical!%0A%0A";
-  message += "Gostaria de fazer este pedido:%0A%0A";
 
-  cart.forEach(item => {
-    message += `• ${item.name} x${item.quantity} - `;
-    message += `${(item.price * item.quantity)
-      .toLocaleString("pt-MZ")} MTS%0A`;
-  });
+  /* ITENS DO CARRINHO */
 
-  message += `%0ATotal: ${cartTotal.textContent}`;
+  cartItems.innerHTML = cart.map(item => {
 
-  window.open(
-    `https://wa.me/${WA_NUMBER}?text=${message}`,
-    "_blank"
-  );
-});
-function saveCart() {
-  localStorage.setItem(
-    "calorTropicalCart",
-    JSON.stringify(cart)
-  );
-}
+    const subtotal =
+      item.price * item.quantity;
 
-function loadCart() {
-  try {
-    cart =
-      JSON.parse(
-        localStorage.getItem("calorTropicalCart")
-      ) || [];
-  } catch {
-    cart = [];
+    return `
+      <div class="cart-item">
+
+        <div class="cart-item-info">
+
+          <h4>${item.name}</h4>
+
+          <span>
+            ${item.price} MTS × ${item.quantity}
+          </span>
+
+          <strong>
+            ${subtotal} MTS
+          </strong>
+
+        </div>
+
+
+        <div class="cart-item-actions">
+
+          <button
+            type="button"
+            class="quantity-btn"
+            data-action="decrease"
+            data-id="${item.id}"
+            aria-label="Diminuir quantidade"
+          >
+            −
+          </button>
+
+          <span class="quantity-value">
+            ${item.quantity}
+          </span>
+
+          <button
+            type="button"
+            class="quantity-btn"
+            data-action="increase"
+            data-id="${item.id}"
+            aria-label="Aumentar quantidade"
+          >
+            +
+          </button>
+
+          <button
+            type="button"
+            class="remove-cart-item"
+            data-action="remove"
+            data-id="${item.id}"
+            aria-label="Remover ${item.name}"
+          >
+            ×
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+
+  /* TOTAL */
+
+  if (cartTotal) {
+
+    cartTotal.textContent =
+      `${getCartTotal()} MTS`;
+
   }
 
-  renderCart();
-}
-function updateCart() {
-  saveCart();
-  renderCart();
 }
 
-cartItems.addEventListener("click", () => {
-  saveCart();
-});
-document.querySelectorAll(".menu-filter").forEach(button => {
-  button.addEventListener("click", () => {
-    document
-      .querySelectorAll(".menu-filter")
-      .forEach(btn => btn.classList.remove("active"));
 
-    button.classList.add("active");
+/* ---------- CLIQUES NO CARRINHO ---------- */
 
-    filterMenu(button.dataset.category);
-  });
-});
-menuSearch?.addEventListener("input", () => {
-  filterMenu(selectedCategory);
-});
-loadCart();
+const cartItemsContainer =
+  document.getElementById("cartItems");
 
-renderMenu();
-function addToCart(item) {
-  const existing = cart.find(
-    product => product.name === item.name
-  );
+if (cartItemsContainer) {
 
-  if (existing) {
-    existing.quantity++;
-  } else {
-    cart.push({
-      ...item,
-      quantity: 1
-    });
-  }
+  cartItemsContainer.addEventListener(
+    "click",
+    function(event) {
 
-  saveCart();
-  renderCart();
-}
-cartItems.addEventListener("click", e => {
-  const button = e.target.closest("button");
+      const button =
+        event.target.closest("button[data-action]");
 
-  if (!button) return;
+      if (!button) return;
 
-  const name = button.dataset.name;
-  const action = button.dataset.action;
+      const action =
+        button.dataset.action;
 
-  const item = cart.find(
-    product => product.name === name
-  );
+      const id =
+        button.dataset.id;
 
-  if (!item) return;
 
-  if (action === "plus") {
-    item.quantity++;
-  }
+      if (action === "increase") {
 
-  if (action === "minus") {
-    item.quantity--;
+        increaseQuantity(id);
 
-    if (item.quantity <= 0) {
-      cart = cart.filter(
-        product => product.name !== name
-      );
+      }
+
+
+      if (action === "decrease") {
+
+        decreaseQuantity(id);
+
+      }
+
+
+      if (action === "remove") {
+
+        removeFromCart(id);
+
+      }
+
     }
+  );
+
+}
+
+
+/* ---------- INICIALIZAR DADOS DO CARRINHO ---------- */
+
+loadCart();
+renderCart();
+updateCartCount();
+
+/* =========================================================
+   CALOR TROPICAL — JAVASCRIPT
+   PARTE 4/5 — CARRINHO + WHATSAPP
+========================================================= */
+
+
+/* ---------- ADICIONAR PELO MODAL ---------- */
+
+const modalAddButton =
+  document.getElementById("modalAddButton");
+
+if (modalAddButton) {
+
+  modalAddButton.addEventListener("click", function() {
+
+    if (!selectedProduct) return;
+
+    addToCart(selectedProduct);
+
+    closeProductModal();
+
+    openCart();
+
+  });
+
+}
+
+
+/* ---------- ABRIR CARRINHO ---------- */
+
+function openCart() {
+
+  const cartDrawer =
+    document.getElementById("cartDrawer");
+
+  const overlay =
+    document.getElementById("overlay");
+
+  if (cartDrawer) {
+    cartDrawer.classList.add("active");
   }
 
-  saveCart();
-  renderCart();
-});
-document.querySelectorAll(".quick-order").forEach(button => {
-  button.addEventListener("click", () => {
-    const name = button.dataset.name;
+  if (overlay) {
+    overlay.classList.add("active");
+  }
 
-    const item = products.find(
-      product => product.name === name
+  document.body.classList.add("modal-open");
+
+}
+
+
+/* ---------- FECHAR CARRINHO ---------- */
+
+function closeCart() {
+
+  const cartDrawer =
+    document.getElementById("cartDrawer");
+
+  const overlay =
+    document.getElementById("overlay");
+
+  if (cartDrawer) {
+    cartDrawer.classList.remove("active");
+  }
+
+  if (overlay) {
+    overlay.classList.remove("active");
+  }
+
+  document.body.classList.remove("modal-open");
+
+}
+
+
+/* ---------- BOTÃO ABRIR CARRINHO ---------- */
+
+const openCartButton =
+  document.getElementById("openCart");
+
+if (openCartButton) {
+
+  openCartButton.addEventListener(
+    "click",
+    function(event) {
+
+      event.preventDefault();
+
+      openCart();
+
+    }
+  );
+
+}
+
+
+/* ---------- BOTÃO FECHAR CARRINHO ---------- */
+
+const closeCartButton =
+  document.getElementById("closeCart");
+
+if (closeCartButton) {
+
+  closeCartButton.addEventListener(
+    "click",
+    function() {
+
+      closeCart();
+
+    }
+  );
+
+}
+
+
+/* ---------- BOTÕES "MARCAR / PEDIR" ---------- */
+
+document.addEventListener("click", function(event) {
+
+  const quickButton =
+    event.target.closest(".quick-order");
+
+  if (!quickButton) return;
+
+  const productId =
+    quickButton.dataset.id;
+
+  if (productId !== undefined) {
+
+    const product =
+      products.find(
+        item => item.id === Number(productId)
+      );
+
+    if (product) {
+
+      addToCart(product);
+
+      openCart();
+
+      return;
+
+    }
+
+  }
+
+
+  /* Caso o botão não tenha data-id,
+     tenta encontrar pelo nome */
+
+  const card =
+    quickButton.closest(".featured-card");
+
+  if (!card) return;
+
+  const title =
+    card.querySelector("h3");
+
+  if (!title) return;
+
+  const product =
+    products.find(
+      item =>
+        item.name.toLowerCase() ===
+        title.textContent.trim().toLowerCase()
     );
 
-    if (item) {
-      addToCart(item);
-      cartDrawer.classList.add("active");
-    }
-  });
-});
-const backToTop =
-  document.getElementById("backToTop");
+  if (product) {
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 500) {
-    backToTop?.classList.add("show");
-  } else {
-    backToTop?.classList.remove("show");
+    addToCart(product);
+
+    openCart();
+
   }
+
 });
 
-backToTop?.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+
+/* ---------- ENVIAR PEDIDO PELO WHATSAPP ---------- */
+
+const sendWhatsAppButton =
+  document.getElementById("sendWhatsApp");
+
+if (sendWhatsAppButton) {
+
+  sendWhatsAppButton.addEventListener(
+    "click",
+    function() {
+
+      if (cart.length === 0) {
+
+        alert(
+          "O seu carrinho está vazio. Escolha primeiro os produtos."
+        );
+
+        return;
+
+      }
+
+
+      const customerName =
+        document.getElementById("customerName");
+
+      const customerNote =
+        document.getElementById("customerNote");
+
+
+      const name =
+        customerName
+          ? customerName.value.trim()
+          : "";
+
+      const note =
+        customerNote
+          ? customerNote.value.trim()
+          : "";
+
+
+      let message =
+        "Olá, Calor Tropical! 👋%0A%0A";
+
+      message +=
+        "Gostaria de fazer o seguinte pedido:%0A%0A";
+
+
+      cart.forEach((item, index) => {
+
+        const subtotal =
+          item.price * item.quantity;
+
+        message +=
+          `${index + 1}. ${item.name} — ` +
+          `${item.quantity}x — ` +
+          `${subtotal} MTS%0A`;
+
+      });
+
+
+      message +=
+        `%0A*Total: ${getCartTotal()} MTS*%0A`;
+
+
+      if (name) {
+
+        message +=
+          `%0ANome: ${encodeURIComponent(name)}`;
+
+      }
+
+
+      if (note) {
+
+        message +=
+          `%0AObservação: ${encodeURIComponent(note)}`;
+
+      }
+
+
+      const whatsappURL =
+        `https://wa.me/${WA_NUMBER}?text=${message}`;
+
+
+      window.open(
+        whatsappURL,
+        "_blank"
+      );
+
+    }
+  );
+
+}
+
+
+/* ---------- ABRIR WHATSAPP DIRETO ---------- */
+
+document.addEventListener("click", function(event) {
+
+  const whatsappLink =
+    event.target.closest(
+      'a[href*="wa.me"]'
+    );
+
+  if (!whatsappLink) return;
+
+  /* Mantém os links de WhatsApp
+     funcionando normalmente */
+
 });
+
+
+/* ---------- SINCRONIZAR CARRINHO ---------- */
+
+function updateCart() {
+
+  saveCart();
+
+  renderCart();
+
+  updateCartCount();
+
+}
+
+
+/* ---------- FECHAR AO CLICAR NO OVERLAY ---------- */
+
+if (overlay) {
+
+  overlay.addEventListener("click", function() {
+
+    closeCart();
+
+  });
+
+                          }
+
+/* =========================================================
+   CALOR TROPICAL — JAVASCRIPT
+   PARTE 5/5 — FILTROS + MENU + GALERIA + FINALIZAÇÃO
+========================================================= */
+
+
+/* ---------- FILTROS DO MENU ---------- */
+
+const menuFilters =
+  document.querySelectorAll(".menu-filter");
+
+menuFilters.forEach(button => {
+
+  button.addEventListener("click", function() {
+
+    menuFilters.forEach(item => {
+      item.classList.remove("active");
+    });
+
+    this.classList.add("active");
+
+    selectedCategory =
+      this.dataset.category ||
+      this.textContent.trim();
+
+    renderMenu();
+
+  });
+
+});
+
+
+/* ---------- PESQUISA DO MENU ---------- */
+
+if (menuSearch) {
+
+  menuSearch.addEventListener(
+    "input",
+    function() {
+
+      renderMenu();
+
+    }
+  );
+
+}
+
+
+/* ---------- MENU MOBILE ---------- */
+
 const menuToggle =
   document.getElementById("menuToggle");
 
 const mainNav =
   document.getElementById("mainNav");
 
-menuToggle?.addEventListener("click", () => {
-  mainNav?.classList.toggle("active");
-});
-document.querySelectorAll(".main-nav a").forEach(link => {
-  link.addEventListener("click", () => {
-    mainNav?.classList.remove("active");
-  });
-});
 
-document.addEventListener("click", e => {
-  if (
-    !mainNav?.contains(e.target) &&
-    !menuToggle?.contains(e.target)
-  ) {
-    mainNav?.classList.remove("active");
-  }
-});
-/* =========================================================
-   CONTROLO DO MODAL
-========================================================= */
+if (menuToggle && mainNav) {
 
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") {
-    closeProduct();
-    cartDrawer?.classList.remove("active");
-  }
-});
+  menuToggle.addEventListener(
+    "click",
+    function() {
 
+      mainNav.classList.toggle("active");
 
-/* =========================================================
-   BOTÃO "VER DETALHES"
-========================================================= */
+      menuToggle.classList.toggle("active");
 
-menuGrid.addEventListener("click", e => {
-  const button = e.target.closest(".menu-item-btn");
+      const expanded =
+        mainNav.classList.contains("active");
 
-  if (!button) return;
-
-  const index = Number(button.dataset.index);
-
-  if (products[index]) {
-    selectProduct(products[index]);
-  }
-});
-
-
-/* =========================================================
-   FECHAR MODAL AO CLICAR NO OVERLAY
-========================================================= */
-
-overlay?.addEventListener("click", () => {
-  closeProduct();
-});
-/* =========================================================
-   ATUALIZAR FILTROS DO MENU
-========================================================= */
-
-function updateMenuFilters() {
-  document.querySelectorAll(".menu-filter").forEach(button => {
-    const category = button.dataset.category;
-
-    if (category === selectedCategory) {
-      button.classList.add("active");
-    } else {
-      button.classList.remove("active");
-    }
-  });
-}
-
-
-/* =========================================================
-   FILTRAR MENU
-========================================================= */
-
-function filterMenu(category) {
-  selectedCategory = category;
-
-  const search =
-    menuSearch?.value.toLowerCase().trim() || "";
-
-  const filtered = products.filter(item => {
-
-    const matchCategory =
-      category === "Todos" ||
-      item.category === category;
-
-    const matchSearch =
-      item.name.toLowerCase().includes(search) ||
-      item.category.toLowerCase().includes(search) ||
-      (item.english || "").toLowerCase().includes(search);
-
-    return matchCategory && matchSearch;
-  });
-
-  renderMenu(filtered);
-  updateMenuFilters();
-}
-
-
-/* =========================================================
-   PESQUISA DO MENU
-========================================================= */
-
-menuSearch?.addEventListener("input", () => {
-  filterMenu(selectedCategory);
-});
-
-
-/* =========================================================
-   BOTÕES DAS CATEGORIAS
-========================================================= */
-
-document.querySelectorAll(".menu-filter").forEach(button => {
-
-  button.addEventListener("click", () => {
-
-    const category =
-      button.dataset.category || "Todos";
-
-    filterMenu(category);
-
-  });
-
-});
-
-
-/* =========================================================
-   MENU INICIAL
-========================================================= */
-
-filterMenu("Todos");
-/* =========================================================
-   ATUALIZAÇÃO COMPLETA DO CARRINHO
-========================================================= */
-
-function refreshCart() {
-  let total = 0;
-  let quantity = 0;
-
-  cart.forEach(item => {
-    total += item.price * item.quantity;
-    quantity += item.quantity;
-  });
-
-  if (cartCount) {
-    cartCount.textContent = quantity;
-  }
-
-  if (cartTotal) {
-    cartTotal.textContent =
-      `${total.toLocaleString("pt-MZ")} MTS`;
-  }
-
-  saveCart();
-}
-
-
-/* =========================================================
-   ATUALIZAR CARRINHO APÓS QUALQUER ALTERAÇÃO
-========================================================= */
-
-function syncCart() {
-  renderCart();
-  refreshCart();
-}
-
-
-/* =========================================================
-   GARANTIR QUE O CARRINHO COMEÇA CORRETAMENTE
-========================================================= */
-
-if (!Array.isArray(cart)) {
-  cart = [];
-}
-
-syncCart();
-/* =========================================================
-   PEDIDO RÁPIDO DOS PRODUTOS EM DESTAQUE
-========================================================= */
-
-document.querySelectorAll(".quick-order").forEach(button => {
-
-  button.addEventListener("click", () => {
-
-    const productName =
-      button.dataset.name;
-
-    const product =
-      products.find(
-        item => item.name === productName
+      menuToggle.setAttribute(
+        "aria-expanded",
+        expanded
       );
 
-    if (!product) return;
-
-    selectedProduct = product;
-
-    addToCart(product);
-
-    cartDrawer?.classList.add("active");
-
-  });
-
-});
-
-
-/* =========================================================
-   ADICIONAR PRODUTO PELO MODAL
-========================================================= */
-
-modalAddButton?.addEventListener("click", () => {
-
-  if (!selectedProduct) return;
-
-  addToCart(selectedProduct);
-
-  closeProduct();
-
-  cartDrawer?.classList.add("active");
-
-});
-
-
-/* =========================================================
-   FECHAR CARRINHO AO CLICAR NO OVERLAY
-========================================================= */
-
-overlay?.addEventListener("click", () => {
-
-  cartDrawer?.classList.remove("active");
-
-});
-
-
-/* =========================================================
-   FECHAR CARRINHO COM ESC
-========================================================= */
-
-document.addEventListener("keydown", event => {
-
-  if (event.key === "Escape") {
-
-    cartDrawer?.classList.remove("active");
-
-  }
-
-});
-/* =========================================================
-   PEDIDO PROFISSIONAL PELO WHATSAPP
-========================================================= */
-
-sendWhatsApp?.addEventListener("click", () => {
-
-  if (!cart.length) {
-    alert("O carrinho está vazio.");
-    return;
-  }
-
-  const customerName =
-    document.getElementById("customerName")?.value.trim() || "";
-
-  const customerNote =
-    document.getElementById("customerNote")?.value.trim() || "";
-
-  let message =
-    "Olá, Calor Tropical! 👋%0A%0A";
-
-  if (customerName) {
-    message += `Nome: ${customerName}%0A%0A`;
-  }
-
-  message += "🍽️ *Meu pedido:*%0A%0A";
-
-  cart.forEach(item => {
-
-    const subtotal =
-      item.price * item.quantity;
-
-    message +=
-      `• ${item.name} x${item.quantity} — ` +
-      `${subtotal.toLocaleString("pt-MZ")} MTS%0A`;
-
-  });
-
-  message +=
-    `%0A💰 *Total: ${cartTotal.textContent}*`;
-
-  if (customerNote) {
-    message +=
-      `%0A%0A📝 Observação: ${customerNote}`;
-  }
-
-  message +=
-    "%0A%0AObrigado!";
-
-  window.open(
-    `https://wa.me/${WA_NUMBER}?text=${message}`,
-    "_blank"
+    }
   );
 
-});
-/* =========================================================
-   LIMPAR FORMULÁRIO DO CARRINHO
-========================================================= */
 
-function clearOrderForm() {
+  /* Fechar menu depois de clicar num link */
 
-  const customerName =
-    document.getElementById("customerName");
+  mainNav.querySelectorAll("a").forEach(link => {
 
-  const customerNote =
-    document.getElementById("customerNote");
+    link.addEventListener("click", function() {
 
-  if (customerName) {
-    customerName.value = "";
-  }
+      mainNav.classList.remove("active");
 
-  if (customerNote) {
-    customerNote.value = "";
-  }
-}
+      menuToggle.classList.remove("active");
 
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
 
-/* =========================================================
-   LIMPAR CARRINHO
-========================================================= */
-
-function clearCart() {
-
-  cart = [];
-
-  saveCart();
-  renderCart();
-
-  clearOrderForm();
-}
-
-
-/* =========================================================
-   LIMPAR CARRINHO QUANDO O PEDIDO FOR ENVIADO
-========================================================= */
-
-sendWhatsApp?.addEventListener("click", () => {
-
-  if (!cart.length) return;
-
-  setTimeout(() => {
-    clearCart();
-  }, 1000);
-
-});
-/* =========================================================
-   PROTEÇÃO DAS IMAGENS
-========================================================= */
-
-document.querySelectorAll("img").forEach(image => {
-
-  image.addEventListener("error", () => {
-
-    if (
-      !image.src.includes("images/menu.jpg")
-    ) {
-      image.src = "images/menu.jpg";
-    }
-
-  });
-
-});
-
-
-/* =========================================================
-   ROLAGEM SUAVE DO SITE
-========================================================= */
-
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-
-  link.addEventListener("click", event => {
-
-    const targetId =
-      link.getAttribute("href");
-
-    if (
-      !targetId ||
-      targetId === "#"
-    ) {
-      return;
-    }
-
-    const target =
-      document.querySelector(targetId);
-
-    if (!target) return;
-
-    event.preventDefault();
-
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
     });
 
   });
 
-});
+}
 
 
-/* =========================================================
-   ATUALIZAÇÃO INICIAL
-========================================================= */
+/* ---------- GALERIA LIGHTBOX ---------- */
 
-window.addEventListener("load", () => {
+function createGalleryLightbox() {
 
-  renderMenu();
-  renderCart();
+  if (document.getElementById("galleryLightbox")) {
+    return;
+  }
 
-  console.log(
-    "Calor Tropical — site carregado com sucesso."
+  const style = document.createElement("style");
+
+  style.textContent = `
+    #galleryLightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(0,0,0,.94);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    #galleryLightbox.active {
+      display: flex;
+    }
+
+    #galleryLightbox img {
+      max-width: 95%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.6);
+    }
+
+    #galleryLightboxClose {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    #galleryLightboxClose:hover {
+      background: rgba(255,255,255,.28);
+    }
+
+    .gallery-grid img {
+      cursor: pointer;
+    }
+  `;
+
+  document.head.appendChild(style);
+
+
+  const lightbox =
+    document.createElement("div");
+
+  lightbox.id = "galleryLightbox";
+
+  lightbox.innerHTML = `
+    <button
+      type="button"
+      id="galleryLightboxClose"
+      aria-label="Fechar imagem"
+    >
+      ×
+    </button>
+
+    <img
+      id="galleryLightboxImage"
+      src=""
+      alt="Imagem da galeria"
+    >
+  `;
+
+  document.body.appendChild(lightbox);
+
+
+  const closeButton =
+    document.getElementById(
+      "galleryLightboxClose"
+    );
+
+  const lightboxImage =
+    document.getElementById(
+      "galleryLightboxImage"
+    );
+
+
+  /* Abrir imagem */
+
+  document.querySelectorAll(
+    ".gallery-item img, .gallery-grid img"
+  ).forEach(image => {
+
+    image.addEventListener("click", function(event) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      lightboxImage.src = this.src;
+      lightboxImage.alt =
+        this.alt || "Imagem da galeria";
+
+      lightbox.classList.add("active");
+
+      document.body.classList.add("modal-open");
+
+    });
+
+  });
+
+
+  /* Fechar */
+
+  closeButton.addEventListener(
+    "click",
+    function() {
+
+      lightbox.classList.remove("active");
+
+      document.body.classList.remove("modal-open");
+
+    }
+  );
+
+
+  lightbox.addEventListener(
+    "click",
+    function(event) {
+
+      if (event.target === lightbox) {
+
+        lightbox.classList.remove("active");
+
+        document.body.classList.remove(
+          "modal-open"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* ---------- BOTÃO VOLTAR AO TOPO ---------- */
+
+const backToTop =
+  document.getElementById("backToTop");
+
+
+if (backToTop) {
+
+  window.addEventListener(
+    "scroll",
+    function() {
+
+      if (window.scrollY > 500) {
+
+        backToTop.classList.add("visible");
+
+      } else {
+
+        backToTop.classList.remove("visible");
+
+      }
+
+    }
+  );
+
+
+  backToTop.addEventListener(
+    "click",
+    function(event) {
+
+      event.preventDefault();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+}
+
+
+/* ---------- LINKS INTERNOS SUAVES ---------- */
+
+document.querySelectorAll(
+  'a[href^="#"]'
+).forEach(link => {
+
+  link.addEventListener(
+    "click",
+    function(event) {
+
+      const targetId =
+        this.getAttribute("href");
+
+      if (
+        !targetId ||
+        targetId === "#"
+      ) {
+        return;
+      }
+
+      const target =
+        document.querySelector(targetId);
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
   );
 
 });
-/* =========================================================
-   DESCRIÇÕES PROFISSIONAIS DO MENU
-========================================================= */
-
-const categoryDescriptions = {
-
-  "Café / Chá":
-    "Uma seleção quente para começar a experiência no Calor Tropical.",
-
-  "Saladas":
-    "Opções frescas e leves, preparadas para acompanhar a sua refeição.",
-
-  "Entradas":
-    "Entradas saborosas para começar a sua experiência gastronómica.",
-
-  "Snacks & Sandwich":
-    "Uma opção prática e saborosa para uma refeição rápida.",
-
-  "Omeletes":
-    "Preparações feitas para uma refeição simples, saborosa e reconfortante.",
-
-  "Combo's":
-    "Combinações especiais de sabores do mar e da terra.",
-
-  "Principais":
-    "Pratos principais preparados para uma refeição completa no Calor Tropical.",
-
-  "Mariscos":
-    "Uma seleção especial de mariscos para apreciar os sabores da Ilha de Inhaca.",
-
-  "Refrescos":
-    "Bebidas refrescantes para acompanhar a sua refeição.",
-
-  "Sumos / Águas":
-    "Bebidas para acompanhar a sua experiência no restaurante.",
-
-  "Cervejas":
-    "Seleção de bebidas para desfrutar num ambiente tropical.",
-
-  "Cocktail":
-    "Cocktails preparados para tornar a sua experiência ainda mais especial.",
-
-  "Aperitivos":
-    "Uma seleção de aperitivos para desfrutar antes ou durante a refeição.",
-
-  "Digestivos":
-    "Opções para finalizar a refeição de forma agradável.",
-
-  "Shoots":
-    "Seleção de shots para momentos especiais.",
-
-  "Vinhos":
-    "Vinhos selecionados para acompanhar diferentes momentos e refeições."
-
-};
 
 
-/* =========================================================
-   MELHORAR O MODAL DOS PRODUTOS
-========================================================= */
+/* ---------- CORRIGIR BOTÕES DE NAVEGAÇÃO ---------- */
 
-const oldOpenProduct = openProduct;
+document.querySelectorAll(
+  ".hero-buttons a, .cta a"
+).forEach(button => {
 
-openProduct = function(item) {
+  button.addEventListener(
+    "click",
+    function() {
 
-  oldOpenProduct(item);
+      if (
+        this.getAttribute("href") === "#menu"
+      ) {
 
-  const description =
-    document.getElementById(
-      "modalProductDescription"
-    );
+        selectedCategory = "Todos";
 
-  if (!description) return;
+        menuFilters.forEach(item => {
+          item.classList.remove("active");
 
-  description.textContent =
-    categoryDescriptions[item.category] ||
-    "Uma excelente opção do menu Calor Tropical.";
+          if (
+            item.dataset.category === "Todos"
+          ) {
+            item.classList.add("active");
+          }
+        });
 
-};
+        renderMenu();
 
+      }
 
-/* =========================================================
-   ÍCONES DAS CATEGORIAS QUE FALTAVAM
-========================================================= */
+    }
+  );
 
-categoryIcons["Aperitivos"] = "🥃";
-categoryIcons["Digestivos"] = "🥃";
-categoryIcons["Shoots"] = "🥃";
-categoryIcons["Vinhos"] = "🍷";
-/* =========================================================
-   PREÇOS DO MENU — ESTILO PREMIUM
-========================================================= */
-
-.menu-card-content strong {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 12px;
-  padding: 7px 12px;
-  border-radius: 999px;
-
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: .3px;
-
-  background: rgba(255, 255, 255, .08);
-  border: 1px solid rgba(255, 255, 255, .18);
-
-  transition:
-    transform .3s ease,
-    background .3s ease,
-    box-shadow .3s ease;
-}
-
-.menu-card:hover .menu-card-content strong {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, .14);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
-}
+});
 
 
-/* =========================================================
-   BOTÃO VER DETALHES
-========================================================= */
+/* ---------- INICIALIZAÇÃO FINAL ---------- */
 
-.menu-item-btn {
-  margin-top: 14px;
-  width: 100%;
-  min-height: 44px;
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
 
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, .16);
+    loadCart();
 
-  font-weight: 700;
-  cursor: pointer;
+    renderCart();
 
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    background .25s ease;
-}
+    updateCartCount();
 
-.menu-item-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
-}
+    renderMenu();
 
-.menu-item-btn:active {
-  transform: scale(.97);
-}
+    createGalleryLightbox();
 
-
-/* =========================================================
-   IMAGENS DOS PRATOS
-========================================================= */
-
-.menu-card-image {
-  overflow: hidden;
-}
-
-.menu-card-image img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-
-  transition:
-    transform .6s ease,
-    filter .6s ease;
-}
-
-.menu-card:hover .menu-card-image img {
-  transform: scale(1.06);
-  filter: brightness(1.05);
-}
-
-
-/* =========================================================
-   NO TELEMÓVEL
-========================================================= */
-
-@media (max-width: 600px) {
-
-  .menu-card-image img {
-    height: 200px;
   }
+);
 
-  .menu-card-content strong {
-    font-size: .95rem;
-  }
 
-  .menu-item-btn {
-    min-height: 46px;
-  }
+/* ---------- GARANTIR QUE FUNCIONE
+   MESMO COM SCRIPT DEFER ---------- */
+
+if (document.readyState !== "loading") {
+
+  renderMenu();
+
+  renderCart();
+
+  updateCartCount();
+
+  createGalleryLightbox();
 
 }
+
+
 
 
