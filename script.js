@@ -306,13 +306,7 @@ function renderMenu() {
     return `
       <article class="menu-card" data-id="${product.id}">
 
-        <div class="menu-card-image">
-          <img
-            src="${product.image}"
-            alt="${product.name}"
-            loading="lazy"
-          >
-        </div>
+        
 
         <div class="menu-card-content">
 
