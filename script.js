@@ -1,24 +1,63 @@
-// ================= SCRIPT DO RESTAURANTE CALOR TROPICAL (AJUSTADO) =================
+// ================= SCRIPT COMPLETO E CORRIGIDO - RESTAURANTE CALOR TROPICAL =================
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- DADOS DO MENU COMPLETOS (Com todas as categorias preenchidas) ---
   const menuData = [
+    // Café / Chá
     { name: "Café", category: "Café / Chá", price: 100, description: "Café espresso tradicional.", emoji: "☕" },
     { name: "Café e leite", category: "Café / Chá", price: 150, description: "Café quente misturado com leite cremoso.", emoji: "☕" },
     { name: "Chá", category: "Café / Chá", price: 100, description: "Variedade de chás disponíveis.", emoji: "🫖" },
+
+    // Saladas
     { name: "Salada mista", category: "Saladas", price: 250, description: "Alface, tomate, cebola, pepino e cenoura fresca.", emoji: "🥗" },
     { name: "Salada tropical", category: "Saladas", price: 350, description: "Mix de folhas, frutos da época e molho especial da casa.", emoji: "🥗" },
+
+    // Entradas
     { name: "Pão de alho", category: "Entradas", price: 150, description: "Pão tostado com pasta de alho e ervas.", emoji: "🥖" },
     { name: "Camarão rissóis (unid)", category: "Entradas", price: 80, description: "Rissóis de camarão estaladiços.", emoji: "🍤" },
+
+    // Snacks & Sandwich
     { name: "Prego no pão", category: "Snacks & Sandwich", price: 300, description: "Bife de vaca suculento no pão com batatas fritas.", emoji: "🥪" },
     { name: "Hambúrguer tropical", category: "Snacks & Sandwich", price: 350, description: "Hambúrguer artesanal com queijo, alface e tomate.", emoji: "🍔" },
+
+    // Omeletes
     { name: "Omelete simples", category: "Omeletes", price: 200, description: "Omelete de ovos frescos com ervas.", emoji: "🍳" },
     { name: "Omelete mista", category: "Omeletes", price: 280, description: "Omelete recheada com queijo e fiambre.", emoji: "🍳" },
+
+    // Combo's
     { name: "Combo Casal", category: "Combo's", price: 1200, description: "Seleção especial de mariscos e peixe para duas pessoas. Acompanha shamussas.", emoji: "🍱" },
+
+    // Principais
     { name: "Peixe inteiro / Whole fish", category: "Principais", price: 650, description: "Peixe fresco do dia grelhado. Servido com arroz, batatas fritas e salada.", emoji: "🐟" },
     { name: "Camarão", category: "Principais", price: 850, description: "Camarão fresco grelhado. Servido com arroz, batatas fritas e salada.", emoji: "🦐" },
     { name: "1/4 frango / Chicken", category: "Principais", price: 450, description: "Frango assado à moda da casa. Servido com arroz, batatas fritas e salada.", emoji: "🍗" },
+
+    // Mariscos
     { name: "Marisco / Seafood p2 pax", category: "Mariscos", price: 1500, description: "Prato misto de mariscos frescos para partilhar. Acompanha shamussas.", emoji: "🦞" },
+
+    // Sumos
+    { name: "Sumo natural da época", category: "Sumos", price: 120, description: "Sumo de fruta fresca do dia (manga, papaia ou ananás).", emoji: "🧃" },
+    { name: "Sumo de maracujá natural", category: "Sumos", description: "Sumo natural refrescante de maracujá.", price: 150, emoji: "🍹" },
+
+    // Shoots
+    { name: "Shoot Tequila", category: "Shoots", price: 200, description: "Dose de tequila com limão e sal.", emoji: "🥃" },
+    { name: "Shoot Jägermeister", category: "Shoots", price: 250, description: "Dose gelada de licor de ervas.", emoji: "🥃" },
+
+    // Vinhos
+    { name: "Vinho Tinto da Casa (Taça)", category: "Vinhos", price: 250, description: "Copo de vinho tinto selecionado.", emoji: "🍷" },
+    { name: "Vinho Branco da Casa (Garrafa)", category: "Vinhos", price: 950, description: "Garrafa de vinho branco fresco.", emoji: "🍾" },
+
+    // Aperitivos
+    { name: "Aperitivo Martini", category: "Aperitivos", price: 200, description: "Vermute clássico servido com gelo e rodelas de limão.", emoji: "🍸" },
+    { name: "Campari", category: "Aperitivos", price: 220, description: "Aperitivo clássico amargo e refrescante.", emoji: "🥃" },
+
+    // Cervejas
+    { name: "Cerveja 2M (Lata/Garrafa)", category: "Cervejas", price: 100, description: "A cerveja favorita de Moçambique bem gelada.", emoji: "🍺" },
+    { name: "Cerveja Laurentina Clara", category: "Cervejas", price: 110, description: "Cerveja loura tradicional moçambicana.", emoji: "🍺" },
+    { name: "Cerveja Black", category: "Cervejas", price: 120, description: "Cerveja preta encorpada.", emoji: "🍺" },
+
+    // Bebidas & Outros
     { name: "Refrescos", category: "Refrescos", price: 100, description: "Refrigerantes variados lata 330ml.", emoji: "🥤" },
     { name: "Caipirinha", category: "Cocktail", price: 350, description: "Cocktail refrescante com limão, açúcar e aguardente/cachaça.", emoji: "🍹" }
   ];
@@ -51,10 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentSelectedItem = null;
 
+  // --- RENDERIZAR MENU ---
   function renderMenu(items) {
     menuGrid.innerHTML = '';
     if (items.length === 0) {
-      menuGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #777;">Nenhum item encontrado.</p>';
+      menuGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #777; padding: 20px;">Nenhum item encontrado nesta categoria.</p>';
       return;
     }
 
@@ -62,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('article');
       card.className = 'menu-card reveal active';
       card.innerHTML = `
-        <div class="menu-emoji-box" style="font-size: 50px; text-align: center; padding: 20px 0; background: rgba(255,255,255,0.03);">${item.emoji}</div>
+        <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">${item.emoji}</div>
         <div class="menu-card-content">
           <span class="badge">${item.category}</span>
           <h3>${item.name}</h3>
@@ -89,7 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
       menuGrid.appendChild(card);
     });
   }
-      // --- MODAL DE PRODUTO ---
+
+  // --- MODAL DE PRODUTO ---
   function openModal(item) {
     currentSelectedItem = item;
     modalProductName.textContent = item.name;
@@ -97,10 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
     modalProductPrice.textContent = `${item.price} MTS`;
     modalProductDescription.textContent = item.description;
     
-    if (modalProductEmoji) {
-      if (modalProductEmoji.tagName === 'DIV' || modalProductEmoji.tagName === 'SPAN') {
-        modalProductEmoji.textContent = item.emoji;
-      }
+    // Se houver um espaço para emoji no modal, atualiza
+    const modalEmojiContainer = document.getElementById('modalProductEmoji');
+    if (modalEmojiContainer) {
+      modalEmojiContainer.textContent = item.emoji;
     }
     
     productModal.classList.add('active');
@@ -112,19 +153,23 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.classList.remove('active');
   }
 
-  modalClose.addEventListener('click', closeModal);
-  overlay.addEventListener('click', () => {
-    closeModal();
-    closeCart();
-  });
-
-  modalAddButton.addEventListener('click', () => {
-    if (currentSelectedItem) {
-      addToCart(currentSelectedItem);
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (overlay) {
+    overlay.addEventListener('click', () => {
       closeModal();
-      openCart();
-    }
-  });
+      closeCart();
+    });
+  }
+
+  if (modalAddButton) {
+    modalAddButton.addEventListener('click', () => {
+      if (currentSelectedItem) {
+        addToCart(currentSelectedItem);
+        closeModal();
+        openCart();
+      }
+    });
+  }
 
   // --- GESTÃO DO CARRINHO ---
   function addToCart(item) {
@@ -143,10 +188,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cart.length === 0) {
       cartItemsContainer.innerHTML = `
-        <div class="empty-cart">
-          <span>🛒</span>
-          <p>O seu pedido está vazio.</p>
-          <a href="#menu" id="emptyCartLink" class="text-link">Escolher pratos</a>
+        <div class="empty-cart" style="text-align: center; padding: 30px;">
+          <span style="font-size: 40px;">🛒</span>
+          <p style="color: #bbb; margin: 10px 0;">O seu pedido está vazio.</p>
+          <a href="#menu" id="emptyCartLink" class="text-link" style="color: #ff5c5c; text-decoration: underline;">Escolher pratos</a>
         </div>
       `;
       document.getElementById('emptyCartLink')?.addEventListener('click', (e) => {
@@ -187,7 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cartTotal.textContent = `${totalPrice} MTS`;
 
-    // Eventos de quantidade com remoção limpa se chegar a 0
     cartItemsContainer.querySelectorAll('.increase').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const idx = e.currentTarget.getAttribute('data-index');
@@ -218,107 +262,134 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openCart() {
-    cartDrawer.classList.add('active');
-    overlay.classList.add('active');
+    if(cartDrawer) cartDrawer.classList.add('active');
+    if(overlay) overlay.classList.add('active');
   }
 
   function closeCart() {
-    cartDrawer.classList.remove('active');
-    overlay.classList.remove('active');
+    if(cartDrawer) cartDrawer.classList.remove('active');
+    if(overlay) overlay.classList.remove('active');
   }
 
-  openCartBtn.addEventListener('click', openCart);
-  if (closeCartBtn) {
-    closeCartBtn.addEventListener('click', closeCart);
-  }
+  if(openCartBtn) openCartBtn.addEventListener('click', openCart);
+  if(closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
 
   // --- FILTROS E PESQUISA ---
-  filtersContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('filter')) {
-      filtersContainer.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
-      e.target.classList.add('active');
-      const category = e.target.getAttribute('data-category');
+  if(filtersContainer) {
+    filtersContainer.addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter')) {
+        filtersContainer.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+        e.target.classList.add('active');
+        const category = e.target.getAttribute('data-category');
 
-      if (category === 'Todos') {
-        renderMenu(menuData);
-      } else {
-        const filtered = menuData.filter(item => item.category === category);
-        renderMenu(filtered);
+        if (category === 'Todos') {
+          renderMenu(menuData);
+        } else {
+          const filtered = menuData.filter(item => item.category === category);
+          renderMenu(filtered);
+        }
       }
-    }
-  });
+    });
+  }
 
-  searchInput.addEventListener('input', (e) => {
-    const term = e.target.value.toLowerCase();
-    const filtered = menuData.filter(item => 
-      item.name.toLowerCase().includes(term) || 
-      item.description.toLowerCase().includes(term) ||
-      item.category.toLowerCase().includes(term)
-    );
-    renderMenu(filtered);
-  });
+  if(searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      const filtered = menuData.filter(item => 
+        item.name.toLowerCase().includes(term) || 
+        item.description.toLowerCase().includes(term) ||
+        item.category.toLowerCase().includes(term)
+      );
+      renderMenu(filtered);
+    });
+  }
 
-  // --- BOTÕES RÁPIDOS DOS DESTAQUES (CORRIGIDO) ---
+  // --- BOTÕES RÁPIDOS DOS DESTAQUES ("Ver no Menu" corrigido para descer até ao menu) ---
   document.querySelectorAll('.quick-order').forEach(btn => {
     btn.addEventListener('click', () => {
       const name = btn.getAttribute('data-name');
       const foundItem = menuData.find(i => i.name.toLowerCase() === name.toLowerCase());
       if (foundItem) {
-        openModal(foundItem); // Abre o modal do item em vez de mandar direto para o carrinho vazio
+        openModal(foundItem);
       } else {
-        document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+        const menuSection = document.getElementById('menu');
+        if(menuSection) menuSection.scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
 
-  // --- ENVIAR PEDIDO VIA WHATSAPP ---
-  sendWhatsAppBtn.addEventListener('click', () => {
-    if (cart.length === 0) {
-      alert('O seu pedido está vazio!');
-      return;
-    }
-
-    const customerName = customerNameInput.value.trim() || 'Cliente';
-    const customerNote = customerNoteInput.value.trim();
-
-    let message = `Olá, Restaurante Calor Tropical! 🏝️\nGostaria de fazer o seguinte pedido:\n\n`;
-    let total = 0;
-
-    cart.forEach(item => {
-      const subtotal = item.price * item.quantity;
-      total += subtotal;
-      message += `• ${item.quantity}x ${item.name} - ${subtotal} MTS\n`;
+  // --- GALERIA E PRATOS (Zoom simples ao clicar nas imagens de pré-visualização) ---
+  document.querySelectorAll('.gallery-grid img, .about-img img, .hero-img img').forEach(img => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => {
+      const modalBox = document.createElement('div');
+      modalBox.style.cssText = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 9999; cursor: pointer;";
+      modalBox.innerHTML = `<img src="${img.src}" style="max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">`;
+      modalBox.addEventListener('click', () => modalBox.remove());
+      document.body.appendChild(modalBox);
     });
-
-    message += `\n*Total:* ${total} MTS\n`;
-    message += `*Nome:* ${customerName}\n`;
-    if (customerNote) {
-      message += `*Observação:* ${customerNote}\n`;
-    }
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/258874220984?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
   });
 
-  // Inicializar menu e carrinho na carga da página
+  // --- ENVIAR PEDIDO VIA WHATSAPP ---
+  if(sendWhatsAppBtn) {
+    sendWhatsAppBtn.addEventListener('click', () => {
+      if (cart.length === 0) {
+        alert('O seu pedido está vazio!');
+        return;
+      }
+
+      const customerName = customerNameInput ? customerNameInput.value.trim() : 'Cliente';
+      const customerNote = customerNoteInput ? customerNoteInput.value.trim() : '';
+
+      let message = `Olá, Restaurante Calor Tropical! 🏝️\nGostaria de fazer o seguinte pedido:\n\n`;
+      let total = 0;
+
+      cart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+        message += `• ${item.quantity}x ${item.name} - ${subtotal} MTS\n`;
+      });
+
+      message += `\n*Total:* ${total} MTS\n`;
+      message += `*Nome:* ${customerName}\n`;
+      if (customerNote) {
+        message += `*Observação:* ${customerNote}\n`;
+      }
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/258874220984?text=${encodedMessage}`;
+      window.open(whatsappUrl, '_blank');
+    });
+  }
+
+  // Inicializar menu e carrinho
   renderMenu(menuData);
   updateCartUI();
 
-  // --- MENU MOBILE E FECHO AUTOMÁTICO DE ABAS ---
+  // --- MENU MOBILE RÁPIDO E FLUIDO ---
   const menuToggle = document.getElementById('menuToggle');
   const nav = document.getElementById('nav');
 
-  menuToggle.addEventListener('click', () => {
-    nav.classList.toggle('active');
-    overlay.classList.toggle('active');
-  });
-
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('active');
-      overlay.classList.remove('active');
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      nav.classList.toggle('active');
+      if(overlay) overlay.classList.toggle('active');
     });
-  });
+
+    // Fecha ao clicar em qualquer link do menu mobile instantaneamente
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        if(overlay) overlay.classList.remove('active');
+      });
+    });
+  }
 });
-                                                
+     // --- PARTE FINAL DO SCRIPT ---
+
+  // Certifique-se de que o bloco anterior termina com esta estrutura exata:
+  // (Caso precise colar tudo junto, utilize a versão completa abaixo)
+
+});
+
