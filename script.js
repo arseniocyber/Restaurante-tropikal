@@ -1,8 +1,7 @@
-// ================= SCRIPT COMPLETO E CORRIGIDO - RESTAURANTE CALOR TROPICAL =================
+// ================= SCRIPT COMPLETO (PARTE 1/3) - RESTAURANTE CALOR TROPICAL =================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- DADOS DO MENU COMPLETOS (Com todas as categorias preenchidas) ---
   const menuData = [
     // Café / Chá
     { name: "Café", category: "Café / Chá", price: 100, description: "Café espresso tradicional.", emoji: "☕" },
@@ -16,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Entradas
     { name: "Pão de alho", category: "Entradas", price: 150, description: "Pão tostado com pasta de alho e ervas.", emoji: "🥖" },
     { name: "Camarão rissóis (unid)", category: "Entradas", price: 80, description: "Rissóis de camarão estaladiços.", emoji: "🍤" },
+    { name: "Shamussas", category: "Entradas", price: 100, description: "Shamussas estaladiças recheadas.", emoji: "🥟" },
 
     // Snacks & Sandwich
     { name: "Prego no pão", category: "Snacks & Sandwich", price: 300, description: "Bife de vaca suculento no pão com batatas fritas.", emoji: "🥪" },
@@ -31,14 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Principais
     { name: "Peixe inteiro / Whole fish", category: "Principais", price: 650, description: "Peixe fresco do dia grelhado. Servido com arroz, batatas fritas e salada.", emoji: "🐟" },
     { name: "Camarão", category: "Principais", price: 850, description: "Camarão fresco grelhado. Servido com arroz, batatas fritas e salada.", emoji: "🦐" },
-    { name: "1/4 frango / Chicken", category: "Principais", price: 450, description: "Frango assado à moda da casa. Servido com arroz, batatas fritas e salada.", emoji: "🍗" },
-
+    { name: "1/4 frango / Chicken", category: "Principais", price: 450, description: "Frango assado à moda da casa. Servido com arroz, batatas fritas e salada.", emoji: "🍗" }
+    
     // Mariscos
     { name: "Marisco / Seafood p2 pax", category: "Mariscos", price: 1500, description: "Prato misto de mariscos frescos para partilhar. Acompanha shamussas.", emoji: "🦞" },
 
     // Sumos
     { name: "Sumo natural da época", category: "Sumos", price: 120, description: "Sumo de fruta fresca do dia (manga, papaia ou ananás).", emoji: "🧃" },
-    { name: "Sumo de maracujá natural", category: "Sumos", description: "Sumo natural refrescante de maracujá.", price: 150, emoji: "🍹" },
+    { name: "Sumo de maracujá natural", category: "Sumos", price: 150, description: "Sumo natural refrescante de maracujá.", emoji: "🍹" },
 
     // Shoots
     { name: "Shoot Tequila", category: "Shoots", price: 200, description: "Dose de tequila com limão e sal.", emoji: "🥃" },
@@ -46,18 +46,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Vinhos
     { name: "Vinho Tinto da Casa (Taça)", category: "Vinhos", price: 250, description: "Copo de vinho tinto selecionado.", emoji: "🍷" },
+    { name: "Vinho Tinto da Casa (Garrafa)", category: "Vinhos", price: 900, description: "Garrafa de vinho tinto selecionado.", emoji: "🍷" },
+    { name: "Vinho Branco da Casa (Taça)", category: "Vinhos", price: 250, description: "Copo de vinho branco fresco.", emoji: "🍾" },
     { name: "Vinho Branco da Casa (Garrafa)", category: "Vinhos", price: 950, description: "Garrafa de vinho branco fresco.", emoji: "🍾" },
 
     // Aperitivos
     { name: "Aperitivo Martini", category: "Aperitivos", price: 200, description: "Vermute clássico servido com gelo e rodelas de limão.", emoji: "🍸" },
     { name: "Campari", category: "Aperitivos", price: 220, description: "Aperitivo clássico amargo e refrescante.", emoji: "🥃" },
+    { name: "Whisky", category: "Aperitivos", price: 300, description: "Dose de whisky selecionado.", emoji: "🥃" },
 
     // Cervejas
     { name: "Cerveja 2M (Lata/Garrafa)", category: "Cervejas", price: 100, description: "A cerveja favorita de Moçambique bem gelada.", emoji: "🍺" },
     { name: "Cerveja Laurentina Clara", category: "Cervejas", price: 110, description: "Cerveja loura tradicional moçambicana.", emoji: "🍺" },
     { name: "Cerveja Black", category: "Cervejas", price: 120, description: "Cerveja preta encorpada.", emoji: "🍺" },
+    { name: "Cerveja Melaço", category: "Cervejas", price: 130, description: "Cerveja especial com toque de melaço.", emoji: "🍺" },
 
-    // Bebidas & Outros
+    // Refrescos & Cocktails
     { name: "Refrescos", category: "Refrescos", price: 100, description: "Refrigerantes variados lata 330ml.", emoji: "🥤" },
     { name: "Caipirinha", category: "Cocktail", price: 350, description: "Cocktail refrescante com limão, açúcar e aguardente/cachaça.", emoji: "🍹" }
   ];
@@ -90,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentSelectedItem = null;
 
-  // --- RENDERIZAR MENU ---
   function renderMenu(items) {
+    if (!menuGrid) return;
     menuGrid.innerHTML = '';
     if (items.length === 0) {
       menuGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #777; padding: 20px;">Nenhum item encontrado nesta categoria.</p>';
@@ -121,36 +125,36 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const btnDirect = card.querySelector('.add-to-cart-direct');
-      btnDirect.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal(item);
-      });
+      if (btnDirect) {
+        btnDirect.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openModal(item);
+        });
+      }
 
       menuGrid.appendChild(card);
     });
   }
 
-  // --- MODAL DE PRODUTO ---
   function openModal(item) {
     currentSelectedItem = item;
-    modalProductName.textContent = item.name;
-    modalProductCategory.textContent = item.category;
-    modalProductPrice.textContent = `${item.price} MTS`;
-    modalProductDescription.textContent = item.description;
+    if (modalProductName) modalProductName.textContent = item.name;
+    if (modalProductCategory) modalProductCategory.textContent = item.category;
+    if (modalProductPrice) modalProductPrice.textContent = `${item.price} MTS`;
+    if (modalProductDescription) modalProductDescription.textContent = item.description;
     
-    // Se houver um espaço para emoji no modal, atualiza
     const modalEmojiContainer = document.getElementById('modalProductEmoji');
     if (modalEmojiContainer) {
       modalEmojiContainer.textContent = item.emoji;
     }
     
-    productModal.classList.add('active');
-    overlay.classList.add('active');
+    if (productModal) productModal.classList.add('active');
+    if (overlay) overlay.classList.add('active');
   }
 
   function closeModal() {
-    productModal.classList.remove('active');
-    overlay.classList.remove('active');
+    if (productModal) productModal.classList.remove('active');
+    if (overlay) overlay.classList.remove('active');
   }
 
   if (modalClose) modalClose.addEventListener('click', closeModal);
@@ -169,8 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openCart();
       }
     });
-  }
-
+                          }
   // --- GESTÃO DO CARRINHO ---
   function addToCart(item) {
     const existing = cart.find(cartItem => cartItem.name === item.name);
@@ -183,6 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateCartUI() {
+    if (!cartCount || !cartItemsContainer || !cartTotal) return;
+    
     const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCount.textContent = totalItemsCount;
 
@@ -197,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('emptyCartLink')?.addEventListener('click', (e) => {
         e.preventDefault();
         closeCart();
-        document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' });
       });
       cartTotal.textContent = "0 MTS";
       return;
@@ -262,20 +267,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openCart() {
-    if(cartDrawer) cartDrawer.classList.add('active');
-    if(overlay) overlay.classList.add('active');
+    if (cartDrawer) cartDrawer.classList.add('active');
+    if (overlay) overlay.classList.add('active');
   }
 
   function closeCart() {
-    if(cartDrawer) cartDrawer.classList.remove('active');
-    if(overlay) overlay.classList.remove('active');
+    if (cartDrawer) cartDrawer.classList.remove('active');
+    if (overlay) overlay.classList.remove('active');
   }
 
-  if(openCartBtn) openCartBtn.addEventListener('click', openCart);
-  if(closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+  if (openCartBtn) openCartBtn.addEventListener('click', openCart);
+  if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
 
   // --- FILTROS E PESQUISA ---
-  if(filtersContainer) {
+  if (filtersContainer) {
     filtersContainer.addEventListener('click', (e) => {
       if (e.target.classList.contains('filter')) {
         filtersContainer.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
@@ -292,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if(searchInput) {
+  if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       const term = e.target.value.toLowerCase();
       const filtered = menuData.filter(item => 
@@ -304,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- BOTÕES RÁPIDOS DOS DESTAQUES ("Ver no Menu" corrigido para descer até ao menu) ---
+  // --- BOTÕES RÁPIDOS DOS DESTAQUES ---
   document.querySelectorAll('.quick-order').forEach(btn => {
     btn.addEventListener('click', () => {
       const name = btn.getAttribute('data-name');
@@ -313,12 +318,12 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal(foundItem);
       } else {
         const menuSection = document.getElementById('menu');
-        if(menuSection) menuSection.scrollIntoView({ behavior: 'smooth' });
+        if (menuSection) menuSection.scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
 
-  // --- GALERIA E PRATOS (Zoom simples ao clicar nas imagens de pré-visualização) ---
+  // --- GALERIA E PRATOS (Zoom ao clicar nas fotos) ---
   document.querySelectorAll('.gallery-grid img, .about-img img, .hero-img img').forEach(img => {
     img.style.cursor = 'pointer';
     img.addEventListener('click', () => {
@@ -331,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- ENVIAR PEDIDO VIA WHATSAPP ---
-  if(sendWhatsAppBtn) {
+  if (sendWhatsAppBtn) {
     sendWhatsAppBtn.addEventListener('click', () => {
       if (cart.length === 0) {
         alert('O seu pedido está vazio!');
@@ -374,22 +379,16 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       nav.classList.toggle('active');
-      if(overlay) overlay.classList.toggle('active');
+      if (overlay) overlay.classList.toggle('active');
     });
 
-    // Fecha ao clicar em qualquer link do menu mobile instantaneamente
     nav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('active');
-        if(overlay) overlay.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
       });
     });
   }
-});
-     // --- PARTE FINAL DO SCRIPT ---
-
-  // Certifique-se de que o bloco anterior termina com esta estrutura exata:
-  // (Caso precise colar tudo junto, utilize a versão completa abaixo)
 
 });
-
+        
