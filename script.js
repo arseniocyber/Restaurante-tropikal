@@ -2,134 +2,128 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- DADOS DO MENU EXATOS FORNECIDOS PELO UTILIZADOR ---
   const menuData = [
-    // Coffee/ Tea
-    { name: "Café eleite / coffee with Milk", category: "Coffee/ Tea", price: 150.00, description: "Café quente com leite.", emoji: "☕" },
-    { name: "Chá e leite / Tea with milk", category: "Coffee/ Tea", price: 125.00, description: "Chá tradicional com leite.", emoji: "🫖" },
-    { name: "Capuchinho / cappuccino", category: "Coffee/ Tea", price: 150.00, description: "Cappuccino cremoso.", emoji: "☕" },
-    { name: "Expresso / Express", category: "Coffee/ Tea", price: 150.00, description: "Café expresso forte.", emoji: "☕" },
-    { name: "Chocolate quente / hot choc", category: "Coffee/ Tea", price: 175.00, description: "Chocolate quente reconfortante.", emoji: "🍫" },
+    // --- Café ---
+    { name: "Café eleite / coffee with Milk", category: "Café", price: 150.00, description: "Café com leite / Coffee with milk", emoji: "☕" },
+    { name: "Chá e leite / Tea with milk", category: "Café", price: 125.00, description: "Chá com leite / Tea with milk", emoji: "🫖" },
+    { name: "Capuchinho / cappuccino", category: "Café", price: 150.00, description: "Capuchinho / cappuccino", emoji: "☕" },
+    { name: "Expresso / Express", category: "Café", price: 150.00, description: "Expresso / Espresso", emoji: "☕" },
+    { name: "Chocolate quente / hot choc", category: "Café", price: 175.00, description: "Chocolate quente / Hot chocolate", emoji: "🍫" },
 
-    // Saladas/salads
-    { name: "Salada grega / Greek salad", category: "Saladas/salads", price: 250.00, description: "Alface, tomate, pepino, azeitonas e queijo feta.", emoji: "🥗" },
-    { name: "Salada de Atum / Tuna salad", category: "Saladas/salads", price: 250.00, description: "Salada fresca com atum selecionado.", emoji: "🥗" },
-    { name: "Salada Russa / Russian salad", category: "Saladas/salads", price: 250.00, description: "Salada tradicional de legumes e maionese.", emoji: "🥗" },
-    { name: "Salada tropical / Tropical salad", category: "Saladas/salads", price: 200.00, description: "Mix de folhas e frutos da época.", emoji: "🥗" },
+    // --- Saladas ---
+    { name: "Salada grega / Greak salad", category: "Saladas", price: 250.00, description: "Salada grega / Greek salad", emoji: "🥗" },
+    { name: "Salada de Atum / Tuna salad", category: "Saladas", price: 250.00, description: "Salada de atum / Tuna salad", emoji: "🥗" },
+    { name: "Salada Russa / Russian salad", category: "Saladas", price: 250.00, description: "Salada russa / Russian salad", emoji: "🥗" },
+    { name: "Salada tropical / Tropical salad", category: "Saladas", price: 200.00, description: "Salada tropical / Tropical salad", emoji: "🥗" },
 
-    // Entradas/starters
-    { name: "Shamussas de peixe (uni)", category: "Entradas/starters", price: 220.00, description: "Shamussa de peixe estaladiça.", emoji: "🥟" },
-    { name: "Caranguejo ao Natural / Crab", category: "Entradas/starters", price: 500.00, description: "Caranguejo fresco ao natural.", emoji: "🦀" },
-    { name: "Pão de alho / Garlic bread", category: "Entradas/starters", price: 150.00, description: "Pão tostado com pasta de alho.", emoji: "🥖" },
-    { name: "Rissóis de camarão (4 uni)", category: "Entradas/starters", price: 220.00, description: "Porção de 4 rissóis de camarão.", emoji: "🍤" },
-    { name: "Camarão alhinho", category: "Entradas/starters", price: 550.00, description: "Camarão salteado em molho de alho.", emoji: "🍤" },
-    { name: "Caril de camarão", category: "Entradas/starters", price: 880.00, description: "Caril rico de camarão.", emoji: "🍛" },
-    { name: "Caril de caranguejo", category: "Entradas/starters", price: 650.00, description: "Caril tradicional de caranguejo.", emoji: "🍛" },
+    // --- Entradas ---
+    { name: "Shamussas de peixe (uni)", category: "Entradas", price: 220.00, description: "Shamussas de peixe (uni) / Fish samoosas (unit)", emoji: "🥟" },
+    { name: "Caranguejo ao Natural / Crab", category: "Entradas", price: 500.00, description: "Caranguejo ao natural / Natural crab", emoji: "🦀" },
+    { name: "Pão de alho / Garlic bread", category: "Entradas", price: 150.00, description: "Pão de alho / Garlic bread", emoji: "🥖" },
+    { name: "Rissóis de camarão (4 uni)", category: "Entradas", price: 220.00, description: "Rissóis de camarão (4 uni) / Prawn rissoles (4 units)", emoji: "🍤" },
+    { name: "Camarão alhinho", category: "Entradas", price: 550.00, description: "Camarão alhinho / Garlic prawns", emoji: "🍤" },
+    { name: "Caril de camarão", category: "Entradas", price: 880.00, description: "Caril de camarão / Prawn curry", emoji: "🍛" },
+    { name: "Caril de caranguejo", category: "Entradas", price: 650.00, description: "Caril de caranguejo / Crab curry", emoji: "🍛" },
 
-    // Snacks & sandwich
-    { name: "Tosta de queijo / cheese toast", category: "Snacks & sandwich", price: 250.00, description: "Tosta quente com queijo fundido.", emoji: "🥪" },
-    { name: "Tosta mista / HAM & CHEESE TOAST", category: "Snacks & sandwich", price: 300.00, description: "Tosta de fiambre e queijo.", emoji: "🥪" },
-    { name: "Prego no pão / steak N Roll", category: "Snacks & sandwich", price: 285.00, description: "Bife de vaca suculento no pão.", emoji: "🍔" },
-    { name: "Cheese N Bacon sandwich", category: "Snacks & sandwich", price: 300.00, description: "Sandes com queijo e bacon.", emoji: "🥪" },
-    { name: "Chicken Mayo / hamburger", category: "Snacks & sandwich", price: 300.00, description: "Hambúrguer de frango com maionese.", emoji: "🍔" },
+    // --- Snacks ---
+    { name: "Tosta de queijo / cheese tost", category: "Snacks", price: 250.00, description: "Tosta de queijo / Cheese toast", emoji: "🥪" },
+    { name: "Tosta mista / HAM & CHEESE TOST", category: "Snacks", price: 300.00, description: "Tosta mista / Ham & cheese toast", emoji: "🥪" },
+    { name: "Prego no pão / steark N Roll", category: "Snacks", price: 285.00, description: "Prego no pão / Steak in a roll", emoji: "🍔" },
+    { name: "Cheese N Becon sandwich", category: "Snacks", price: 300.00, description: "Sandes de queijo e bacon / Cheese & bacon sandwich", emoji: "🥪" },
+    { name: "Chicken Mayo / hamburger", category: "Snacks", price: 300.00, description: "Hambúrguer de frango com maionese / Chicken mayo burger", emoji: "🍔" },
+    { name: "Omelete simples", category: "Snacks", price: 200.00, description: "Omelete simples / Plain omelette", emoji: "🍳" },
+    { name: "Omelete de queijo", category: "Snacks", price: 200.00, description: "Omelete de queijo / Cheese omelette", emoji: "🍳" },
+    { name: "Omelete misto", category: "Snacks", price: 250.00, description: "Omelete mista / Mixed omelette", emoji: "🍳" },
+    { name: "Pequeno almoço / breakfast", category: "Snacks", price: 425.00, description: "Pequeno-almoço / Breakfast", emoji: "🍳" },
 
-    // Omeletes
-    { name: "Omelete simples", category: "Omeletes", price: 200.00, description: "Omelete de ovos frescos.", emoji: "🍳" },
-    { name: "Omelete de queijo", category: "Omeletes", price: 200.00, description: "Omelete recheada com queijo.", emoji: "🍳" },
-    { name: "Omelete misto", category: "Omeletes", price: 250.00, description: "Omelete com queijo e fiambre.", emoji: "🍳" },
-    { name: "Pequeno almoço / breakfast", category: "Omeletes", price: 425.00, description: "Pequeno-almoço completo da casa.", emoji: "🍳" },
+    // --- Principais ---
+    { name: "Chicken & calamari", category: "Principais", price: 875.00, description: "Frango e lulas (servido com 1 ou 2 shamussas)", emoji: "🍱" },
+    { name: "Chicken & prawns", category: "Principais", price: 875.00, description: "Frango e camarão (servido com 1 ou 2 shamussas)", emoji: "🍱" },
+    { name: "Prawns & calamari", category: "Principais", price: 875.00, description: "Camarão e lulas (servido com 1 ou 2 shamussas)", emoji: "🍱" },
+    { name: "Prawns & fish fillet", category: "Principais", price: 875.00, description: "Camarão e filete de peixe (servido com 1 ou 2 shamussas)", emoji: "🍱" },
+    { name: "Calamari & fish fillet", category: "Principais", price: 875.00, description: "Lulas e filete de peixe (servido com 1 ou 2 shamussas)", emoji: "🍱" },
+    { name: "Chicken & fish fillet", category: "Principais", price: 875.00, description: "Frango e filete de peixe (servido com 1 ou 2 shamussas)", emoji: "🍱" },
+    { name: "1/2 frango & prawns", category: "Principais", price: 1325.00, description: "Meio frango e camarão (servido com 1 ou 2 shamussas)", emoji: "🍱" },
+    { name: "1/4 frango / chiken", category: "Principais", price: 305.00, description: "1/4 de frango com arroz, batatas fritas e salada", emoji: "🍗" },
+    { name: "1/2 frango / chiken", category: "Principais", price: 450.00, description: "1/2 frango com arroz, batatas fritas e salada", emoji: "🍗" },
+    { name: "Frango inteiro / chicken", category: "Principais", price: 850.00, description: "Frango inteiro com arroz, batatas fritas e salada", emoji: "🍗" },
+    { name: "Peixe inteiro / whole fish", category: "Principais", price: 850.00, description: "Peixe inteiro com arroz, batatas fritas e salada", emoji: "🐟" },
+    { name: "Filete de peixe", category: "Principais", price: 600.00, description: "Filete de peixe com arroz, batatas fritas e salada", emoji: "🐟" },
+    { name: "Lula grelhada", category: "Principais", price: 550.00, description: "Lula grelhada com arroz, batatas fritas e salada", emoji: "🦑" },
+    { name: "Posta de peixe", category: "Principais", price: 500.00, description: "Posta de peixe com arroz, batatas fritas e salada", emoji: "🐟" },
+    { name: "Panado / fish fingers", category: "Principais", price: 550.00, description: "Panado com arroz, batatas fritas e salada", emoji: "🐟" },
+    { name: "Camarão", category: "Principais", price: 895.00, description: "Camarão com arroz, batatas fritas e salada", emoji: "🦐" },
+    { name: "Bife / Beef", category: "Principais", price: 850.00, description: "Bife com arroz, batatas fritas e salada", emoji: "🥩" },
 
-    // Combo's
-    { name: "Chicken & calamari", category: "Combo's", price: 875.00, description: "Servido com 1 ou 2 shamussas.", emoji: "🍱" },
-    { name: "Chicken & prawns", category: "Combo's", price: 875.00, description: "Servido com 1 ou 2 shamussas.", emoji: "🍱" },
-    { name: "Prawns & calamari", category: "Combo's", price: 875.00, description: "Servido com 1 ou 2 shamussas.", emoji: "🍱" },
-    { name: "Prawns & fish fillet", category: "Combo's", price: 875.00, description: "Servido com 1 ou 2 shamussas.", emoji: "🍱" },
-    { name: "Calamari & fish fillet", category: "Combo's", price: 875.00, description: "Servido com 1 ou 2 shamussas.", emoji: "🍱" },
-    { name: "Chicken & fish fillet", category: "Combo's", price: 875.00, description: "Servido com 1 ou 2 shamussas.", emoji: "🍱" },
-    { name: "1/2 frango & prawns", category: "Combo's", price: 1325.00, description: "Servido com 1 ou 2 shamussas.", emoji: "🍱" },
-
-    // Principais pratos
-    { name: "1/4 frango / chicken", category: "Principais pratos", price: 305.00, description: "Servido com arroz, batatas fritas e salada.", emoji: "🍗" },
-    { name: "1/2 frango / chicken", category: "Principais pratos", price: 450.00, description: "Servido com arroz, batatas fritas e salada.", emoji: "🍗" },
-    { name: "Frango inteiro / chicken", category: "Principais pratos", price: 850.00, description: "Servido com arroz, batatas fritas e salada.", emoji: "🍗" },
-    { name: "Peixe inteiro / whole fish", category: "Principais pratos", price: 850.00, description: "Servido com arroz, batatas fritas e salada.", emoji: "🐟" },
-    { name: "Filete de peixe", category: "Principais pratos", price: 600.00, description: "Servido com arroz, batatas fritas e salada.", emoji: "🐟" },
-    { name: "Lula grelhada", category: "Principais pratos", price: 550.00, description: "Servido com arroz, batatas fritas e salada.", emoji: "🦑" },
-    { name: "Posta de peixe", category: "Principais pratos", price: 500.00, description: "Servido com arroz, batatas fritas e salada.", emoji: "🐟" },
-    { name: "Panado / fish fingers", category: "Principais pratos", price: 550.00, description: "Servido com arroz, batatas fritas e salada.", emoji: "🐟" },
-    { name: "Camarão", category: "Principais pratos", price: 895.00, description: "Servido com arroz, batatas fritas e salada.", emoji: "🦐" },
-    { name: "Bife / Beef", category: "Principais pratos", price: 850.00, description: "Servido com arroz, batatas fritas e salada.", emoji: "🥩" },
-
-    // Mariscos/seafood's
-    { name: "4 (fish, prawns, calamari)", category: "Mariscos/seafood's", price: 1525.00, description: "Seleção mista. Servido com 1 ou 2 shamussas.", emoji: "🦞" },
-    { name: "Marisco / seafood p2 pax", category: "Mariscos/seafood's", price: 2500.00, description: "Prato de mariscos para 2 pessoas. Servido com 1 ou 2 shamussas.", emoji: "🦞" },
-    { name: "Lobster & 6 prawns", category: "Mariscos/seafood's", price: 1975.00, description: "Lagosta e 6 camarões. Servido com 1 ou 2 shamussas.", emoji: "🦞" },
-    { name: "Marisco / Seafood for 3 pax", category: "Mariscos/seafood's", price: 3500.00, description: "Prato de mariscos para 3 pessoas. Servido com 1 ou 2 shamussas.", emoji: "🦞" },
-    { name: "12 camarões / prawns with chips", category: "Mariscos/seafood's", price: 1275.00, description: "12 camarões com batatas fritas. Servido com 1 ou 2 shamussas.", emoji: "🦐" }
+    // --- Mariscos ---
+    { name: "4 (fish, prawns, calamari)", category: "Mariscos", price: 1525.00, description: "Prato misto - Servido com 1 ou 2 shamussas", emoji: "🦞" },
+    { name: "Marisco / seafood p2 pax", category: "Mariscos", price: 2500.00, description: "Prato de mariscos para 2 pax - Servido com 1 ou 2 shamussas", emoji: "🦞" },
+    { name: "Lobstar & 6 prawns", category: "Mariscos", price: 1975.00, description: "Lagosta e 6 camarões - Servido com 1 ou 2 shamussas", emoji: "🦞" },
+    { name: "Marisco / Seafood for 3 pax", category: "Mariscos", price: 3500.00, description: "Prato de mariscos para 3 pax - Servido com 1 ou 2 shamussas", emoji: "🦞" },
+    { name: "12 camarões / prawns with chips", category: "Mariscos", price: 1275.00, description: "12 camarões com batatas - Servido com 1 ou 2 shamussas", emoji: "🦐" }
   ];
-   // ================= SCRIPT COMPLETO (PARTE 2/2) - RESTAURANTE CALOR TROPICAL =================
+  // ================= SCRIPT COMPLETO (PARTE 2/2) - RESTAURANTE CALOR TROPICAL =================
 
-  // --- RESTANTE DOS ITENS (Bebidas, Cocktails, Aperitivos, Digestivos, Shoots, Vinhos) ---
   const bebidasData = [
-    { name: "330 ml", category: "Refrescos/coldrinks", price: 70.00, description: "Refrigerante lata 330ml.", emoji: "🥤" },
-    { name: "Soda & Tônica", category: "Refrescos/coldrinks", price: 75.00, description: "Água tónica ou soda.", emoji: "🥤" },
-    { name: "Appletiser", category: "Refrescos/coldrinks", price: 100.00, description: "Bebida espumante de maçã.", emoji: "🧃" },
+    // --- Refrescos ---
+    { name: "330 ml", category: "Refrescos", price: 70.00, description: "Refrigerante lata 330ml", emoji: "🥤" },
+    { name: "Soda & Tônica", category: "Refrescos", price: 75.00, description: "Água tónica ou soda", emoji: "🥤" },
+    { name: "Appletiser", category: "Refrescos", price: 100.00, description: "Bebida espumante de maçã", emoji: "🧃" },
 
-    { name: "Sumo cappy", category: "Sumos/águas", price: 125.00, description: "Sumo Cappy.", emoji: "🧃" },
-    { name: "Sumo 500 ml", category: "Sumos/águas", price: 100.00, description: "Sumo natural 500ml.", emoji: "🧃" },
-    { name: "Sumo 1l", category: "Sumos/águas", price: 165.00, description: "Jarro de sumo 1L.", emoji: "🧃" },
-    { name: "Água 500ml", category: "Sumos/águas", price: 50.00, description: "Água mineral natural 500ml.", emoji: "💧" },
-    { name: "Água 1,5l", category: "Sumos/águas", price: 95.00, description: "Água mineral natural 1.5L.", emoji: "💧" },
-    { name: "Água gaseificada", category: "Sumos/águas", price: 100.00, description: "Água com gás.", emoji: "💧" },
+    // --- Água e Sumos ---
+    { name: "Sumo cappy", category: "Água", price: 125.00, description: "Sumo Cappy", emoji: "🧃" },
+    { name: "Sumo 500 ml", category: "Água", price: 100.00, description: "Sumo natural 500ml", emoji: "🧃" },
+    { name: "Sumo 1l", category: "Água", price: 165.00, description: "Jarro de sumo 1L", emoji: "🧃" },
+    { name: "Água 500ml", category: "Água", price: 50.00, description: "Água mineral natural 500ml", emoji: "💧" },
+    { name: "Água 1,5l", category: "Água", price: 95.00, description: "Água mineral natural 1.5L", emoji: "💧" },
+    { name: "Água gaseificada", category: "Água", price: 100.00, description: "Água com gás", emoji: "💧" },
 
-    { name: "JC lata 250ml", category: "Cervejas/Beers/Ciders", price: 150.00, description: "Cerveja JC lata.", emoji: "🍺" },
-    { name: "Ciders / cidras", category: "Cervejas/Beers/Ciders", price: 100.00, description: "Sidra refrescante.", emoji: "🍺" },
-    { name: "Heineken", category: "Cervejas/Beers/Ciders", price: 100.00, description: "Cerveja Heineken.", emoji: "🍺" },
-    { name: "Breezer / Brutal", category: "Cervejas/Beers/Ciders", price: 100.00, description: "Bebida mista alcoólica.", emoji: "🍺" },
-    { name: "Corona", category: "Cervejas/Beers/Ciders", price: 120.00, description: "Cerveja Corona.", emoji: "🍺" },
-    { name: "Txilar / preta", category: "Cervejas/Beers/Ciders", price: 85.00, description: "Cerveja preta Txilar.", emoji: "🍺" },
-    { name: "Manica / impala 330ml", category: "Cervejas/Beers/Ciders", price: 80.00, description: "Cerveja Manica ou Impala 330ml.", emoji: "🍺" },
-    { name: "Fly-fishing / spin", category: "Cervejas/Beers/Ciders", price: 100.00, description: "Bebida alcoólica.", emoji: "🍺" },
-    { name: "Castle lite", category: "Cervejas/Beers/Ciders", price: 100.00, description: "Cerveja Castle Lite.", emoji: "🍺" },
-    { name: "Castle D. Malte", category: "Cervejas/Beers/Ciders", price: 100.00, description: "Castle Milk Stout.", emoji: "🍺" },
-    { name: "Bermin", category: "Cervejas/Beers/Ciders", price: 125.00, description: "Bebida especial.", emoji: "🍺" },
-    { name: "Red bull", category: "Cervejas/Beers/Ciders", price: 100.00, description: "Bebida energética Red Bull.", emoji: "⚡" },
-    { name: "Monster", category: "Cervejas/Beers/Ciders", price: 100.00, description: "Bebida energética Monster.", emoji: "⚡" },
+    // --- Cerveja ---
+    { name: "JC lata 250ml", category: "Cerveja", price: 150.00, description: "Cerveja JC lata", emoji: "🍺" },
+    { name: "Ciders / cidras", category: "Cerveja", price: 100.00, description: "Sidra refrescante", emoji: "🍺" },
+    { name: "Heineken", category: "Cerveja", price: 100.00, description: "Cerveja Heineken", emoji: "🍺" },
+    { name: "Breezer / Brutal", category: "Cerveja", price: 100.00, description: "Bebida mista alcoólica", emoji: "🍺" },
+    { name: "Corona", category: "Cerveja", price: 120.00, description: "Cerveja Corona", emoji: "🍺" },
+    { name: "Txilar / preta", category: "Cerveja", price: 85.00, description: "Cerveja preta Txilar", emoji: "🍺" },
+    { name: "Manica / impala 330ml", category: "Cerveja", price: 80.00, description: "Cerveja Manica ou Impala 330ml", emoji: "🍺" },
+    { name: "Fly-fishing / spin", category: "Cerveja", price: 100.00, description: "Bebida alcoólica", emoji: "🍺" },
+    { name: "Castle lite", category: "Cerveja", price: 100.00, description: "Cerveja Castle Lite", emoji: "🍺" },
+    { name: "Castle D. Malte", category: "Cerveja", price: 100.00, description: "Castle Milk Stout", emoji: "🍺" },
+    { name: "Bermin", category: "Cerveja", price: 125.00, description: "Bebida especial", emoji: "🍺" },
+    { name: "Red bull", category: "Cerveja", price: 100.00, description: "Bebida energética Red Bull", emoji: "⚡" },
+    { name: "Monster", category: "Cerveja", price: 100.00, description: "Bebida energética Monster", emoji: "⚡" },
 
-    { name: "Vodka / sumo", category: "Cocktail", price: 150.00, description: "Vodka com sumo.", emoji: "🍹" },
-    { name: "R & R", category: "Cocktail", price: 150.00, description: "R&R clássico.", emoji: "🍹" },
-    { name: "Passion fruit / Sprite", category: "Cocktail", price: 125.00, description: "Cocktail de maracujá com Sprite.", emoji: "🍹" },
-    { name: "Milk Pedro", category: "Cocktail", price: 325.00, description: "Cocktail especial da casa.", emoji: "🍹" },
-    { name: "Caipirinha", category: "Cocktail", price: 350.00, description: "Caipirinha tradicional de limão.", emoji: "🍹" },
-
-    { name: "May fair", category: "Aperitivos", price: 125.00, description: "Bebida aperitiva.", emoji: "🍸" },
-    { name: "Gin Gordon / Belgravia", category: "Aperitivos", price: 80.00, description: "Dose de Gin Gordon ou Belgravia.", emoji: "🍸" },
-    { name: "Gin Tanqueray", category: "Aperitivos", price: 100.00, description: "Dose de Gin Tanqueray.", emoji: "🍸" },
-    { name: "Whisky Novo", category: "Aperitivos", price: 100.00, description: "Whisky standard.", emoji: "🥃" },
-    { name: "Whisky velho", category: "Aperitivos", price: 150.00, description: "Whisky reserva / velho.", emoji: "🥃" },
-    { name: "Captain Morgan / Bacardi", category: "Aperitivos", price: 100.00, description: "Rum selecionado.", emoji: "🥃" },
-    { name: "Klipdrift", category: "Aperitivos", price: 80.00, description: "Brandy Klipdrift.", emoji: "🥃" },
-    { name: "Amarula DBL", category: "Aperitivos", price: 190.00, description: "Dose dupla de Amarula.", emoji: "🥃" },
-    { name: "Vodka Absolut", category: "Aperitivos", price: 100.00, description: "Vodka Absolut.", emoji: "🍸" },
-    { name: "Vodka Smirnoff", category: "Aperitivos", price: 80.00, description: "Vodka Smirnoff.", emoji: "🍸" },
-
-    { name: "1920 / s.Domingos", category: "Digestivos", price: 150.00, description: "Aguardente digestiva.", emoji: "🌿" },
-    { name: "Vinho do porto", category: "Digestivos", price: 150.00, description: "Taça de Vinho do Porto.", emoji: "🍷" },
-
-    { name: "Sambuca", category: "Shoots", price: 150.00, description: "Shoot de Sambuca.", emoji: "🥃" },
-    { name: "Tequila", category: "Shoots", price: 150.00, description: "Shoot de Tequila com limão e sal.", emoji: "🥃" },
-    { name: "Vinho do porto (Shoot/Dose)", category: "Shoots", price: 300.00, description: "Dose especial de Vinho do Porto.", emoji: "🍷" },
-
-    { name: "Vinho a copo", category: "Vinhos/wines", price: 150.00, description: "Taça de vinho da casa.", emoji: "🍷" },
-    { name: "Boschendal / Kadete", category: "Vinhos/wines", price: 1350.00, description: "Garrafa de vinho selecionado.", emoji: "🍷" },
-    { name: "F.Bostsrd / Roodenberg", category: "Vinhos/wines", price: 1250.00, description: "Garrafa de vinho.", emoji: "🍷" },
-    { name: "G.Carlou / C.sauvignon", category: "Vinhos/wines", price: 1350.00, description: "Garrafa Cabernet Sauvignon.", emoji: "🍷" },
-    { name: "Cabriz, gatão, Graca", category: "Vinhos/wines", price: 850.00, description: "Garrafa de vinho português/regional.", emoji: "🍷" },
-    { name: "G.Garcia, Aveleda", category: "Vinhos/wines", price: 850.00, description: "Garrafa de vinho branco Aveleda.", emoji: "🍾" },
-    { name: "Portada", category: "Vinhos/wines", price: 850.00, description: "Garrafa de Vinho Portada.", emoji: "🍷" },
-    { name: "Chocolate Bloc", category: "Vinhos/wines", price: 1750.00, description: "Garrafa Chocolate Block.", emoji: "🍷" },
-    { name: "JC - Keuroux grf", category: "Vinhos/wines", price: 650.00, description: "Garrafa JC Le Roux.", emoji: "🍾" },
-    { name: "Krone, Tosti, Anabela", category: "Vinhos/wines", price: 1100.00, description: "Espumante / Garrafa especial.", emoji: "🍾" }
+    // --- Vinhos e Outras Bebidas ---
+    { name: "Vodka / sumo", category: "Vinhos", price: 150.00, description: "Vodka com sumo", emoji: "🍹" },
+    { name: "R & R", category: "Vinhos", price: 150.00, description: "R&R clássico", emoji: "🍹" },
+    { name: "Passion fruit / Sprite", category: "Vinhos", price: 125.00, description: "Cocktail de maracujá com Sprite", emoji: "🍹" },
+    { name: "Milk Pedro", category: "Vinhos", price: 325.00, description: "Cocktail especial da casa", emoji: "🍹" },
+    { name: "Caipirinha", category: "Vinhos", price: 350.00, description: "Caipirinha tradicional de limão", emoji: "🍹" },
+    { name: "May fair", category: "Vinhos", price: 125.00, description: "Bebida aperitiva", emoji: "🍸" },
+    { name: "Gin Gordon / Belgravia", category: "Vinhos", price: 80.00, description: "Dose de Gin Gordon ou Belgravia", emoji: "🍸" },
+    { name: "Gin Tanqueray", category: "Vinhos", price: 100.00, description: "Dose de Gin Tanqueray", emoji: "🍸" },
+    { name: "Whisky Novo", category: "Vinhos", price: 100.00, description: "Whisky standard", emoji: "🥃" },
+    { name: "Whisky velho", category: "Vinhos", price: 150.00, description: "Whisky reserva / velho", emoji: "🥃" },
+    { name: "Captain Morgan / Bacardi", category: "Vinhos", price: 100.00, description: "Rum selecionado", emoji: "🥃" },
+    { name: "Klipdrift", category: "Vinhos", price: 80.00, description: "Brandy Klipdrift", emoji: "🥃" },
+    { name: "Amarula DBL", category: "Vinhos", price: 190.00, description: "Dose dupla de Amarula", emoji: "🥃" },
+    { name: "Vodka Absolut", category: "Vinhos", price: 100.00, description: "Vodka Absolut", emoji: "🍸" },
+    { name: "Vodka Smirnoff", category: "Vinhos", price: 80.00, description: "Vodka Smirnoff", emoji: "🍸" },
+    { name: "1920 / s.Domingos", category: "Vinhos", price: 150.00, description: "Aguardente digestiva", emoji: "🌿" },
+    { name: "Vinho do porto", category: "Vinhos", price: 150.00, description: "Taça de Vinho do Porto", emoji: "🍷" },
+    { name: "Sambuca", category: "Vinhos", price: 150.00, description: "Shoot de Sambuca", emoji: "🥃" },
+    { name: "Tequila", category: "Vinhos", price: 150.00, description: "Shoot de Tequila", emoji: "🥃" },
+    { name: "Vinho do porto (Shoot/Dose)", category: "Vinhos", price: 300.00, description: "Dose especial de Vinho do Porto", emoji: "🍷" },
+    { name: "Vinho a copo", category: "Vinhos", price: 150.00, description: "Taça de vinho da casa", emoji: "🍷" },
+    { name: "Boschendal / Kadete", category: "Vinhos", price: 1350.00, description: "Garrafa de vinho selecionado", emoji: "🍷" },
+    { name: "F.Bostsrd / Roodenberg", category: "Vinhos", price: 1250.00, description: "Garrafa de vinho", emoji: "🍷" },
+    { name: "G.Carlou / C.sauvignon", category: "Vinhos", price: 1350.00, description: "Garrafa Cabernet Sauvignon", emoji: "🍷" },
+    { name: "Cabriz, gatão, Graca", category: "Vinhos", price: 850.00, description: "Garrafa de vinho português", emoji: "🍷" },
+    { name: "G.Garcia, Aveleda", category: "Vinhos", price: 850.00, description: "Garrafa de vinho branco Aveleda", emoji: "🍾" },
+    { name: "Portada", category: "Vinhos", price: 850.00, description: "Garrafa de Vinho Portada", emoji: "🍷" },
+    { name: "Chocolate Bloc", category: "Vinhos", price: 1750.00, description: "Garrafa Chocolate Block", emoji: "🍷" },
+    { name: "JC - Keuroux grf", category: "Vinhos", price: 650.00, description: "Garrafa JC Le Roux", emoji: "🍾" },
+    { name: "Krone, Tosti, Anabela", category: "Vinhos", price: 1100.00, description: "Espumante / Garrafa especial", emoji: "🍾" }
   ];
 
   // Juntar todos os itens num array único
@@ -375,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- ZOOM DE IMAGENS COM BOTÃO 'X' NO TOPO ---
+  // --- ZOOM DE IMAGENS ---
   document.querySelectorAll('img').forEach(img => {
     img.style.cursor = 'pointer';
     img.addEventListener('click', (e) => {
@@ -456,4 +450,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
-    
+     
