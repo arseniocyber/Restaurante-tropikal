@@ -1,13 +1,11 @@
 /* =========================================================
-   CALOR TROPICAL
-   SCRIPT.JS — PARTE 1/3
+   CALOR TROPICAL — SCRIPT.JS COMPLETO E CORRIGIDO
 ========================================================= */
 
 const WA_NUMBER = "258846220984";
 
 let selectedCategory = "Todos";
 let selectedProduct = null;
-
 let cart = [];
 
 try {
@@ -20,47 +18,49 @@ try {
 const menuGrid = document.getElementById("menuGrid");
 const menuSearch = document.getElementById("menuSearch");
 
+const categoryEmoji = {
+  "Café / Chá": "☕",
+  "Saladas": "🥗",
+  "Entradas": "🍤",
+  "Snacks & Sandwich": "🥪",
+  "Omeletes": "🍳",
+  "Combo's": "🍱",
+  "Principais": "🍽️",
+  "Mariscos": "🦐",
+  "Refrescos": "🥤",
+  "Sumos / Águas": "🧃",
+  "Cervejas": "🍺",
+  "Cocktail": "🍹",
+  "Aperitivos": "🥃",
+  "Digestivos": "🥃",
+  "Shoots": "🥂",
+  "Vinhos": "🍷"
+};
+
 const categoryImages = {
-
   "Café / Chá": "images/menu.jpg",
-
   "Saladas": "images/galeria1.jpg",
-
   "Entradas": "images/camarao.jpg",
-
   "Snacks & Sandwich": "images/galeria2.jpg",
-
   "Omeletes": "images/galeria3.jpg",
-
   "Combo's": "images/frango.jpg",
-
   "Principais": "images/peixe.jpg",
-
   "Mariscos": "images/seafood.jpg",
-
   "Refrescos": "images/galeria4.jpg",
-
   "Sumos / Águas": "images/galeria5.jpg",
-
   "Cervejas": "images/galeria6.jpg",
-
   "Cocktail": "images/galeria2.jpg",
-
   "Aperitivos": "images/galeria6.jpg",
-
   "Digestivos": "images/galeria6.jpg",
-
   "Shoots": "images/galeria6.jpg",
-
   "Vinhos": "images/galeria5.jpg"
 };
 
 /* =========================================================
-   MENU REAL DO RESTAURANTE
+   MENU DO RESTAURANTE
 ========================================================= */
 
 const menuData = [
-
   /* CAFÉ / CHÁ */
   ["Café e leite", "Coffee with milk", 150, "Café / Chá"],
   ["Chá e leite", "Tea with milk", 125, "Café / Chá"],
@@ -122,16 +122,9 @@ const menuData = [
   ["Marisco p2 pax", "Seafood for 2 pax", 2500, "Mariscos"],
   ["Lobstar & 6 prawns", "Lobster & 6 prawns", 1975, "Mariscos"],
   ["Marisco para 3 pax", "Seafood for 3 pax", 3500, "Mariscos"],
-  ["12 camarões", "Prawns with chips", 1275, "Mariscos"]
+  ["12 camarões", "Prawns with chips", 1275, "Mariscos"],
 
-];
-
-/* =========================================================
-   PARTE 2/3 — RESTANTE DO MENU + MODAL
-========================================================= */
-
-/* REFRESCOS */
-menuData.push(
+  /* REFRESCOS */
   ["330 ml", "Soft drink 330 ml", 70, "Refrescos"],
   ["Soda & Tônica", "Soda & Tonic", 75, "Refrescos"],
   ["Appletiser", "Appletiser", 100, "Refrescos"],
@@ -198,12 +191,7 @@ menuData.push(
   ["Chocolate Bloc", "Chocolate Bloc", 1750, "Vinhos"],
   ["JC - Keuroux grf.", "JC - Keuroux bottle", 650, "Vinhos"],
   ["Krone, Tosti, Anabela", "Krone, Tosti, Anabela", 1100, "Vinhos"]
-);
-
-
-/* =========================================================
-   TRANSFORMAR OS DADOS EM PRODUTOS
-========================================================= */
+];
 
 const products = menuData.map(function(item, index) {
   return {
@@ -216,1195 +204,432 @@ const products = menuData.map(function(item, index) {
   };
 });
 
-
-/* =========================================================
-   DESCRIÇÕES
-========================================================= */
-
 function getProductDescription(product) {
-
-  const descriptions = {
-    "Camarão":
-      "Camarão preparado com todo o sabor da cozinha do Calor Tropical.",
-
-    "Peixe inteiro":
-      "Peixe inteiro preparado ao estilo do restaurante, servido com acompanhamentos.",
-
-    "Frango inteiro":
-      "Frango preparado para uma refeição saborosa e completa.",
-
-    "Marisco p2 pax":
-      "Seleção de mariscos para duas pessoas.",
-
-    "Marisco para 3 pax":
-      "Seleção especial de mariscos para três pessoas.",
-
-    "Salada tropical":
-      "Uma salada fresca e tropical, ideal para acompanhar a sua refeição.",
-
-    "Caipirinha":
-      "Cocktail refrescante preparado para momentos de descontração."
-  };
-
-  return descriptions[product.name] ||
-    `${product.name} — uma opção do menu Calor Tropical.`;
+  return `${product.name} — uma opção deliciosa do menu Calor Tropical.`;
 }
-
-
-/* =========================================================
-   FORMATAR PREÇO
-========================================================= */
 
 function formatPrice(price) {
   return `${price.toLocaleString("pt-PT")} MTS`;
 }
 
-
 /* =========================================================
-   MOSTRAR MENU
+   RENDERIZAR MENU
 ========================================================= */
-
 function renderMenu() {
-
   if (!menuGrid) return;
 
-  const searchText = menuSearch
-    ? menuSearch.value.trim().toLowerCase()
-    : "";
+  const searchText = menuSearch ? menuSearch.value.trim().toLowerCase() : "";
 
   const filteredProducts = products.filter(function(product) {
-
-    const categoryOK =
-      selectedCategory === "Todos" ||
-      product.category === selectedCategory;
-
-    const searchOK =
-      !searchText ||
-      product.name.toLowerCase().includes(searchText) ||
-      product.english.toLowerCase().includes(searchText) ||
-      product.category.toLowerCase().includes(searchText);
-
+    const categoryOK = selectedCategory === "Todos" || product.category === selectedCategory;
+    const searchOK = !searchText || product.name.toLowerCase().includes(searchText) || product.english.toLowerCase().includes(searchText);
     return categoryOK && searchOK;
   });
 
-
   if (filteredProducts.length === 0) {
-
     menuGrid.innerHTML = `
-      <div class="menu-empty">
+      <div class="menu-empty" style="grid-column: 1/-1; text-align: center; padding: 40px;">
         <h3>Nenhum prato encontrado</h3>
         <p>Tente outra pesquisa ou escolha outra categoria.</p>
       </div>
     `;
-
     return;
   }
 
-
   menuGrid.innerHTML = filteredProducts.map(function(product) {
-
+    const emoji = categoryEmoji[product.category] || "🍽️";
     return `
-      <article class="menu-card" data-id="${product.id}">
-
-        
-
-        <div class="menu-card-content">
-
-          <span class="menu-card-category">
-            ${product.category}
-          </span>
-
-          <h3>${product.name}</h3>
-
-          <p>${product.english}</p>
-
-          <div class="menu-card-bottom">
-
-            <strong>${formatPrice(product.price)}</strong>
-
-            <button
-              type="button"
-              class="menu-item-btn"
-              data-id="${product.id}"
-            >
-              Ver detalhes
-            </button>
-
-          </div>
-
+      <article class="menu-card" data-id="${product.id}" style="cursor: pointer;">
+        <div class="menu-card-image" style="height: 160px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 50px;">
+          ${emoji}
         </div>
-
+        <div class="menu-card-content" style="padding: 15px;">
+          <span class="menu-card-category" style="font-size: 12px; color: #88px;">${product.category}</span>
+          <h3 style="margin: 5px 0; font-size: 16px;">${product.name}</h3>
+          <p style="font-size: 13px; color: #666; margin-bottom: 10px;">${product.english}</p>
+          <div class="menu-card-bottom" style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #d9534f;">${formatPrice(product.price)}</strong>
+            <button type="button" class="menu-item-btn" data-id="${product.id}" style="padding: 6px 12px; background: #ff5722; color: #fff; border: none; border-radius: 4px;">Ver</button>
+          </div>
+        </div>
       </article>
     `;
-
   }).join("");
 }
 
-
 /* =========================================================
-   ABRIR PRODUTO
+   MODAL DE PRODUTO
 ========================================================= */
-
 function openProduct(productId) {
-
   const product = products.find(function(item) {
     return item.id === Number(productId);
   });
-
   if (!product) return;
 
   selectedProduct = product;
 
   const modal = document.getElementById("productModal");
-  const image = document.getElementById("modalProductImage");
   const category = document.getElementById("modalProductCategory");
   const name = document.getElementById("modalProductName");
   const price = document.getElementById("modalProductPrice");
   const description = document.getElementById("modalProductDescription");
   const overlay = document.getElementById("overlay");
 
-  if (image) {
+  if (category) category.textContent = product.category;
+  if (name) name.textContent = product.name;
+  if (price) price.textContent = formatPrice(product.price);
+  if (description) description.textContent = getProductDescription(product);
 
-  const categoryEmoji = {
-    "Café / Chá": "☕",
-    "Saladas": "🥗",
-    "Entradas": "🍤",
-    "Snacks & Sandwich": "🥪",
-    "Omeletes": "🍳",
-    "Combo's": "🍱",
-    "Principais": "🍽️",
-    "Mariscos": "🦐",
-    "Refrescos": "🥤",
-    "Sumos / Águas": "🧃",
-    "Cervejas": "🍺",
-    "Cocktail": "🍹",
-    "Aperitivos": "🥃",
-    "Digestivos": "🥃",
-    "Shoots": "🥂",
-    "Vinhos": "🍷"
-  };
-
-  image.removeAttribute("src");
-  image.alt = product.name;
-  image.style.display = "none";
-
-  const emoji = document.createElement("div");
-
-  emoji.className = "modal-product-emoji";
-  emoji.textContent = categoryEmoji[product.category] || "🍽️";
-
-  image.parentNode.insertBefore(emoji, image);
-  }
-
-  if (category) {
-    category.textContent = product.category;
-  }
-
-  if (name) {
-    name.textContent = product.name;
-  }
-
-  if (price) {
-    price.textContent = formatPrice(product.price);
-  }
-
-  if (description) {
-    description.textContent = getProductDescription(product);
-  }
-
-  if (modal) {
-    modal.classList.add("active");
-  }
-
-  if (overlay) {
-    overlay.classList.add("active");
-  }
-
+  if (modal) modal.classList.add("active");
+  if (overlay) overlay.classList.add("active");
   document.body.style.overflow = "hidden";
 }
 
-
-/* =========================================================
-   FECHAR PRODUTO
-========================================================= */
-
 function closeProductModal() {
-
   const modal = document.getElementById("productModal");
-
-  if (modal) {
-    modal.classList.remove("active");
-  }
-
   const overlay = document.getElementById("overlay");
 
+  if (modal) modal.classList.remove("active");
   if (overlay && !document.getElementById("cartDrawer")?.classList.contains("active")) {
     overlay.classList.remove("active");
   }
-
   if (!document.getElementById("cartDrawer")?.classList.contains("active")) {
     document.body.style.overflow = "";
   }
-
 }
 
-
-/* =========================================================
-   CLICAR NOS PRODUTOS DO MENU
-========================================================= */
-
 if (menuGrid) {
-
   menuGrid.addEventListener("click", function(event) {
-
     const card = event.target.closest(".menu-card");
-
     if (!card) return;
-
     const productId = card.dataset.id;
-
     if (productId !== undefined) {
       openProduct(productId);
     }
-
   });
-
 }
-
-
-/* =========================================================
-   BOTÃO FECHAR DO MODAL
-========================================================= */
 
 const modalClose = document.getElementById("modalClose");
-
 if (modalClose) {
-
-  modalClose.addEventListener("click", function() {
-    closeProductModal();
-  });
-
-   }
+  modalClose.addEventListener("click", closeProductModal);
+}
 
 /* =========================================================
-   PARTE 3/3 — FILTROS, MENU MOBILE, CARRINHO,
-   WHATSAPP, GALERIA E INICIALIZAÇÃO
+   FILTROS E PESQUISA
 ========================================================= */
-
-
-/* =========================================================
-   FILTROS DO MENU
-========================================================= */
-
-
 const menuFilters = document.querySelectorAll(".filter");
-
 menuFilters.forEach(function(button) {
-
   button.addEventListener("click", function() {
-
-    menuFilters.forEach(function(item) {
-      item.classList.remove("active");
-    });
-
+    menuFilters.forEach(function(item) { item.classList.remove("active"); });
     this.classList.add("active");
-
     selectedCategory = this.dataset.category || "Todos";
-
     renderMenu();
-
   });
-
 });
 
-/* =========================================================
-   PESQUISA DO MENU
-========================================================= */
-
 if (menuSearch) {
-
-  menuSearch.addEventListener("input", function() {
-    renderMenu();
-  });
-
+  menuSearch.addEventListener("input", renderMenu);
 }
 
-
 /* =========================================================
-   MENU DE 3 BARRAS — MOBILE
+   MENU MOBILE (3 BARRAS) — CORRIGIDO
 ========================================================= */
 const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("nav");
-
+const mainNav = document.getElementById("nav") || document.querySelector("nav");
 
 if (menuToggle) {
-
   menuToggle.addEventListener("click", function(event) {
-
     event.preventDefault();
     event.stopPropagation();
-
     if (mainNav) {
       mainNav.classList.toggle("active");
+      mainNav.classList.toggle("open");
     }
-
     menuToggle.classList.toggle("active");
-
   });
-
 }
 
-
-/* Fechar o menu ao clicar num link */
-
 if (mainNav) {
-
-  const navLinks = mainNav.querySelectorAll("a");
-
-  navLinks.forEach(function(link) {
-
-    link.addEventListener("click", function() {
-
-      mainNav.classList.remove("active");
-
-      if (menuToggle) {
-        menuToggle.classList.remove("active");
-      }
-
-    });
-
-  });
-
-}
-
-
-/* Fechar menu quando clicar num link */
-
-if (mainNav) {
-
   mainNav.querySelectorAll("a").forEach(function(link) {
-
     link.addEventListener("click", function() {
-
       mainNav.classList.remove("active");
       mainNav.classList.remove("open");
-
-      if (menuToggle) {
-        menuToggle.setAttribute("aria-expanded", "false");
-      }
-
+      if (menuToggle) menuToggle.classList.remove("active");
     });
-
   });
-
 }
-
 
 /* =========================================================
    CARRINHO
 ========================================================= */
-
 function saveCart() {
-
-  localStorage.setItem(
-    "calorTropicalCart",
-    JSON.stringify(cart)
-  );
-
+  localStorage.setItem("calorTropicalCart", JSON.stringify(cart));
 }
-
 
 function getCartTotal() {
-
-  return cart.reduce(function(total, item) {
-
-    return total + (item.price * item.quantity);
-
-  }, 0);
-
+  return cart.reduce(function(total, item) { return total + (item.price * item.quantity); }, 0);
 }
-
 
 function getCartCount() {
-
-  return cart.reduce(function(total, item) {
-
-    return total + item.quantity;
-
-  }, 0);
-
+  return cart.reduce(function(total, item) { return total + item.quantity; }, 0);
 }
-
 
 function updateCartCount() {
-
   const cartCount = document.getElementById("cartCount");
-
-  if (cartCount) {
-    cartCount.textContent = getCartCount();
-  }
-
+  if (cartCount) cartCount.textContent = getCartCount();
 }
-
 
 function addToCart(product) {
-
   if (!product) return;
-
-  const existing = cart.find(function(item) {
-    return item.id === product.id;
-  });
-
+  const existing = cart.find(function(item) { return item.id === product.id; });
   if (existing) {
-
     existing.quantity += 1;
-
   } else {
-
     cart.push({
-  id: product.id,
-  name: product.name,
-  price: product.price,
-  category: product.category,
-  quantity: 1
-});
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
   }
-
   saveCart();
   renderCart();
   updateCartCount();
-
 }
-
 
 function increaseQuantity(id) {
-
-  const item = cart.find(function(product) {
-    return product.id === Number(id);
-  });
-
+  const item = cart.find(function(product) { return product.id === Number(id); });
   if (!item) return;
-
   item.quantity += 1;
-
   saveCart();
   renderCart();
   updateCartCount();
-
 }
-
 
 function decreaseQuantity(id) {
-
-  const item = cart.find(function(product) {
-    return product.id === Number(id);
-  });
-
+  const item = cart.find(function(product) { return product.id === Number(id); });
   if (!item) return;
-
   item.quantity -= 1;
-
   if (item.quantity <= 0) {
-
-    cart = cart.filter(function(product) {
-      return product.id !== Number(id);
-    });
-
+    cart = cart.filter(function(product) { return product.id !== Number(id); });
   }
-
   saveCart();
   renderCart();
   updateCartCount();
-
 }
-
 
 function removeFromCart(id) {
-
-  cart = cart.filter(function(product) {
-    return product.id !== Number(id);
-  });
-
+  cart = cart.filter(function(product) { return product.id !== Number(id); });
   saveCart();
   renderCart();
   updateCartCount();
-
 }
 
-
-/* =========================================================
-   MOSTRAR CARRINHO
-========================================================= */
-
 function renderCart() {
-
   const cartItems = document.getElementById("cartItems");
   const cartTotal = document.getElementById("cartTotal");
-
   if (!cartItems) return;
 
-
   if (cart.length === 0) {
-
     cartItems.innerHTML = `
-      <div class="cart-empty">
+      <div class="cart-empty" style="text-align:center; padding:30px;">
         <div style="font-size:40px;">🛒</div>
         <h3>O seu pedido está vazio</h3>
         <p>Escolha os pratos que deseja pedir.</p>
       </div>
     `;
-
-    if (cartTotal) {
-      cartTotal.textContent = "0 MTS";
-    }
-
+    if (cartTotal) cartTotal.textContent = "0 MTS";
     return;
   }
 
-
-  const categoryEmoji = {
-    "Café / Chá": "☕",
-    "Saladas": "🥗",
-    "Entradas": "🍤",
-    "Snacks & Sandwich": "🥪",
-    "Omeletes": "🍳",
-    "Combo's": "🍱",
-    "Principais": "🍽️",
-    "Mariscos": "🦐",
-    "Refrescos": "🥤",
-    "Sumos / Águas": "🧃",
-    "Cervejas": "🍺",
-    "Cocktail": "🍹",
-    "Aperitivos": "🥃",
-    "Digestivos": "🥃",
-    "Shoots": "🥂",
-    "Vinhos": "🍷"
-  };
-
-
   cartItems.innerHTML = cart.map(function(item) {
-
     return `
-      <div class="cart-item">
-
-        <div class="cart-item-emoji">
-          ${categoryEmoji[item.category] || "🍽️"}
-        </div>
-
+      <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:10px;">
         <div class="cart-item-info">
-
-          <h4>${item.name}</h4>
-
-          <strong>${formatPrice(item.price)}</strong>
-
-          <div class="cart-item-controls">
-
-            <button
-              type="button"
-              data-cart-action="decrease"
-              data-id="${item.id}"
-            >
-              −
-            </button>
-
-            <span>${item.quantity}</span>
-
-            <button
-              type="button"
-              data-cart-action="increase"
-              data-id="${item.id}"
-            >
-              +
-            </button>
-
-            <button
-              type="button"
-              data-cart-action="remove"
-              data-id="${item.id}"
-              title="Remover"
-            >
-              ×
-            </button>
-
+          <h4 style="margin:0; font-size:14px;">${item.name}</h4>
+          <strong style="color:#d9534f; font-size:13px;">${formatPrice(item.price)} x ${item.quantity}</strong>
+          <div class="cart-item-controls" style="margin-top:5px;">
+            <button type="button" data-cart-action="decrease" data-id="${item.id}" style="padding:2px 8px;">−</button>
+            <span style="margin:0 8px;">${item.quantity}</span>
+            <button type="button" data-cart-action="increase" data-id="${item.id}" style="padding:2px 8px;">+</button>
+            <button type="button" data-cart-action="remove" data-id="${item.id}" style="padding:2px 6px; background:#ff4d4d; color:#fff; border:none; border-radius:3px; margin-left:10px;">×</button>
           </div>
-
         </div>
-
       </div>
     `;
-
   }).join("");
 
-
-  if (cartTotal) {
-    cartTotal.textContent = formatPrice(getCartTotal());
-  }
-
+  if (cartTotal) cartTotal.textContent = formatPrice(getCartTotal());
 }
-
-  if (cartTotal) {
-    cartTotal.textContent = formatPrice(getCartTotal());
-  }
-
-}
-
-
-/* =========================================================
-   CONTROLOS DO CARRINHO
-========================================================= */
 
 const cartItemsElement = document.getElementById("cartItems");
-
 if (cartItemsElement) {
-
   cartItemsElement.addEventListener("click", function(event) {
-
-    const button = event.target.closest("[data-cart-action]");
-
+    const button = event.target.closest("button");
     if (!button) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-
     const action = button.dataset.cartAction;
     const id = button.dataset.id;
-
-    if (!id) return;
-
-    if (action === "increase") {
-      increaseQuantity(id);
-    }
-
-    else if (action === "decrease") {
-      decreaseQuantity(id);
-    }
-
-    else if (action === "remove") {
-      removeFromCart(id);
-    }
-
+    if (action === "increase") increaseQuantity(id);
+    if (action === "decrease") decreaseQuantity(id);
+    if (action === "remove") removeFromCart(id);
   });
-
 }
-
-/* =========================================================
-   ABRIR / FECHAR CARRINHO
-========================================================= */
 
 function openCart() {
-
   const drawer = document.getElementById("cartDrawer");
   const overlay = document.getElementById("overlay");
-
-  if (drawer) {
-    drawer.classList.add("active");
-  }
-
-  if (overlay) {
-    overlay.classList.add("active");
-  }
-
+  if (drawer) drawer.classList.add("active");
+  if (overlay) overlay.classList.add("active");
   document.body.style.overflow = "hidden";
-
 }
-
 
 function closeCart() {
-
   const drawer = document.getElementById("cartDrawer");
   const overlay = document.getElementById("overlay");
-
-  if (drawer) {
-    drawer.classList.remove("active");
-  }
-
-  if (
-    overlay &&
-    !document.getElementById("productModal")?.classList.contains("active")
-  ) {
+  if (drawer) drawer.classList.remove("active");
+  if (overlay && !document.getElementById("productModal")?.classList.contains("active")) {
     overlay.classList.remove("active");
   }
-
-  if (
-    !document.getElementById("productModal")?.classList.contains("active")
-  ) {
+  if (!document.getElementById("productModal")?.classList.contains("active")) {
     document.body.style.overflow = "";
   }
-
 }
-
-
 
 const openCartButton = document.getElementById("openCartButton");
-const closeCartButton = document.getElementById("closeCart");
+const closeCartButton = document.getElementById("closeCartButton");
+if (openCartButton) openCartButton.addEventListener("click", openCart);
+if (closeCartButton) closeCartButton.addEventListener("click", closeCart);
 
-if (openCartButton) {
-
-  openCartButton.addEventListener("click", function() {
-    openCart();
-  });
-
-}
-
-
-if (closeCartButton) {
-
-  closeCartButton.addEventListener("click", function() {
-    closeCart();
-  });
-
-}
-
-
-/* =========================================================
-   BOTÃO ADICIONAR AO CARRINHO DO MODAL
-========================================================= */
-
-const modalAddButton =
-  document.getElementById("modalAddButton");
-
-
+const modalAddButton = document.getElementById("modalAddButton");
 if (modalAddButton) {
-
   modalAddButton.addEventListener("click", function() {
-
     if (!selectedProduct) return;
-
     addToCart(selectedProduct);
-
     closeProductModal();
-
     openCart();
-
   });
-
 }
 
-
 /* =========================================================
-   BOTÕES "MARCAR / PEDIR" DOS PRATOS EM DESTAQUE
+   DESTAQUES E PRATOS RÁPIDOS — CORRIGIDO
 ========================================================= */
-
 document.addEventListener("click", function(event) {
-
-  const button = event.target.closest(".quick-order");
-
+  const button = event.target.closest(".quick-order, .featured-btn");
   if (!button) return;
-
   const card = button.closest(".featured-card");
-
   if (!card) return;
-
   const title = card.querySelector("h3");
-
   if (!title) return;
-
   const titleText = title.textContent.trim().toLowerCase();
 
-  let category = null;
-
-  if (titleText.includes("camarão")) {
-    category = "Principais";
-  } 
-  else if (titleText.includes("peixe")) {
-    category = "Principais";
-  } 
-  else if (titleText.includes("marisco")) {
-    category = "Mariscos";
-  }
-   else if (titleText.includes("frango")) {
-  category = "Principais";
-}
-
-  if (!category) return;
+  let category = "Principais";
+  if (titleText.includes("marisco")) category = "Mariscos";
+  else if (titleText.includes("peixe")) category = "Principais";
+  else if (titleText.includes("camarão")) category = "Principais";
+  else if (titleText.includes("frango")) category = "Principais";
 
   selectedCategory = category;
-
-  const filters = document.querySelectorAll(".filter");
-
-  filters.forEach(function(filter) {
+  document.querySelectorAll(".filter").forEach(function(filter) {
     filter.classList.remove("active");
-
-    if (filter.dataset.category === category) {
-      filter.classList.add("active");
-    }
+    if (filter.dataset.category === category) filter.classList.add("active");
   });
 
   renderMenu();
 
-  const menuSection = document.getElementById("menu");
-
+  const menuSection = document.getElementById("menu") || document.getElementById("cardapio");
   if (menuSection) {
-    menuSection.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+    menuSection.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-
 });
 
-
 /* =========================================================
-   ENVIAR PEDIDO PELO WHATSAPP
+   WHATSAPP E OVERLAY
 ========================================================= */
-
-const sendWhatsAppButton =
-  document.getElementById("sendWhatsAppButton");
-
-
+const sendWhatsAppButton = document.getElementById("sendWhatsAppButton");
 if (sendWhatsAppButton) {
-
   sendWhatsAppButton.addEventListener("click", function() {
-
     if (cart.length === 0) {
-
       alert("Adicione pelo menos um produto ao pedido.");
-
       return;
     }
+    const customerName = document.getElementById("customerName")?.value.trim() || "";
+    const customerNote = document.getElementById("customerNote")?.value.trim() || "";
 
-
-    const customerName =
-      document.getElementById("customerName")?.value.trim() || "";
-
-    const customerNote =
-      document.getElementById("customerNote")?.value.trim() || "";
-
-
-    let message =
-      "Olá, Calor Tropical! 👋\n\n" +
-      "Gostaria de fazer o seguinte pedido:\n\n";
-
-
+    let message = "Olá, Calor Tropical! 👋\n\nGostaria de fazer o seguinte pedido:\n\n";
     cart.forEach(function(item) {
-
-      message +=
-        `• ${item.name} x${item.quantity} — ` +
-        `${formatPrice(item.price * item.quantity)}\n`;
-
+      message += `• ${item.name} x${item.quantity} — ${formatPrice(item.price * item.quantity)}\n`;
     });
+    message += `\n*Total: ${formatPrice(getCartTotal())}*`;
+    if (customerName) message += `\n\nNome: ${customerName}`;
+    if (customerNote) message += `\nObservação: ${customerNote}`;
+    message += "\n\nObrigado!";
 
-
-    message +=
-      `\n*Total: ${formatPrice(getCartTotal())}*`;
-
-
-    if (customerName) {
-
-      message +=
-        `\n\nNome: ${customerName}`;
-
-    }
-
-
-    if (customerNote) {
-
-      message +=
-        `\nObservação: ${customerNote}`;
-
-    }
-
-
-    message +=
-      "\n\nObrigado!";
-
-
-    const url =
-      `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
-
-
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
-
   });
-
 }
 
-
-/* =========================================================
-   OVERLAY
-========================================================= */
-
-const overlay =
-  document.getElementById("overlay");
-
-
+const overlay = document.getElementById("overlay");
 if (overlay) {
-
   overlay.addEventListener("click", function() {
-
     closeProductModal();
     closeCart();
-
   });
-
 }
-
-
-/* =========================================================
-   TECLA ESC
-========================================================= */
 
 document.addEventListener("keydown", function(event) {
-
   if (event.key !== "Escape") return;
-
   closeProductModal();
   closeCart();
-
 });
 
-
 /* =========================================================
-   GALERIA — LIGHTBOX
+   GALERIA LIGHTBOX — CORRIGIDO
 ========================================================= */
-
 let galleryLightbox = null;
 
-
 function createGalleryLightbox() {
-
   if (galleryLightbox) return;
-
-
   galleryLightbox = document.createElement("div");
-
   galleryLightbox.id = "galleryLightbox";
-
   galleryLightbox.innerHTML = `
-    <button
-      type="button"
-      id="galleryLightboxClose"
-      aria-label="Fechar imagem"
-    >
-      ×
-    </button>
-
-    <img
-      id="galleryLightboxImage"
-      src=""
-      alt="Imagem ampliada"
-    >
+    <button type="button" id="galleryLightboxClose" style="position:absolute; top:20px; right:20px; background:none; border:none; color:#fff; font-size:40px; cursor:pointer;">×</button>
+    <img id="galleryLightboxImage" src="" alt="Imagem ampliada" style="max-width:90%; max-height:85vh; border-radius:8px;">
   `;
-
-
+  galleryLightbox.style.cssText = "position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,.9); display:none; align-items:center; justify-content:center; padding:20px;";
   document.body.appendChild(galleryLightbox);
 
-
-  const style = document.createElement("style");
-
-  style.textContent = `
-    #galleryLightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background: rgba(0,0,0,.92);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 25px;
-    }
-
-    #galleryLightbox.active {
-      display: flex;
-    }
-
-    #galleryLightbox img {
-      max-width: 95%;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 14px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.5);
-    }
-
-    #galleryLightboxClose {
-      position: absolute;
-      top: 18px;
-      right: 22px;
-      width: 48px;
-      height: 48px;
-      border: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,.15);
-      color: white;
-      font-size: 34px;
-      line-height: 1;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    #galleryLightboxClose:hover {
-      background: rgba(255,255,255,.28);
-    }
-  `;
-
-  document.head.appendChild(style);
-
-
-  const closeButton =
-    document.getElementById("galleryLightboxClose");
-
-  if (closeButton) {
-
-    closeButton.addEventListener("click", function() {
-
-      galleryLightbox.classList.remove("active");
-
-      document.body.style.overflow = "";
-
-    });
-
-  }
-
-
-  galleryLightbox.addEventListener("click", function(event) {
-
-    if (event.target === galleryLightbox) {
-
-      galleryLightbox.classList.remove("active");
-
-      document.body.style.overflow = "";
-
-    }
-
+  document.getElementById("galleryLightboxClose").addEventListener("click", function() {
+    galleryLightbox.style.display = "none";
+    document.body.style.overflow = "";
   });
 
+  galleryLightbox.addEventListener("click", function(event) {
+    if (event.target === galleryLightbox) {
+      galleryLightbox.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  });
 }
 
-
-/* Abrir imagens da galeria */
-
 document.addEventListener("click", function(event) {
-
-  const image = event.target.closest(
-    ".gallery-grid img, .gallery-item img"
-  );
-
+  const image = event.target.closest(".gallery-grid img, .gallery-item img, .featured-card img");
   if (!image) return;
 
   createGalleryLightbox();
-
-  const lightboxImage =
-    document.getElementById("galleryLightboxImage");
-
+  const lightboxImage = document.getElementById("galleryLightboxImage");
   if (!lightboxImage) return;
 
   lightboxImage.src = image.src;
-  lightboxImage.alt = image.alt || "Calor Tropical";
-
-  galleryLightbox.classList.add("active");
-
+  galleryLightbox.style.display = "flex";
   document.body.style.overflow = "hidden";
-
 });
-
-
-/* =========================================================
-   BOTÃO VOLTAR AO TOPO
-========================================================= */
-
-const backToTop =
-  document.getElementById("backToTop");
-
-
-window.addEventListener("scroll", function() {
-
-  if (!backToTop) return;
-
-  if (window.scrollY > 500) {
-
-    backToTop.classList.add("show");
-    backToTop.classList.add("active");
-
-  } else {
-
-    backToTop.classList.remove("show");
-    backToTop.classList.remove("active");
-
-  }
-
-});
-
-
-if (backToTop) {
-
-  backToTop.addEventListener("click", function() {
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  });
-
-}
-
-
-/* =========================================================
-   LINKS PARA O MENU
-========================================================= */
-
-document.querySelectorAll(
-  'a[href="#menu"], a[href="#cardapio"]'
-).forEach(function(link) {
-
-  link.addEventListener("click", function() {
-
-    selectedCategory = "Todos";
-
-    if (menuSearch) {
-      menuSearch.value = "";
-    }
-
-    menuFilters.forEach(function(button) {
-      button.classList.remove("active");
-
-      const category =
-        button.dataset.category ||
-        button.textContent.trim();
-
-      if (category === "Todos") {
-        button.classList.add("active");
-      }
-    });
-
-    renderMenu();
-
-  });
-
-});
-
 
 /* =========================================================
    INICIALIZAÇÃO FINAL
 ========================================================= */
-
 renderMenu();
 renderCart();
 updateCartCount();
 createGalleryLightbox();
-
-
-/* =========================================================
-   FIM DO SCRIPT
-========================================================= */
-// Clicar na imagem dos pratos em destaque
-document.addEventListener("click", function(event) {
-
-  const image = event.target.closest(".featured-card img");
-
-  if (!image) return;
-
-  const name = image.dataset.name;
-
-  if (!name) return;
-
-  const product = products.find(function(item) {
-    return item.name.toLowerCase() === name.toLowerCase();
-  });
-
-  if (product) {
-  openProduct(product.id);
-  }
-
-}
-                          
