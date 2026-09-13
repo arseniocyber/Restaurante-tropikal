@@ -934,12 +934,9 @@ function closeCart() {
 }
 
 
-const openCartButton =
-  document.getElementById("openCartButton");
 
-const closeCartButton =
-  document.getElementById("closeCartButton");
-
+const openCartButton = document.getElementById("openCartButton");
+const closeCartButton = document.getElementById("closeCart");
 
 if (openCartButton) {
 
