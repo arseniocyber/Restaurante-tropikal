@@ -662,13 +662,12 @@ function addToCart(product) {
   } else {
 
     cart.push({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      quantity: 1
-    });
-
+  id: product.id,
+  name: product.name,
+  price: product.price,
+  category: product.category,
+  quantity: 1
+});
   }
 
   saveCart();
@@ -763,15 +762,34 @@ function renderCart() {
   }
 
 
+  const categoryEmoji = {
+    "Café / Chá": "☕",
+    "Saladas": "🥗",
+    "Entradas": "🍤",
+    "Snacks & Sandwich": "🥪",
+    "Omeletes": "🍳",
+    "Combo's": "🍱",
+    "Principais": "🍽️",
+    "Mariscos": "🦐",
+    "Refrescos": "🥤",
+    "Sumos / Águas": "🧃",
+    "Cervejas": "🍺",
+    "Cocktail": "🍹",
+    "Aperitivos": "🥃",
+    "Digestivos": "🥃",
+    "Shoots": "🥂",
+    "Vinhos": "🍷"
+  };
+
+
   cartItems.innerHTML = cart.map(function(item) {
 
     return `
       <div class="cart-item">
 
-        <img
-          src="${item.image}"
-          alt="${item.name}"
-        >
+        <div class="cart-item-emoji">
+          ${categoryEmoji[item.category] || "🍽️"}
+        </div>
 
         <div class="cart-item-info">
 
@@ -824,6 +842,12 @@ function renderCart() {
 
 }
 
+  if (cartTotal) {
+    cartTotal.textContent = formatPrice(getCartTotal());
+  }
+
+}
+
 
 /* =========================================================
    CONTROLOS DO CARRINHO
@@ -835,29 +859,33 @@ if (cartItemsElement) {
 
   cartItemsElement.addEventListener("click", function(event) {
 
-    const button = event.target.closest("button");
+    const button = event.target.closest("[data-cart-action]");
 
     if (!button) return;
 
+    event.preventDefault();
+    event.stopPropagation();
+
     const action = button.dataset.cartAction;
     const id = button.dataset.id;
+
+    if (!id) return;
 
     if (action === "increase") {
       increaseQuantity(id);
     }
 
-    if (action === "decrease") {
+    else if (action === "decrease") {
       decreaseQuantity(id);
     }
 
-    if (action === "remove") {
+    else if (action === "remove") {
       removeFromCart(id);
     }
 
   });
 
 }
-
 
 /* =========================================================
    ABRIR / FECHAR CARRINHO
@@ -1378,7 +1406,7 @@ document.addEventListener("click", function(event) {
   });
 
   if (product) {
-    openProduct(product);
+  openProduct(product.id);
   }
 
 });
