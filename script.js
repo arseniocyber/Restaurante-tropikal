@@ -1406,4 +1406,5 @@ document.addEventListener("click", function(event) {
   openProduct(product.id);
   }
 
-});
+}
+                          
