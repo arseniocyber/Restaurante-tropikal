@@ -1,4 +1,4 @@
-// ================= SCRIPT COMPLETO E DEFINITIVO (PARTE 1/3) - RESTAURANTE CALOR TROPICAL =================
+// ================= SCRIPT COMPLETO (PARTE 1/3) - RESTAURANTE CALOR TROPICAL =================
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -32,7 +32,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // Principais
     { name: "Peixe inteiro / Whole fish", category: "Principais", price: 650, description: "Peixe fresco do dia grelhado. Servido com arroz, batatas fritas e salada.", emoji: "🐟" },
     { name: "Camarão", category: "Principais", price: 850, description: "Camarão fresco grelhado. Servido com arroz, batatas fritas e salada.", emoji: "🦐" },
-    { name: "1/4 frango / Chicken", category: "Principais", price: 450, description: "Frango assado à moda da casa. Servido com arroz, batatas fritas e salada.", emoji: "🍗" }
+    { name: "1/4 frango / Chicken", category: "Principais", price: 450, description: "Frango assado à moda da casa. Servido com arroz, batatas fritas e salada.", emoji: "🍗" },
+
+    // Mariscos
+    { name: "Marisco / Seafood p2 pax", category: "Mariscos", price: 1500, description: "Prato misto de mariscos frescos para partilhar. Acompanha shamussas.", emoji: "🦞" },
+
+    // Sumos & Águas
+    { name: "Sumo natural da época", category: "Sumos", price: 120, description: "Sumo de fruta fresca do dia (manga, papaia ou ananás).", emoji: "🧃" },
+    { name: "Sumo de maracujá natural", category: "Sumos", price: 150, description: "Sumo natural refrescante de maracujá.", emoji: "🍹" },
+    { name: "Água com gás", category: "Águas", price: 70, description: "Água mineral com gás 500ml.", emoji: "💧" },
+    { name: "Água sem gás", category: "Águas", price: 50, description: "Água mineral natural 500ml.", emoji: "💧" },
+
+    // Shoots
+    { name: "Shoot Tequila", category: "Shoots", price: 200, description: "Dose de tequila com limão e sal.", emoji: "🥃" },
+    { name: "Shoot Jägermeister", category: "Shoots", price: 250, description: "Dose gelada de licor de ervas.", emoji: "🥃" },
+
+    // Vinhos
+    { name: "Vinho Tinto da Casa (Taça)", category: "Vinhos", price: 250, description: "Copo de vinho tinto selecionado.", emoji: "🍷" },
+    { name: "Vinho Tinto da Casa (Garrafa)", category: "Vinhos", price: 900, description: "Garrafa de vinho tinto selecionado.", emoji: "🍷" },
+    { name: "Vinho Branco da Casa (Taça)", category: "Vinhos", price: 250, description: "Copo de vinho branco fresco.", emoji: "🍾" },
+    { name: "Vinho Branco da Casa (Garrafa)", category: "Vinhos", price: 950, description: "Garrafa de vinho branco fresco.", emoji: "🍾" },
+
+    // Aperitivos & Digestivos
+    { name: "Aperitivo Martini", category: "Aperitivos", price: 200, description: "Vermute clássico servido com gelo e rodelas de limão.", emoji: "🍸" },
+    { name: "Campari", category: "Aperitivos", price: 220, description: "Aperitivo clássico amargo e refrescante.", emoji: "🥃" },
+    { name: "Whisky", category: "Aperitivos", price: 300, description: "Dose de whisky selecionado.", emoji: "🥃" },
+    { name: "Digestivo / Licor", category: "Digestivos", price: 250, description: "Bebida digestiva ideal para pós-refeição.", emoji: "🌿" },
+
+    // Cervejas
+    { name: "Cerveja 2M (Lata/Garrafa)", category: "Cervejas", price: 100, description: "A cerveja favorita de Moçambique bem gelada.", emoji: "🍺" },
+    { name: "Cerveja Laurentina Clara", category: "Cervejas", price: 110, description: "Cerveja loura tradicional moçambicana.", emoji: "🍺" },
+    { name: "Cerveja Black", category: "Cervejas", price: 120, description: "Cerveja preta encorpada.", emoji: "🍺" },
+    { name: "Cerveja Melaço", category: "Cervejas", price: 130, description: "Cerveja especial com toque de melaço.", emoji: "🍺" },
+
+    // Refrescos & Cocktails
+    { name: "Refrescos", category: "Refrescos", price: 100, description: "Refrigerantes variados lata 330ml.", emoji: "🥤" },
+    { name: "Caipirinha", category: "Cocktail", price: 350, description: "Cocktail refrescante com limão, açúcar e aguardente/cachaça.", emoji: "🍹" }
   ];
 
   let cart = [];
@@ -63,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentSelectedItem = null;
 
-  // --- RENDERIZAR MENU ---
   function renderMenu(items) {
     if (!menuGrid) return;
     menuGrid.innerHTML = '';
@@ -142,50 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
         openCart();
       }
     });
-  }
-  // ================= SCRIPT COMPLETO E DEFINITIVO (PARTE 2/3) - RESTAURANTE CALOR TROPICAL =================
-
-  // --- ADIÇÃO DOS RESTANTES ITENS AO ARRAY DO MENU ---
-  const extraMenuData = [
-    // Mariscos
-    { name: "Marisco / Seafood p2 pax", category: "Mariscos", price: 1500, description: "Prato misto de mariscos frescos para partilhar. Acompanha shamussas.", emoji: "🦞" },
-
-    // Sumos
-    { name: "Sumo natural da época", category: "Sumos", price: 120, description: "Sumo de fruta fresca do dia (manga, papaia ou ananás).", emoji: "🧃" },
-    { name: "Sumo de maracujá natural", category: "Sumos", price: 150, description: "Sumo natural refrescante de maracujá.", emoji: "🍹" },
-
-    // Shoots
-    { name: "Shoot Tequila", category: "Shoots", price: 200, description: "Dose de tequila com limão e sal.", emoji: "🥃" },
-    { name: "Shoot Jägermeister", category: "Shoots", price: 250, description: "Dose gelada de licor de ervas.", emoji: "🥃" },
-
-    // Vinhos
-    { name: "Vinho Tinto da Casa (Taça)", category: "Vinhos", price: 250, description: "Copo de vinho tinto selecionado.", emoji: "🍷" },
-    { name: "Vinho Tinto da Casa (Garrafa)", category: "Vinhos", price: 900, description: "Garrafa de vinho tinto selecionado.", emoji: "🍷" },
-    { name: "Vinho Branco da Casa (Taça)", category: "Vinhos", price: 250, description: "Copo de vinho branco fresco.", emoji: "🍾" },
-    { name: "Vinho Branco da Casa (Garrafa)", category: "Vinhos", price: 950, description: "Garrafa de vinho branco fresco.", emoji: "🍾" },
-
-    // Aperitivos
-    { name: "Aperitivo Martini", category: "Aperitivos", price: 200, description: "Vermute clássico servido com gelo e rodelas de limão.", emoji: "🍸" },
-    { name: "Campari", category: "Aperitivos", price: 220, description: "Aperitivo clássico amargo e refrescante.", emoji: "🥃" },
-    { name: "Whisky", category: "Aperitivos", price: 300, description: "Dose de whisky selecionado.", emoji: "🥃" },
-
-    // Cervejas
-    { name: "Cerveja 2M (Lata/Garrafa)", category: "Cervejas", price: 100, description: "A cerveja favorita de Moçambique bem gelada.", emoji: "🍺" },
-    { name: "Cerveja Laurentina Clara", category: "Cervejas", price: 110, description: "Cerveja loura tradicional moçambicana.", emoji: "🍺" },
-    { name: "Cerveja Black", category: "Cervejas", price: 120, description: "Cerveja preta encorpada.", emoji: "🍺" },
-    { name: "Cerveja Melaço", category: "Cervejas", price: 130, description: "Cerveja especial com toque de melaço.", emoji: "🍺" },
-
-    // Refrescos & Cocktails
-    { name: "Refrescos", category: "Refrescos", price: 100, description: "Refrigerantes variados lata 330ml.", emoji: "🥤" },
-    { name: "Caipirinha", category: "Cocktail", price: 350, description: "Cocktail refrescante com limão, açúcar e aguardente/cachaça.", emoji: "🍹" }
-  ];
-
-  // Juntar os itens extras à lista principal se ainda não existirem
-  extraMenuData.forEach(extra => {
-    if (!menuData.some(item => item.name === extra.name)) {
-      menuData.push(extra);
     }
-  });
+      
+// ================= SCRIPT COMPLETO (PARTE 2/3) - RESTAURANTE CALOR TROPICAL =================
 
   // --- GESTÃO DO CARRINHO ---
   function addToCart(item) {
@@ -321,10 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
       renderMenu(filtered);
     });
   }
-  
-// ================= SCRIPT COMPLETO E DEFINITIVO (PARTE 3/3) - RESTAURANTE CALOR TROPICAL =================
 
-  // --- BOTÕES RÁPIDOS DOS DESTAQUES / ESPECIAIS (Corrigido para abrir o modal do prato certo) ---
+  // --- BOTÕES RÁPIDOS DOS DESTAQUES / ESPECIAIS ---
   document.querySelectorAll('.quick-order').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -338,15 +329,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+  // ================= SCRIPT COMPLETO (PARTE 3/3) - RESTAURANTE CALOR TROPICAL =================
 
-  // --- ZOOM EM TODAS AS IMAGENS (Galeria, Especiais, Sobre, etc.) ---
+  // --- ZOOM DE IMAGENS COM BOTÃO 'X' NO TOPO (Galeria, Especiais, etc.) ---
   document.querySelectorAll('.gallery-grid img, .about-img img, .hero-img img, .special-card img, .menu-card img').forEach(img => {
     img.style.cursor = 'pointer';
     img.addEventListener('click', () => {
       const modalBox = document.createElement('div');
-      modalBox.style.cssText = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 9999; cursor: pointer;";
-      modalBox.innerHTML = `<img src="${img.src}" style="max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">`;
-      modalBox.addEventListener('click', () => modalBox.remove());
+      modalBox.style.cssText = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: center; z-index: 9999;";
+      
+      modalBox.innerHTML = `
+        <button class="close-zoom-btn" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: #fff; font-size: 28px; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;">&times;</button>
+        <img src="${img.src}" style="max-width: 90%; max-height: 85%; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.6); object-fit: contain;">
+      `;
+
+      const closeZoom = () => modalBox.remove();
+
+      modalBox.querySelector('.close-zoom-btn').addEventListener('click', closeZoom);
+      modalBox.addEventListener('click', (e) => {
+        if (e.target === modalBox) closeZoom();
+      });
+
       document.body.appendChild(modalBox);
     });
   });
@@ -407,4 +410,3 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
-                          
