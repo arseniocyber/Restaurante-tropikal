@@ -1,48 +1,30 @@
-// ================= SCRIPT DO RESTAURANTE CALOR TROPICAL =================
+// ================= SCRIPT DO RESTAURANTE CALOR TROPICAL (AJUSTADO) =================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- DADOS DO MENU ---
   const menuData = [
-    // Café / Chá
-    { name: "Café", category: "Café / Chá", price: 100, description: "Café espresso tradicional.", image: "images/menu.jpg" },
-    { name: "Café e leite", category: "Café / Chá", price: 150, description: "Café quente misturado com leite cremoso.", image: "images/menu.jpg" },
-    { name: "Chá", category: "Café / Chá", price: 100, description: "Variedade de chás disponíveis.", image: "images/menu.jpg" },
-
-    // Saladas
-    { name: "Salada mista", category: "Saladas", price: 250, description: "Alface, tomate, cebola, pepino e cenoura fresca.", image: "images/menu.jpg" },
-    { name: "Salada tropical", category: "Saladas", price: 350, description: "Mix de folhas, frutos da época e molho especial da casa.", image: "images/menu.jpg" },
-
-    // Entradas
-    { name: "Pão de alho", category: "Entradas", price: 150, description: "Pão tostado com pasta de alho e ervas.", image: "images/menu.jpg" },
-    { name: "Camarão rissóis (unid)", category: "Entradas", price: 80, description: "Rissóis de camarão estaladiços.", image: "images/camarao.jpg" },
-
-    // Snacks & Sandwich
-    { name: "Prego no pão", category: "Snacks & Sandwich", price: 300, description: "Bife de vaca suculento no pão com batatas fritas.", image: "images/menu.jpg" },
-    { name: "Hambúrguer tropical", category: "Snacks & Sandwich", price: 350, description: "Hambúrguer artesanal com queijo, alface e tomate.", image: "images/menu.jpg" },
-
-    // Omeletes
-    { name: "Omelete simples", category: "Omeletes", price: 200, description: "Omelete de ovos frescos com ervas.", image: "images/menu.jpg" },
-    { name: "Omelete mista", category: "Omeletes", price: 280, description: "Omelete recheada com queijo e fiambre.", image: "images/menu.jpg" },
-
-    // Combo's
-    { name: "Combo Casal", category: "Combo's", price: 1200, description: "Seleção especial de mariscos e peixe para duas pessoas. Acompanha shamussas.", image: "images/seafood.jpg" },
-
-    // Principais
-    { name: "Peixe inteiro / Whole fish", category: "Principais", price: 650, description: "Peixe fresco do dia grelhado. Servido com arroz, batatas fritas e salada.", image: "images/peixe.jpg" },
-    { name: "Camarão", category: "Principais", price: 850, description: "Camarão fresco grelhado. Servido com arroz, batatas fritas e salada.", image: "images/camarao.jpg" },
-    { name: "1/4 frango / Chicken", category: "Principais", price: 450, description: "Frango assado à moda da casa. Servido com arroz, batatas fritas e salada.", image: "images/frango.jpg" },
-
-    // Mariscos
-    { name: "Marisco / Seafood p2 pax", category: "Mariscos", price: 1500, description: "Prato misto de mariscos frescos para partilhar. Acompanha shamussas.", image: "images/seafood.jpg" },
-
-    // Bebidas & Outros
-    { name: "Refrescos", category: "Refrescos", price: 100, description: "Refrigerantes variados lata 330ml.", image: "images/menu.jpg" },
-    { name: "Caipirinha", category: "Cocktail", price: 350, description: "Cocktail refrescante com limão, açúcar e aguardente/cachaça.", image: "images/menu.jpg" }
+    { name: "Café", category: "Café / Chá", price: 100, description: "Café espresso tradicional.", emoji: "☕" },
+    { name: "Café e leite", category: "Café / Chá", price: 150, description: "Café quente misturado com leite cremoso.", emoji: "☕" },
+    { name: "Chá", category: "Café / Chá", price: 100, description: "Variedade de chás disponíveis.", emoji: "🫖" },
+    { name: "Salada mista", category: "Saladas", price: 250, description: "Alface, tomate, cebola, pepino e cenoura fresca.", emoji: "🥗" },
+    { name: "Salada tropical", category: "Saladas", price: 350, description: "Mix de folhas, frutos da época e molho especial da casa.", emoji: "🥗" },
+    { name: "Pão de alho", category: "Entradas", price: 150, description: "Pão tostado com pasta de alho e ervas.", emoji: "🥖" },
+    { name: "Camarão rissóis (unid)", category: "Entradas", price: 80, description: "Rissóis de camarão estaladiços.", emoji: "🍤" },
+    { name: "Prego no pão", category: "Snacks & Sandwich", price: 300, description: "Bife de vaca suculento no pão com batatas fritas.", emoji: "🥪" },
+    { name: "Hambúrguer tropical", category: "Snacks & Sandwich", price: 350, description: "Hambúrguer artesanal com queijo, alface e tomate.", emoji: "🍔" },
+    { name: "Omelete simples", category: "Omeletes", price: 200, description: "Omelete de ovos frescos com ervas.", emoji: "🍳" },
+    { name: "Omelete mista", category: "Omeletes", price: 280, description: "Omelete recheada com queijo e fiambre.", emoji: "🍳" },
+    { name: "Combo Casal", category: "Combo's", price: 1200, description: "Seleção especial de mariscos e peixe para duas pessoas. Acompanha shamussas.", emoji: "🍱" },
+    { name: "Peixe inteiro / Whole fish", category: "Principais", price: 650, description: "Peixe fresco do dia grelhado. Servido com arroz, batatas fritas e salada.", emoji: "🐟" },
+    { name: "Camarão", category: "Principais", price: 850, description: "Camarão fresco grelhado. Servido com arroz, batatas fritas e salada.", emoji: "🦐" },
+    { name: "1/4 frango / Chicken", category: "Principais", price: 450, description: "Frango assado à moda da casa. Servido com arroz, batatas fritas e salada.", emoji: "🍗" },
+    { name: "Marisco / Seafood p2 pax", category: "Mariscos", price: 1500, description: "Prato misto de mariscos frescos para partilhar. Acompanha shamussas.", emoji: "🦞" },
+    { name: "Refrescos", category: "Refrescos", price: 100, description: "Refrigerantes variados lata 330ml.", emoji: "🥤" },
+    { name: "Caipirinha", category: "Cocktail", price: 350, description: "Cocktail refrescante com limão, açúcar e aguardente/cachaça.", emoji: "🍹" }
   ];
 
   let cart = [];
-     // --- SELECIONAR ELEMENTOS DO DOM ---
+
   const menuGrid = document.getElementById('menuGrid');
   const filtersContainer = document.getElementById('filters');
   const searchInput = document.getElementById('menuSearch');
@@ -53,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalProductCategory = document.getElementById('modalProductCategory');
   const modalProductPrice = document.getElementById('modalProductPrice');
   const modalProductDescription = document.getElementById('modalProductDescription');
-  const modalProductImage = document.getElementById('modalProductImage');
+  const modalProductEmoji = document.getElementById('modalProductEmoji');
   const modalAddButton = document.getElementById('modalAddButton');
 
   const cartDrawer = document.getElementById('cartDrawer');
@@ -69,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentSelectedItem = null;
 
-  // --- RENDERIZAR MENU ---
   function renderMenu(items) {
     menuGrid.innerHTML = '';
     if (items.length === 0) {
@@ -81,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('article');
       card.className = 'menu-card reveal active';
       card.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" loading="lazy">
+        <div class="menu-emoji-box" style="font-size: 50px; text-align: center; padding: 20px 0; background: rgba(255,255,255,0.03);">${item.emoji}</div>
         <div class="menu-card-content">
           <span class="badge">${item.category}</span>
           <h3>${item.name}</h3>
@@ -108,14 +89,20 @@ document.addEventListener('DOMContentLoaded', () => {
       menuGrid.appendChild(card);
     });
   }
-     // --- MODAL DE PRODUTO ---
+      // --- MODAL DE PRODUTO ---
   function openModal(item) {
     currentSelectedItem = item;
     modalProductName.textContent = item.name;
     modalProductCategory.textContent = item.category;
     modalProductPrice.textContent = `${item.price} MTS`;
     modalProductDescription.textContent = item.description;
-    modalProductImage.src = item.image;
+    
+    if (modalProductEmoji) {
+      if (modalProductEmoji.tagName === 'DIV' || modalProductEmoji.tagName === 'SPAN') {
+        modalProductEmoji.textContent = item.emoji;
+      }
+    }
+    
     productModal.classList.add('active');
     overlay.classList.add('active');
   }
@@ -148,8 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
       cart.push({ ...item, quantity: 1 });
     }
     updateCartUI();
-}
-     function updateCartUI() {
+  }
+
+  function updateCartUI() {
     const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCount.textContent = totalItemsCount;
 
@@ -183,15 +171,15 @@ document.addEventListener('DOMContentLoaded', () => {
       cartItemEl.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <div>
-            <strong style="font-size: 15px; color: #fff;">${item.name}</strong>
+            <strong style="font-size: 15px; color: #fff;">${item.emoji || '🍽️'} ${item.name}</strong>
             <div style="font-size: 13px; color: #ff5c5c; margin-top: 2px;">${item.price} MTS x ${item.quantity}</div>
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
-          <button class="btn-qty decrease" data-index="${index}" style="background: #444; color: #fff; border: none; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-weight: bold;">-</button>
+          <button type="button" class="btn-qty decrease" data-index="${index}" style="background: #444; color: #fff; border: none; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-weight: bold;">-</button>
           <span style="color: #fff; font-weight: bold; min-width: 20px; text-align: center;">${item.quantity}</span>
-          <button class="btn-qty increase" data-index="${index}" style="background: #444; color: #fff; border: none; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-weight: bold;">+</button>
-          <button class="btn-remove" data-index="${index}" style="background: #d9534f; color: #fff; border: none; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; margin-left: auto;" title="Remover item">×</button>
+          <button type="button" class="btn-qty increase" data-index="${index}" style="background: #444; color: #fff; border: none; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-weight: bold;">+</button>
+          <button type="button" class="btn-remove" data-index="${index}" style="background: #d9534f; color: #fff; border: none; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; margin-left: auto;" title="Remover item">×</button>
         </div>
       `;
       cartItemsContainer.appendChild(cartItemEl);
@@ -199,9 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cartTotal.textContent = `${totalPrice} MTS`;
 
+    // Eventos de quantidade com remoção limpa se chegar a 0
     cartItemsContainer.querySelectorAll('.increase').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        const idx = e.target.getAttribute('data-index');
+        const idx = e.currentTarget.getAttribute('data-index');
         cart[idx].quantity += 1;
         updateCartUI();
       });
@@ -209,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cartItemsContainer.querySelectorAll('.decrease').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        const idx = e.target.getAttribute('data-index');
+        const idx = e.currentTarget.getAttribute('data-index');
         if (cart[idx].quantity > 1) {
           cart[idx].quantity -= 1;
         } else {
@@ -221,13 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cartItemsContainer.querySelectorAll('.btn-remove').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        const idx = e.target.getAttribute('data-index');
+        const idx = e.currentTarget.getAttribute('data-index');
         cart.splice(idx, 1);
         updateCartUI();
       });
     });
-     }
-    function openCart() {
+  }
+
+  function openCart() {
     cartDrawer.classList.add('active');
     overlay.classList.add('active');
   }
@@ -238,7 +228,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   openCartBtn.addEventListener('click', openCart);
-  closeCartBtn.addEventListener('click', closeCart);
+  if (closeCartBtn) {
+    closeCartBtn.addEventListener('click', closeCart);
+  }
 
   // --- FILTROS E PESQUISA ---
   filtersContainer.addEventListener('click', (e) => {
@@ -266,17 +258,15 @@ document.addEventListener('DOMContentLoaded', () => {
     renderMenu(filtered);
   });
 
-  // --- BOTÕES RÁPIDOS DOS DESTAQUES ---
+  // --- BOTÕES RÁPIDOS DOS DESTAQUES (CORRIGIDO) ---
   document.querySelectorAll('.quick-order').forEach(btn => {
     btn.addEventListener('click', () => {
       const name = btn.getAttribute('data-name');
       const foundItem = menuData.find(i => i.name.toLowerCase() === name.toLowerCase());
       if (foundItem) {
-        addToCart(foundItem);
-        openCart();
+        openModal(foundItem); // Abre o modal do item em vez de mandar direto para o carrinho vazio
       } else {
-        addToCart({ name: name, price: 500, category: 'Especial', description: 'Prato especial do chef.', image: 'images/menu.jpg' });
-        openCart();
+        document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
@@ -311,15 +301,24 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open(whatsappUrl, '_blank');
   });
 
-  // Inicializar menu na carga da página
+  // Inicializar menu e carrinho na carga da página
   renderMenu(menuData);
   updateCartUI();
 
-  // Menu mobile toggle
+  // --- MENU MOBILE E FECHO AUTOMÁTICO DE ABAS ---
   const menuToggle = document.getElementById('menuToggle');
   const nav = document.getElementById('nav');
+
   menuToggle.addEventListener('click', () => {
     nav.classList.toggle('active');
+    overlay.classList.toggle('active');
+  });
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      overlay.classList.remove('active');
+    });
   });
 });
-                                     
+                                                
