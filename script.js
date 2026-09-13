@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const customerNoteInput = document.getElementById('customerNote');
 
   let currentSelectedItem = null;
-        function renderMenu(items) {
+     function renderMenu(items) {
     if (!menuGrid) return;
     menuGrid.innerHTML = '';
     if (items.length === 0) {
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>${item.description}</p>
           <div class="menu-card-footer">
             <strong>${item.price.toFixed(2)} MTS</strong>
-            <button class="btn btn-primary btn-sm add-to-cart-direct" data-name="${item.name}">Ver / Pedir</button>
+            <button class="btn btn-primary btn-sm add-to-cart-direct" type="button">Ver / Pedir</button>
           </div>
         </div>
       `;
@@ -381,6 +381,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- SUPORTE PARA LIGHTBOX DE IMAGENS (PRATOS ESPECIAIS E GALERIA) ---
+  const galleryImages = document.querySelectorAll('.special-card img, .gallery-item img, .menu-img');
+  if (galleryImages.length > 0) {
+    galleryImages.forEach(img => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', () => {
+        const modalImgBox = document.createElement('div');
+        modalImgBox.style.cssText = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 99999; cursor: pointer;";
+        modalImgBox.innerHTML = `<img src="${img.src}" style="max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5);">`;
+        modalImgBox.addEventListener('click', () => modalImgBox.remove());
+        document.body.appendChild(modalImgBox);
+      });
+    });
+  }
+
   // Inicializar menu e carrinho
   renderMenu(menuData);
   updateCartUI();
@@ -405,4 +420,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
-      
+                            
