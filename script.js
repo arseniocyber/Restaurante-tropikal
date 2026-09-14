@@ -668,7 +668,7 @@ var menuData = [
       var card = document.createElement('article');
       card.className = 'menu-card reveal active';
       card.innerHTML = 
-        '<div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">' + item.emoji + '</div>' +
+        '<div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">' + (item.emoji || '🍽️') + '</div>' +
         '<div class="menu-card-content">' +
           '<span class="badge">' + item.category + '</span>' +
           '<h3>' + item.name + '</h3>' +
