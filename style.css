@@ -1506,3 +1506,129 @@ a {
   }
 
 }
+/* =====================================================
+   MELHORIA VISUAL — MENU CALOR TROPICAL
+   ===================================================== */
+
+.menu-card {
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.menu-emoji-box {
+  min-height: 120px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 58px !important;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  ) !important;
+}
+
+.menu-card-content {
+  padding: 20px !important;
+}
+
+.menu-card-content .badge {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.menu-card-content h3 {
+  margin-bottom: 8px;
+  font-size: 21px;
+}
+
+.menu-card-content p {
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.menu-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.menu-card-footer strong {
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.menu-card-footer .btn {
+  white-space: nowrap;
+}
+
+/* Botões das categorias */
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+#filters button {
+  transition: all 0.2s ease;
+}
+
+#filters button:hover {
+  transform: translateY(-2px);
+}
+
+/* Pesquisa */
+#menuSearch {
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+#menuSearch:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.18);
+}
+
+/* Telemóveis */
+@media (max-width: 600px) {
+
+  .menu-card-content {
+    padding: 16px !important;
+  }
+
+  .menu-card-content h3 {
+    font-size: 19px;
+  }
+
+  .menu-card-footer {
+    align-items: center;
+  }
+
+  .menu-card-footer strong {
+    font-size: 16px;
+  }
+
+  .menu-card-footer .btn {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  #filters {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+  }
+
+  #filters button {
+    flex-shrink: 0;
+  }
+}
