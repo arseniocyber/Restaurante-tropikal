@@ -960,7 +960,7 @@ var menuData = [
     };
   }
 
-  // --- LIGHTBOX PARA IMAGENS ---special-img');
+ // --- LIGHTBOX PARA IMAGENS --- 
   var galleryImages = document.querySelectorAll(
   '.featured-card img, .gallery-item img, .menu-img, .special-img'
 );
