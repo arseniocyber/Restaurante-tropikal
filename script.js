@@ -441,8 +441,8 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
 
-  // --- LIGHTBOX PARA IMAGENS ---
-  var galleryImages = document.querySelectorAll('.special-card img, .gallery-item img, .menu-img, .special-img');
+  // --- LIGHTBOX PARA IMAGENS ---special-img');
+  var galleryImages = document.querySelectorAll('.featured-card img, .gallery-item img, .menu-img, .special-img');
   for (var i = 0; i < galleryImages.length; i++) {
     (function(img) {
       img.style.cursor = 'pointer';
