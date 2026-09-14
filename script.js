@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // --- BASE DE DADOS DO MENU (CALOR TROPICAL) ---
-  let menuData = [
-    // --- Café & Chá ---
-    { name: "Café expresso", category: "Café & Chá", price: 60.00, description: "Café expresso tradicional", emoji: "☕" },
-    { name: "Chá diversas variedades", category: "Café & Chá", price: 60.00, description: "Seleção de chás aromáticos", emoji: "🍵" },
+    let menuData = [
+    // --- Café / Chá ---
+    { name: "Café expresso", category: "Café / Chá", price: 60.00, description: "Café expresso tradicional", emoji: "☕" },
+    { name: "Chá diversas variedades", category: "Café / Chá", price: 60.00, description: "Seleção de chás aromáticos", emoji: "🍵" },
 
     // --- Saladas ---
     { name: "Salada mista", category: "Saladas", price: 200.00, description: "Alface, tomate, cebola e pepino", emoji: "🥗" },
@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: "Camarão rústico (Entrada)", category: "Entradas", price: 450.00, description: "Pequena porção de camarão salteado", emoji: "🍤" },
     { name: "Chouriço grelhado", category: "Entradas", price: 350.00, description: "Chouriço artesanal grelhado na brasa", emoji: "🥓" },
 
-    // --- Snacks ---
-    { name: "Hambúrguer simples", category: "Snacks", price: 250.00, description: "Carne bovina, alface, tomate e molho", emoji: "🍔" },
-    { name: "Hambúrguer completo", category: "Snacks", price: 350.00, description: "Carne, queijo, ovo, fiambre e batata frita", emoji: "🍔" },
-    { name: "Prego no pão", category: "Snacks", price: 300.00, description: "Bife tenro em bolo do caco com alho", emoji: "🥪" },
+    // --- Snacks & Sandwich ---
+    { name: "Hambúrguer simples", category: "Snacks & Sandwich", price: 250.00, description: "Carne bovina, alface, tomate e molho", emoji: "🍔" },
+    { name: "Hambúrguer completo", category: "Snacks & Sandwich", price: 350.00, description: "Carne, queijo, ovo, fiambre e batata frita", emoji: "🍔" },
+    { name: "Prego no pão", category: "Snacks & Sandwich", price: 300.00, description: "Bife tenro em bolo do caco com alho", emoji: "🥪" },
 
     // --- Omeletes ---
     { name: "Omelete simples", category: "Omeletes", price: 150.00, description: "Ovos batidos e temperados", emoji: "🍳" },
@@ -45,13 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: "Soda & Tônica", category: "Refrescos", price: 75.00, description: "Água tónica ou soda", emoji: "🥤" },
     { name: "Appletiser", category: "Refrescos", price: 100.00, description: "Bebida espumante de maçã", emoji: "🧃" },
 
-    // --- Sumos & Águas ---
-    { name: "Sumo cappy", category: "Sumos & Águas", price: 125.00, description: "Sumo Cappy", emoji: "🧃" },
-    { name: "Sumo 500 ml", category: "Sumos & Águas", price: 100.00, description: "Sumo natural 500ml", emoji: "🧃" },
-    { name: "Sumo 1l", category: "Sumos & Águas", price: 165.00, description: "Jarro de sumo 1L", emoji: "🧃" },
-    { name: "Água 500ml", category: "Sumos & Águas", price: 50.00, description: "Água mineral natural 500ml", emoji: "💧" },
-    { name: "Água 1,5l", category: "Sumos & Águas", price: 95.00, description: "Água mineral natural 1.5L", emoji: "💧" },
-    { name: "Água gaseificada", category: "Sumos & Águas", price: 100.00, description: "Água com gás", emoji: "💧" },
+    // --- Sumos / Águas ---
+    { name: "Sumo cappy", category: "Sumos / Águas", price: 125.00, description: "Sumo Cappy", emoji: "🧃" },
+    { name: "Sumo 500 ml", category: "Sumos / Águas", price: 100.00, description: "Sumo natural 500ml", emoji: "🧃" },
+    { name: "Sumo 1l", category: "Sumos / Águas", price: 165.00, description: "Jarro de sumo 1L", emoji: "🧃" },
+    { name: "Água 500ml", category: "Sumos / Águas", price: 50.00, description: "Água mineral natural 500ml", emoji: "💧" },
+    { name: "Água 1,5l", category: "Sumos / Águas", price: 95.00, description: "Água mineral natural 1.5L", emoji: "💧" },
+    { name: "Água gaseificada", category: "Sumos / Águas", price: 100.00, description: "Água com gás", emoji: "💧" },
 
     // --- Cervejas ---
     { name: "JC lata 250ml", category: "Cervejas", price: 150.00, description: "Cerveja JC lata", emoji: "🍺" },
@@ -108,6 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: "JC - Keuroux grf", category: "Vinhos", price: 650.00, description: "Garrafa JC Le Roux", emoji: "🍾" },
     { name: "Krone, Tosti, Anabela", category: "Vinhos", price: 1100.00, description: "Espumante / Garrafa especial", emoji: "🍾" }
   ];
+  
+
 
   let cart = [];
 
