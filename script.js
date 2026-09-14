@@ -442,34 +442,67 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // --- LIGHTBOX PARA IMAGENS ---special-img');
-  var galleryImages = document.querySelectorAll('.featured-card img, .gallery-item img, .menu-img, .special-img');
-  for (var i = 0; i < galleryImages.length; i++) {
-    (function(img) {
-      img.style.cursor = 'pointer';
-      img.onclick = function(e) {
-        e.stopPropagation();
-        var modalImgBox = document.createElement('div');
-        modalImgBox.style.cssText = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 99999; padding: 20px;";
-        
-        modalImgBox.innerHTML = 
-          '<button type="button" style="position: absolute; top: 20px; left: 20px; background: #ff5c5c; color: #fff; border: none; padding: 10px 20px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">← Voltar</button>' +
-          '<img src="' + img.src + '" style="max-width: 90%; max-height: 80vh; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); object-fit: contain;">';
-        
-        var closeLightbox = function() {
-          if (modalImgBox.parentNode) {
-            modalImgBox.parentNode.removeChild(modalImgBox);
-          }
-        };
-        
-        modalImgBox.querySelector('button').onclick = closeLightbox;
-        modalImgBox.onclick = function(ev) {
-          if (ev.target === modalImgBox) closeLightbox();
-        };
+  var galleryImages = document.querySelectorAll(
+  '.featured-card img, .gallery-item img, .menu-img, .special-img'
+);
 
-        document.body.appendChild(modalImgBox);
-      };
-    })(galleryImages[i]);
-  }
+galleryImages.forEach(function(img) {
+  img.style.cursor = 'zoom-in';
+
+  img.addEventListener('click', function() {
+    var lightbox = document.createElement('div');
+
+    lightbox.style.position = 'fixed';
+    lightbox.style.top = '0';
+    lightbox.style.left = '0';
+    lightbox.style.width = '100%';
+    lightbox.style.height = '100%';
+    lightbox.style.background = 'rgba(0,0,0,0.92)';
+    lightbox.style.display = 'flex';
+    lightbox.style.alignItems = 'center';
+    lightbox.style.justifyContent = 'center';
+    lightbox.style.zIndex = '99999';
+    lightbox.style.padding = '20px';
+    lightbox.style.boxSizing = 'border-box';
+
+    var image = document.createElement('img');
+
+    image.src = img.src;
+    image.alt = img.alt;
+
+    image.style.maxWidth = '95%';
+    image.style.maxHeight = '90%';
+    image.style.objectFit = 'contain';
+    image.style.borderRadius = '10px';
+
+    var close = document.createElement('button');
+
+    close.innerHTML = '×';
+
+    close.style.position = 'absolute';
+    close.style.top = '15px';
+    close.style.right = '20px';
+    close.style.background = 'none';
+    close.style.border = 'none';
+    close.style.color = 'white';
+    close.style.fontSize = '45px';
+    close.style.cursor = 'pointer';
+
+    lightbox.appendChild(image);
+    lightbox.appendChild(close);
+    document.body.appendChild(lightbox);
+
+    close.addEventListener('click', function() {
+      lightbox.remove();
+    });
+
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) {
+        lightbox.remove();
+      }
+    });
+  });
+});
 
   // Inicializar menu e carrinho
   renderMenu(menuData);
