@@ -655,6 +655,28 @@ var menuData = [
   var customerNoteInput = document.getElementById('customerNote');
 
   var currentSelectedItem = null;
+  function getMenuEmoji(item) {
+  var category = item.category.toLowerCase();
+
+  if (category.indexOf('café') !== -1 || category.indexOf('chá') !== -1) return '☕';
+  if (category.indexOf('salada') !== -1) return '🥗';
+  if (category.indexOf('entrada') !== -1) return '🦀';
+  if (category.indexOf('snacks') !== -1 || category.indexOf('sandwich') !== -1) return '🥪';
+  if (category.indexOf('omelete') !== -1) return '🍳';
+  if (category.indexOf('combo') !== -1) return '🍱';
+  if (category.indexOf('principal') !== -1) return '🍽️';
+  if (category.indexOf('marisco') !== -1) return '🦐';
+  if (category.indexOf('refresco') !== -1) return '🥤';
+  if (category.indexOf('sumos') !== -1 || category.indexOf('águas') !== -1) return '🧃';
+  if (category.indexOf('cerveja') !== -1) return '🍺';
+  if (category.indexOf('cocktail') !== -1) return '🍹';
+  if (category.indexOf('aperitivo') !== -1) return '🥃';
+  if (category.indexOf('digestivo') !== -1) return '🥃';
+  if (category.indexOf('shoot') !== -1) return '🥃';
+  if (category.indexOf('vinho') !== -1) return '🍷';
+
+  return '🍽️';
+  }
        function renderMenu(items) {
     if (!menuGrid) return;
     menuGrid.innerHTML = '';
@@ -668,7 +690,7 @@ var menuData = [
       var card = document.createElement('article');
       card.className = 'menu-card reveal active';
       card.innerHTML = 
-        '<div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">' + (item.emoji || '🍽️') + '</div>' +
+        '<div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">' + getMenuEmoji(item) + '</div>' +
         '<div class="menu-card-content">' +
           '<span class="badge">' + item.category + '</span>' +
           '<h3>' + item.name + '</h3>' +
