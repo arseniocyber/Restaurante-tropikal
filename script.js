@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // --- BASE DE DADOS DO MENU (CALOR TROPICAL) ---
-  var 
 var menuData = [
 
   // CAFÉ / CHÁ
