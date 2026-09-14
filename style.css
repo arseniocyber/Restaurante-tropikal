@@ -1620,6 +1620,7 @@ a {
     padding: 9px 12px;
     font-size: 12px;
   }
+   
 
   #filters {
     justify-content: flex-start;
@@ -1631,4 +1632,108 @@ a {
   #filters button {
     flex-shrink: 0;
   }
+}
+/* =====================================================
+   MELHORIAS EXTRAS PARA TELEMÓVEIS
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+  /* Cabeçalho */
+  .header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* Menu de navegação */
+  .nav.active {
+    padding: 20px;
+  }
+
+  .nav.active a {
+    display: block;
+    padding: 12px 5px;
+    font-size: 15px;
+  }
+
+  /* Botão do carrinho */
+  #openCart {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Cards do menu */
+  .menu-card {
+    border-radius: 16px;
+  }
+
+  .menu-emoji-box {
+    min-height: 105px;
+    font-size: 50px !important;
+  }
+
+  .menu-card-content {
+    padding: 16px !important;
+  }
+
+  /* Botão Ver / Pedir */
+  .add-to-cart-direct {
+    min-height: 42px;
+    padding: 10px 14px !important;
+    border-radius: 8px;
+  }
+
+  /* Preço */
+  .menu-card-footer strong {
+    font-size: 17px;
+  }
+
+  /* Janela do produto */
+  .product-modal {
+    width: 94%;
+    max-height: 88vh;
+    border-radius: 18px;
+  }
+
+  .product-modal > img {
+    height: 190px;
+  }
+
+  .modal-content {
+    padding: 22px;
+  }
+
+  .modal-content h2 {
+    font-size: 31px;
+  }
+
+  .modal-close {
+    width: 38px;
+    height: 38px;
+    font-size: 23px;
+  }
+
+  /* Botão adicionar ao pedido */
+  #modalAddButton {
+    min-height: 48px;
+    font-size: 14px;
+  }
+
+  /* Carrinho */
+  .cart-drawer {
+    width: min(92%, 400px);
+  }
+
+  /* Botões + e - */
+  .btn-qty,
+  .btn-remove {
+    min-width: 34px !important;
+    min-height: 34px !important;
+  }
+
+  /* Contactos */
+  #contactos a {
+    word-break: break-word;
+  }
+
 }
