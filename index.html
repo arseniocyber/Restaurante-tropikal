@@ -179,369 +179,133 @@
           </div>
         </div>
 
-        <div class="menu-grid" id="menuGrid">
-  
-  <!-- Café / Chá -->
-  <article class="menu-card" data-category="Café / Chá">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">☕</div>
-    <div class="menu-card-content">
-      <span class="badge">Café / Chá</span>
-      <h3>Café expresso</h3>
-      <p>Café expresso tradicional</p>
-      <div class="menu-card-footer">
-        <strong>60.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Café expresso" data-category="Café / Chá" data-price="60.00" data-description="Café expresso tradicional" data-emoji="☕">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
+ <div class="menu-grid" id="menuGrid">
+    <!-- Categoria: Entradas / Starters -->
+    <article class="menu-card" data-category="entradas">
+        <div class="card-header">
+            <span class="item-tag">Entrada / Starter</span>
+            <span class="item-price">250 MT</span>
+        </div>
+        <div class="card-body">
+            <h3 class="item-title">Amêijoas à Bulhão Pato</h3>
+            <p class="item-desc">Clássicas amêijoas frescas salteadas em azeite, alho, coentros frescos e um toque de limão.</p>
+        </div>
+        <div class="card-footer">
+            <button class="order-btn" onclick="orderItem('Amêijoas à Bulhão Pato', '250 MT')">
+                <i class="fa-brands fa-whatsapp"></i> Pedir / Order
+            </button>
+        </div>
+    </article>
 
-  <article class="menu-card" data-category="Café / Chá">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍵</div>
-    <div class="menu-card-content">
-      <span class="badge">Café / Chá</span>
-      <h3>Chá diversas variedades</h3>
-      <p>Seleção de chás aromáticos</p>
-      <div class="menu-card-footer">
-        <strong>60.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Chá diversas variedades" data-category="Café / Chá" data-price="60.00" data-description="Seleção de chás aromáticos" data-emoji="🍵">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
+    <article class="menu-card" data-category="entradas">
+        <div class="card-header">
+            <span class="item-tag">Entrada / Starter</span>
+            <span class="item-price">200 MT</span>
+        </div>
+        <div class="card-body">
+            <h3 class="item-title">Camarão Tigre Grelhado (Mini)</h3>
+            <p class="item-desc">Espetada de camarão tigre com molho de manteiga de alho e piri-piri suave.</p>
+        </div>
+        <div class="card-footer">
+            <button class="order-btn" onclick="orderItem('Camarão Tigre Grelhado (Mini)', '200 MT')">
+                <i class="fa-brands fa-whatsapp"></i> Pedir / Order
+            </button>
+        </div>
+    </article>
 
-  <!-- Saladas -->
-  <article class="menu-card" data-category="Saladas">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🥗</div>
-    <div class="menu-card-content">
-      <span class="badge">Saladas</span>
-      <h3>Salada mista</h3>
-      <p>Alface, tomate, cebola e pepino</p>
-      <div class="menu-card-footer">
-        <strong>200.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Salada mista" data-category="Saladas" data-price="200.00" data-description="Alface, tomate, cebola e pepino" data-emoji="🥗">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
+    <!-- Categoria: Pratos Principais / Main Dishes -->
+    <article class="menu-card" data-category="principais">
+        <div class="card-header">
+            <span class="item-tag">Especialidade / Specialty</span>
+            <span class="item-price">650 MT</span>
+        </div>
+        <div class="card-body">
+            <h3 class="item-title">Caril de Marisco à Calor Tropical</h3>
+            <p class="item-desc">Seleção de marisco fresco do dia cozinhado em leite de coco artesanal, caril aromático e arroz basmati.</p>
+        </div>
+        <div class="card-footer">
+            <button class="order-btn" onclick="orderItem('Caril de Marisco à Calor Tropical', '650 MT')">
+                <i class="fa-brands fa-whatsapp"></i> Pedir / Order
+            </button>
+        </div>
+    </article>
 
-  <article class="menu-card" data-category="Saladas">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🥗</div>
-    <div class="menu-card-content">
-      <span class="badge">Saladas</span>
-      <h3>Salada de Atum</h3>
-      <p>Atum fresco, alface, tomate e maionese</p>
-      <div class="menu-card-footer">
-        <strong>350.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Salada de Atum" data-category="Saladas" data-price="350.00" data-description="Atum fresco, alface, tomate e maionese" data-emoji="🥗">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
+    <article class="menu-card" data-category="principais">
+        <div class="card-header">
+            <span class="item-tag">Peixe Fresco / Fresh Fish</span>
+            <span class="item-price">550 MT</span>
+        </div>
+        <div class="card-body">
+            <h3 class="item-title">Peixe Vermelho Grelhado</h3>
+            <p class="item-desc">Peixe vermelho inteiro da nossa costa, grelhado na brasa com batata rústica e salada tropical.</p>
+        </div>
+        <div class="card-footer">
+            <button class="order-btn" onclick="orderItem('Peixe Vermelho Grelhado', '550 MT')">
+                <i class="fa-brands fa-whatsapp"></i> Pedir / Order
+            </button>
+        </div>
+    </article>
+ </div>
+        
+<div class="menu-grid" id="menuGridPart2">
+    <!-- Categoria: Bebidas / Drinks -->
+    <article class="menu-card" data-category="bebidas">
+        <div class="card-header">
+            <span class="item-tag">Bebida / Drink</span>
+            <span class="item-price">100 MT</span>
+        </div>
+        <div class="card-body">
+            <h3 class="item-title">Appletiser</h3>
+            <p class="item-desc">Sumo espumante de maçã 100% natural, refrescante e gelado.</p>
+        </div>
+        <div class="card-footer">
+            <button class="order-btn" onclick="orderItem('Appletiser', '100 MT')">
+                <i class="fa-brands fa-whatsapp"></i> Pedir / Order
+            </button>
+        </div>
+    </article>
 
-  <article class="menu-card" data-category="Saladas">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🥗</div>
-    <div class="menu-card-content">
-      <span class="badge">Saladas</span>
-      <h3>Salada tropical</h3>
-      <p>Mix de folhas, frutos tropicais e molho especial</p>
-      <div class="menu-card-footer">
-        <strong>400.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Salada tropical" data-category="Saladas" data-price="400.00" data-description="Mix de folhas, frutos tropicais e molho especial" data-emoji="🥗">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
+    <article class="menu-card" data-category="bebidas">
+        <div class="card-header">
+            <span class="item-tag">Cocktail / Cocktail</span>
+            <span class="item-price">250 MT</span>
+        </div>
+        <div class="card-body">
+            <h3 class="item-title">Caipirinha Tropical de Maracujá</h3>
+            <p class="item-desc">Cachaça selecionada, polpa de maracujá fresco da Ilha de Inhaca, lima e açúcar mascavo.</p>
+        </div>
+        <div class="card-footer">
+            <button class="order-btn" onclick="orderItem('Caipirinha Tropical de Maracujá', '250 MT')">
+                <i class="fa-brands fa-whatsapp"></i> Pedir / Order
+            </button>
+        </div>
+    </article>
 
-  <!-- Entradas -->
-  <article class="menu-card" data-category="Entradas">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🥖</div>
-    <div class="menu-card-content">
-      <span class="badge">Entradas</span>
-      <h3>Pão de alho</h3>
-      <p>Pão torrado com manteiga de alho e ervas</p>
-      <div class="menu-card-footer">
-        <strong>120.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Pão de alho" data-category="Entradas" data-price="120.00" data-description="Pão torrado com manteiga de alho e ervas" data-emoji="🥖">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
+    <!-- Categoria: Sobremesas / Desserts -->
+    <article class="menu-card" data-category="sobremesas">
+        <div class="card-header">
+            <span class="item-tag">Sobremesa / Dessert</span>
+            <span class="item-price">150 MT</span>
+        </div>
+        <div class="card-body">
+            <h3 class="item-title">Bolo de Coco Húmido</h3>
+            <p class="item-desc">Fatia de bolo caseiro artesanal com leite de coco fresco e calda tropical.</p>
+        </div>
+        <div class="card-footer">
+            <button class="order-btn" onclick="orderItem('Bolo de Coco Húmido', '150 MT')">
+                <i class="fa-brands fa-whatsapp"></i> Pedir / Order
+            </button>
+        </div>
+    </article>
 
-  <article class="menu-card" data-category="Entradas">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍤</div>
-    <div class="menu-card-content">
-      <span class="badge">Entradas</span>
-      <h3>Camarão rústico (Entrada)</h3>
-      <p>Pequena porção de camarão salteado</p>
-      <div class="menu-card-footer">
-        <strong>450.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Camarão rústico (Entrada)" data-category="Entradas" data-price="450.00" data-description="Pequena porção de camarão salteado" data-emoji="🍤">Ver / Pedir</button>
-      </div>
+    <!-- Bloco de Notas / Aviso Rodapé -->
+    <div class="menu-note reveal">
+        <p><i class="fa-solid fa-circle-info"></i> Todos os preços incluem IVA à taxa em vigor. Para pedidos personalizados ou reservas de mesas na Ilha de Inhaca, contacte-nos diretamente via WhatsApp.</p>
     </div>
-  </article>
+</div>
+        
 
-  <article class="menu-card" data-category="Entradas">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🥓</div>
-    <div class="menu-card-content">
-      <span class="badge">Entradas</span>
-      <h3>Chouriço grelhado</h3>
-      <p>Chouriço artesanal grelhado na brasa</p>
-      <div class="menu-card-footer">
-        <strong>350.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Chouriço grelhado" data-category="Entradas" data-price="350.00" data-description="Chouriço artesanal grelhado na brasa" data-emoji="🥓">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
 
-  <!-- Snacks & Sandwich -->
-  <article class="menu-card" data-category="Snacks & Sandwich">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍔</div>
-    <div class="menu-card-content">
-      <span class="badge">Snacks & Sandwich</span>
-      <h3>Hambúrguer simples</h3>
-      <p>Carne bovina, alface, tomate e molho</p>
-      <div class="menu-card-footer">
-        <strong>250.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Hambúrguer simples" data-category="Snacks & Sandwich" data-price="250.00" data-description="Carne bovina, alface, tomate e molho" data-emoji="🍔">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Snacks & Sandwich">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍔</div>
-    <div class="menu-card-content">
-      <span class="badge">Snacks & Sandwich</span>
-      <h3>Hambúrguer completo</h3>
-      <p>Carne, queijo, ovo, fiambre e batata frita</p>
-      <div class="menu-card-footer">
-        <strong>350.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Hambúrguer completo" data-category="Snacks & Sandwich" data-price="350.00" data-description="Carne, queijo, ovo, fiambre e batata frita" data-emoji="🍔">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Snacks & Sandwich">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🥪</div>
-    <div class="menu-card-content">
-      <span class="badge">Snacks & Sandwich</span>
-      <h3>Prego no pão</h3>
-      <p>Bife tenro em bolo do caco com alho</p>
-      <div class="menu-card-footer">
-        <strong>300.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Prego no pão" data-category="Snacks & Sandwich" data-price="300.00" data-description="Bife tenro em bolo do caco com alho" data-emoji="🥪">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-    <!-- Omeletes -->
-  <article class="menu-card" data-category="Omeletes">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍳</div>
-    <div class="menu-card-content">
-      <span class="badge">Omeletes</span>
-      <h3>Omelete simples</h3>
-      <p>Ovos batidos e temperados</p>
-      <div class="menu-card-footer">
-        <strong>150.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Omelete simples" data-category="Omeletes" data-price="150.00" data-description="Ovos batidos e temperados" data-emoji="🍳">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Omeletes">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍳</div>
-    <div class="menu-card-content">
-      <span class="badge">Omeletes</span>
-      <h3>Omelete mista</h3>
-      <p>Com queijo e fiambre</p>
-      <div class="menu-card-footer">
-        <strong>220.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Omelete mista" data-category="Omeletes" data-price="220.00" data-description="Com queijo e fiambre" data-emoji="🍳">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Omeletes">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍳</div>
-    <div class="menu-card-content">
-      <span class="badge">Omeletes</span>
-      <h3>Omelete camarão</h3>
-      <p>Omelete recheada com camarão fresco</p>
-      <div class="menu-card-footer">
-        <strong>400.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Omelete camarão" data-category="Omeletes" data-price="400.00" data-description="Omelete recheada com camarão fresco" data-emoji="🍳">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <!-- Combo's -->
-  <article class="menu-card" data-category="Combo's">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍱</div>
-    <div class="menu-card-content">
-      <span class="badge">Combo's</span>
-      <h3>Combo Família</h3>
-      <p>Prato misto para partilhar com acompanhamentos</p>
-      <div class="menu-card-footer">
-        <strong>1500.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Combo Família" data-category="Combo's" data-price="1500.00" data-description="Prato misto para partilhar com acompanhamentos" data-emoji="🍱">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Combo's">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍱</div>
-    <div class="menu-card-content">
-      <span class="badge">Combo's</span>
-      <h3>Combo Casal</h3>
-      <p>Seleção especial para dois</p>
-      <div class="menu-card-footer">
-        <strong>900.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Combo Casal" data-category="Combo's" data-price="900.00" data-description="Seleção especial para dois" data-emoji="🍱">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <!-- Principais -->
-  <article class="menu-card" data-category="Principais">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍗</div>
-    <div class="menu-card-content">
-      <span class="badge">Principais</span>
-      <h3>Frango grelhado</h3>
-      <p>Frango à cafetina com arroz, batatas fritas e salada</p>
-      <div class="menu-card-footer">
-        <strong>450.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Frango grelhado" data-category="Principais" data-price="450.00" data-description="Frango à cafetina com arroz, batatas fritas e salada" data-emoji="🍗">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Principais">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🥩</div>
-    <div class="menu-card-content">
-      <span class="badge">Principais</span>
-      <h3>Carne de porco àaliana</h3>
-      <p>Carne de porco com arroz, batatas e salada</p>
-      <div class="menu-card-footer">
-        <strong>500.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Carne de porco àaliana" data-category="Principais" data-price="500.00" data-description="Carne de porco com arroz, batatas e salada" data-emoji="🥩">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Principais">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🥩</div>
-    <div class="menu-card-content">
-      <span class="badge">Principais</span>
-      <h3>Bife à cavalo</h3>
-      <p>Bife de vaca com ovo estrelado, arroz, batatas e salada</p>
-      <div class="menu-card-footer">
-        <strong>650.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Bife à cavalo" data-category="Principais" data-price="650.00" data-description="Bife de vaca com ovo estrelado, arroz, batatas e salada" data-emoji="🥩">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <!-- Mariscos -->
-  <article class="menu-card" data-category="Mariscos">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🦐</div>
-    <div class="menu-card-content">
-      <span class="badge">Mariscos</span>
-      <h3>Camarão grelhado 1kg</h3>
-      <p>Camarão fresco grelhado com molho piri-piri</p>
-      <div class="menu-card-footer">
-        <strong>1800.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Camarão grelhado 1kg" data-category="Mariscos" data-price="1800.00" data-description="Camarão fresco grelhado com molho piri-piri" data-emoji="🦐">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Mariscos">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🍛</div>
-    <div class="menu-card-content">
-      <span class="badge">Mariscos</span>
-      <h3>Caril de camarão</h3>
-      <p>Camarão em molho cremoso de caril e arroz</p>
-      <div class="menu-card-footer">
-        <strong>1200.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Caril de camarão" data-category="Mariscos" data-price="1200.00" data-description="Camarão em molho cremoso de caril e arroz" data-emoji="🍛">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Mariscos">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🦞</div>
-    <div class="menu-card-content">
-      <span class="badge">Mariscos</span>
-      <h3>Lagosta grelhada</h3>
-      <p>Lagosta fresca da região com manteiga de alho</p>
-      <div class="menu-card-footer">
-        <strong>2500.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Lagosta grelhada" data-category="Mariscos" data-price="2500.00" data-description="Lagosta fresca da região com manteiga de alho" data-emoji="🦞">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <!-- Refrescos -->
-  <article class="menu-card" data-category="Refrescos">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🥤</div>
-    <div class="menu-card-content">
-      <span class="badge">Refrescos</span>
-      <h3>330 ml</h3>
-      <p>Refrigerante lata 330ml</p>
-      <div class="menu-card-footer">
-        <strong>70.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="330 ml" data-category="Refrescos" data-price="70.00" data-description="Refrigerante lata 330ml" data-emoji="🥤">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Refrescos">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🥤</div>
-    <div class="menu-card-content">
-      <span class="badge">Refrescos</span>
-      <h3>Soda & Tônica</h3>
-      <p>Água tónica ou soda</p>
-      <div class="menu-card-footer">
-        <strong>75.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Soda & Tônica" data-category="Refrescos" data-price="75.00" data-description="Água tónica ou soda" data-emoji="🥤">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Refrescos">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🧃</div>
-    <div class="menu-card-content">
-      <span class="badge">Refrescos</span>
-      <h3>Appletiser</h3>
-      <p>Bebida espumante de maçã</p>
-      <div class="menu-card-footer">
-        <strong>100.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Appletiser" data-category="Refrescos" data-price="100.00" data-description="Bebida espumante de maçã" data-emoji="🧃">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <!-- Sumos / Águas -->
-  <article class="menu-card" data-category="Sumos / Águas">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🧃</div>
-    <div class="menu-card-content">
-      <span class="badge">Sumos / Águas</span>
-      <h3>Sumo cappy</h3>
-      <p>Sumo Cappy</p>
-      <div class="menu-card-footer">
-        <strong>125.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Sumo cappy" data-category="Sumos / Águas" data-price="125.00" data-description="Sumo Cappy" data-emoji="🧃">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="menu-card" data-category="Sumos / Águas">
-    <div class="menu-emoji-box" style="font-size: 55px; text-align: center; padding: 25px 0; background: rgba(255,255,255,0.03); border-radius: 8px 8px 0 0;">🧃</div>
-    <div class="menu-card-content">
-      <span class="badge">Sumos / Águas</span>
-      <h3>Sumo 500 ml</h3>
-      <p>Sumo natural 500ml</p>
-      <div class="menu-card-footer">
-        <strong>100.00 MTS</strong>
-        <button class="btn btn-primary btn-sm add-to-cart-btn" type="button" data-name="Sumo 500 ml" data-category="Sumos / Águas" data-price="100.00" data-description="Sumo natural 500ml" data-emoji="🧃">Ver / Pedir</button>
-      </div>
-    </div>
-  </article>
-
-  </div>
           
 
     <!-- ================= DESTAQUES DO CHEF ================= -->
