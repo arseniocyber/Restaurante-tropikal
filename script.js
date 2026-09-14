@@ -727,7 +727,7 @@ var menuData = [
     if (modalProductCategory) modalProductCategory.textContent = item.category;
     if (modalProductPrice) modalProductPrice.textContent = item.price.toFixed(2) + ' MTS';
     if (modalProductDescription) modalProductDescription.textContent = item.description;
-    if (modalProductEmoji) modalProductEmoji.textContent = item.emoji;
+    if (modalProductEmoji) modalProductEmoji.textContent = getMenuEmoji(item);
     
     if (productModal) productModal.className += ' active';
     if (overlay) overlay.className += ' active';
