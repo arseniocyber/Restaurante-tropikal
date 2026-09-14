@@ -1737,3 +1737,140 @@ a {
   }
 
 }
+
+/* =====================================================
+   COMO CHEGAR — CALOR TROPICAL
+   ===================================================== */
+
+.location-section {
+  background: #f8f6f0;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: stretch;
+  margin-top: 35px;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.location-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 18px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+}
+
+.location-icon {
+  font-size: 25px;
+  min-width: 35px;
+  text-align: center;
+}
+
+.location-item h3 {
+  margin: 0 0 6px;
+  color: var(--green-dark);
+  font-size: 17px;
+}
+
+.location-item p,
+.location-item a {
+  margin: 0;
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.location-item a {
+  display: block;
+  color: var(--green);
+  text-decoration: none;
+  margin-top: 3px;
+}
+
+.location-item a:hover {
+  text-decoration: underline;
+}
+
+.location-button {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.location-card {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  border-radius: 20px;
+  background:
+    linear-gradient(
+      rgba(8, 55, 43, 0.88),
+      rgba(8, 55, 43, 0.88)
+    ),
+    url("images/restaurante.jpg") center/cover;
+  color: white;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.location-card-icon {
+  font-size: 65px;
+  margin-bottom: 15px;
+}
+
+.location-card h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 38px;
+  margin: 0 0 8px;
+}
+
+.location-card p {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.location-card span {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* =====================================================
+   TELEMÓVEIS
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+  .location-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .location-item {
+    padding: 15px;
+  }
+
+  .location-card {
+    min-height: 280px;
+    padding: 30px 20px;
+  }
+
+  .location-card h3 {
+    font-size: 32px;
+  }
+
+  .location-button {
+    width: 100%;
+  }
+   }
