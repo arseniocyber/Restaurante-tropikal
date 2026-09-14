@@ -136,7 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const customerNoteInput = document.getElementById('customerNote');
 
   let currentSelectedItem = null;
-     function renderMenu(items) {
+     
+  function renderMenu(items) {
     if (!menuGrid) return;
     menuGrid.innerHTML = '';
     if (items.length === 0) {
@@ -325,12 +326,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (filterBtn) {
         filtersContainer.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
         filterBtn.classList.add('active');
-        const category = filterBtn.getAttribute('data-category');
+        
+        let category = filterBtn.getAttribute('data-category') || filterBtn.textContent.trim();
 
-        if (category === 'Todos') {
+        if (category === 'Todos' || category === 'Todos os Pratos') {
           renderMenu(menuData);
         } else {
-          const filtered = menuData.filter(item => item.category === category);
+          const filtered = menuData.filter(item => 
+            item.category.toLowerCase() === category.toLowerCase() ||
+            item.category.toLowerCase().includes(category.toLowerCase()) ||
+            category.toLowerCase().includes(item.category.toLowerCase())
+          );
           renderMenu(filtered);
         }
       }
@@ -348,6 +354,20 @@ document.addEventListener('DOMContentLoaded', () => {
       renderMenu(filtered);
     });
   }
+
+  // --- BOTÕES "VER NO MENU" (QUALQUER BOTÃO OU LINK COM ESSE TEXTO) ---
+  document.querySelectorAll('a, button').forEach(el => {
+    const text = el.textContent.toLowerCase();
+    if (text.includes('ver no menu') || text.includes('explorar menu')) {
+      el.addEventListener('click', (e) => {
+        const menuSection = document.getElementById('menu');
+        if (menuSection) {
+          e.preventDefault();
+          menuSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+  });
 
   // --- ENVIAR PEDIDO VIA WHATSAPP ---
   if (sendWhatsAppBtn) {
@@ -381,16 +401,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- SUPORTE PARA LIGHTBOX DE IMAGENS (PRATOS ESPECIAIS E GALERIA) ---
-  const galleryImages = document.querySelectorAll('.special-card img, .gallery-item img, .menu-img');
+  // --- LIGHTBOX PARA IMAGENS (PRATOS ESPECIAIS E GALERIA) COM BOTÃO DE VOLTAR ---
+  const galleryImages = document.querySelectorAll('.special-card img, .gallery-item img, .menu-img, .special-img, img');
   if (galleryImages.length > 0) {
     galleryImages.forEach(img => {
+      // Ignora imagens que estejam dentro do menu lateral, ícones pequeninos ou carrinho
+      if (img.closest('nav') || img.closest('#cartDrawer') || img.classList.contains('no-lightbox')) return;
+
       img.style.cursor = 'pointer';
-      img.addEventListener('click', () => {
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
         const modalImgBox = document.createElement('div');
-        modalImgBox.style.cssText = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 99999; cursor: pointer;";
-        modalImgBox.innerHTML = `<img src="${img.src}" style="max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5);">`;
-        modalImgBox.addEventListener('click', () => modalImgBox.remove());
+        modalImgBox.style.cssText = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 99999; padding: 20px;";
+        
+        modalImgBox.innerHTML = `
+          <button type="button" style="position: absolute; top: 20px; left: 20px; background: #ff5c5c; color: #fff; border: none; padding: 10px 20px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">← Voltar</button>
+          <img src="${img.src}" style="max-width: 90%; max-height: 80vh; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); object-fit: contain;">
+        `;
+        
+        const closeLightbox = () => modalImgBox.remove();
+        modalImgBox.querySelector('button').addEventListener('click', closeLightbox);
+        modalImgBox.addEventListener('click', (ev) => {
+          if (ev.target === modalImgBox) closeLightbox();
+        });
+
         document.body.appendChild(modalImgBox);
       });
     });
@@ -420,4 +454,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
-                            
+                 
