@@ -1,564 +1,1290 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-MZ">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calor Tropical | Restaurante & Menu Digital</title>
-    <!-- FontAwesome para ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        header {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #ffca28;
-        }
-        header p {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-        .notice-box {
-            background-color: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
-            padding: 12px;
-            margin: 20px auto;
-            max-width: 900px;
-            border-radius: 5px;
-            font-size: 0.95rem;
-            text-align: left;
-        }
-        .notice-box p {
-            margin: 5px 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .menu-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s;
-        }
-        .menu-card:hover {
-            transform: translateY(-3px);
-        }
-        .card-header {
-            background: #2e7d32;
-            color: white;
-            padding: 10px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .item-tag {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .item-price {
-            font-weight: bold;
-            font-size: 1rem;
-            background: rgba(0,0,0,0.2);
-            padding: 3px 8px;
-            border-radius: 4px;
-        }
-        .card-body {
-            padding: 15px;
-            flex-grow: 1;
-        }
-        .item-title {
-            font-size: 1.1rem;
-            color: #2c3e50;
-        }
-        .card-footer {
-            padding: 10px 15px;
-            background: #f1f1f1;
-            text-align: right;
-        }
-        .order-btn {
-            background-color: #25d366;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .order-btn:hover {
-            background-color: #1ebd58;
-        }
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #2c3e50;
-            color: white;
-            margin-top: 40px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Calor Tropical — Restaurante na Ilha de Inhaca, Maputo, Moçambique. Sabores do mar, pratos variados e pedidos pelo WhatsApp.">
+
+  <meta name="theme-color" content="#0b3d32">
+
+  <title>Calor Tropical | Ilha de Inhaca</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
 
-    <header>
-        <h1>Calor Tropical</h1>
-        <p>Ilha de Inhaca - Menu Digital & Pedidos via WhatsApp</p>
-    </header>
+  <!-- ================= HEADER ================= -->
 
-    <div class="container">
-        <!-- Notas Importantes do Menu Original -->
-        <div class="notice-box">
-            <p><strong>NB:</strong> ALL MAIN DISHES SERVED WITH RICE, CHIPS AND SALAD.</p>
-            <p><strong>NB:</strong> ALL COMBOS AND SEAFOODS SERVED WITH 1 OR 2 CHAMUÇAS.</p>
-        </div>
+  <header class="header" id="header">
 
-        <div class="menu-grid" id="menuGrid">
-                     <!-- Refrescos / Cold drinks -->
-            <article class="menu-card" data-category="refrescos">
-                <div class="card-header"><span class="item-tag">Refrescos / Cold drinks</span><span class="item-price">70,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">330 ml</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('330 ml (Refresco)', '70,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="refrescos">
-                <div class="card-header"><span class="item-tag">Refrescos / Cold drinks</span><span class="item-price">75,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Soda & Tónica</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Soda & Tónica', '75,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="refrescos">
-                <div class="card-header"><span class="item-tag">Refrescos / Cold drinks</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Appletiser</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Appletiser', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
+    <div class="container nav-container">
 
-            <!-- Sumos / Águas -->
-            <article class="menu-card" data-category="sumos">
-                <div class="card-header"><span class="item-tag">Sumos / Águas</span><span class="item-price">125,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Sumo Cappy</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Sumo Cappy', '125,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="sumos">
-                <div class="card-header"><span class="item-tag">Sumos / Águas</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Sumo 500 ml</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Sumo 500 ml', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="sumos">
-                <div class="card-header"><span class="item-tag">Sumos / Águas</span><span class="item-price">165,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Sumo 1l</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Sumo 1l', '165,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="sumos">
-                <div class="card-header"><span class="item-tag">Sumos / Águas</span><span class="item-price">50,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Água 500 ml</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Água 500 ml', '50,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="sumos">
-                <div class="card-header"><span class="item-tag">Sumos / Águas</span><span class="item-price">95,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Água 1,5l</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Água 1,5l', '95,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="sumos">
-                <div class="card-header"><span class="item-tag">Sumos / Águas</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Água gaseificada</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Água gaseificada', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
+      <a href="#inicio" class="logo">
+        <span>CALOR</span>
+        <strong>TROPICAL</strong>
+      </a>
 
-            <!-- Cervejas / Beers / Ciders -->
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">150,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">JC lata 250 ml</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('JC lata 250 ml', '150,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Ciders / Cidras</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Ciders / Cidras', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Heineken</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Heineken', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Breezer / Brutal</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Breezer / Brutal', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">120,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Corona</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Corona', '120,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">85,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Txilar / Preta</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Txilar / Preta', '85,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">80,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Manica / Impala 330 ml</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Manica / Impala 330 ml', '80,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Fly-fishing / Spin</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Fly-fishing / Spin', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Castle Lite</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Castle Lite', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Castle D. Malte</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Castle D. Malte', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">125,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Bermin</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Bermin', '125,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Red Bull</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Red Bull', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cervejas">
-                <div class="card-header"><span class="item-tag">Cervejas / Beers</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Monster</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Monster', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Abrir menu">
+        ☰
+      </button>
 
-            <!-- Cocktail -->
-            <article class="menu-card" data-category="cocktails">
-                <div class="card-header"><span class="item-tag">Cocktail</span><span class="item-price">150,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Vodka / sumo</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Vodka / sumo', '150,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cocktails">
-                <div class="card-header"><span class="item-tag">Cocktail</span><span class="item-price">150,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">R & R</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('R & R', '150,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cocktails">
-                <div class="card-header"><span class="item-tag">Cocktail</span><span class="item-price">125,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Passion fruit / Sprite</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Passion fruit / Sprite', '125,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cocktails">
-                <div class="card-header"><span class="item-tag">Cocktail</span><span class="item-price">325,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Milk Pedro</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Milk Pedro', '325,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="cocktails">
-                <div class="card-header"><span class="item-tag">Cocktail</span><span class="item-price">350,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Caipirinha</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Caipirinha', '350,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
+      <nav class="nav" id="nav">
 
-            <!-- Aperitivos -->
-            <article class="menu-card" data-category="aperitivos">
-                <div class="card-header"><span class="item-tag">Aperitivos</span><span class="item-price">125,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">May Fair</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('May Fair', '125,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="aperitivos">
-                <div class="card-header"><span class="item-tag">Aperitivos</span><span class="item-price">80,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Gin Gordon / Belgravia</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Gin Gordon / Belgravia', '80,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="aperitivos">
-                <div class="card-header"><span class="item-tag">Aperitivos</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Gin Tanqueray</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Gin Tanqueray', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="aperitivos">
-                <div class="card-header"><span class="item-tag">Aperitivos</span><span class="item-price">100,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Whisky Novo</h3></div>
-                <div class="card-footer"><button class="order-btn" onclick="orderItem('Whisky Novo', '100,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
-            <article class="menu-card" data-category="aperitivos">
-                <div class="card-header"><span class="item-tag">Aperitivos</span><span class="item-price">150,00 MT</span></div>
-                <div class="card-body"><h3 class="item-title">Whisky Velho</h3></div>
-                <div class="card-footer"><butclass="order-btn" onclick="orderItem('Whisky Velho', '150,00 MT')"><i class="fa-brands fa-whatsapp"></i> Pedir / Order</button></div>
-            </article>
+        <a href="#inicio">Início</a>
 
-            <article class="menu-card" data-category="aperitivos">
-                <div class="card-header">
-                    <span class="item-tag">Aperitivos</span>
-                    <span class="item-price">200,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Whisky Premium</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Whisky Premium', '200,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
+        <a href="#sobre">Sobre</a>
 
-            <article class="menu-card" data-category="aperitivos">
-                <div class="card-header">
-                    <span class="item-tag">Aperitivos</span>
-                    <span class="item-price">150,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Gin</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Gin', '150,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
+        <a href="#vantagens">Experiência</a>
 
-            <article class="menu-card" data-category="aperitivos">
-                <div class="card-header">
-                    <span class="item-tag">Aperitivos</span>
-                    <span class="item-price">100,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Vodka</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Vodka', '100,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
+        <a href="#menu">Menu</a>
 
-            <article class="menu-card" data-category="digestivos">
-                <div class="card-header">
-                    <span class="item-tag">Digestivos</span>
-                    <span class="item-price">100,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Amarula</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Amarula', '100,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
+        <a href="#galeria">Galeria</a>
 
-            <article class="menu-card" data-category="digestivos">
-                <div class="card-header">
-                    <span class="item-tag">Digestivos</span>
-                    <span class="item-price">100,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Baileys</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Baileys', '100,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
+        <a href="#contactos">Contactos</a>
 
-            <article class="menu-card" data-category="digestivos">
-                <div class="card-header">
-                    <span class="item-tag">Digestivos</span>
-                    <span class="item-price">100,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Jägermeister</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Jägermeister', '100,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
+        <button class="cart-button" id="openCart">
+          🛒 Pedido
+          <span id="cartCount">0</span>
+        </button>
 
-            <article class="menu-card" data-category="shoots">
-                <div class="card-header">
-                    <span class="item-tag">Shoots</span>
-                    <span class="item-price">100,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Tequila</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Tequila', '100,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
+      </nav>
 
-            <article class="menu-card" data-category="shoots">
-                <div class="card-header">
-                    <span class="item-tag">Shoots</span>
-                    <span class="item-price">100,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Jägermeister Shot</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Jägermeister Shot', '100,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
+    </div>
 
-            <article class="menu-card" data-category="vinhos">
-                <div class="card-header">
-                    <span class="item-tag">Vinhos</span>
-                    <span class="item-price">600,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Vinho Tinto</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Vinho Tinto', '600,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
+  </header>
 
-            <article class="menu-card" data-category="vinhos">
-                <div class="card-header">
-                    <span class="item-tag">Vinhos</span>
-                    <span class="item-price">600,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Vinho Branco</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Vinho Branco', '600,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
 
-            <article class="menu-card" data-category="vinhos">
-                <div class="card-header">
-                    <span class="item-tag">Vinhos</span>
-                    <span class="item-price">700,00 MT</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="item-title">Vinho Rosé</h3>
-                </div>
-                <div class="card-footer">
-                    <button class="order-btn" onclick="orderItem('Vinho Rosé', '700,00 MT')">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir / Order
-                    </button>
-                </div>
-            </article>
+  <!-- ================= CONTEÚDO PRINCIPAL ================= -->
+
+  <main>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="inicio">
+
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-content">
+
+        <span class="eyebrow">
+          ILHA DE INHACA • MOÇAMBIQUE
+        </span>
+
+        <h1>
+          CALOR<br>
+          <span>TROPICAL</span>
+        </h1>
+
+        <p>
+          Sabores do mar, momentos especiais e a verdadeira
+          experiência tropical na Ilha de Inhaca.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#menu" class="btn btn-primary">
+            Explorar o Menu
+          </a>
+
+          <a
+            href="https://wa.me/258874220984"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-outline">
+
+            <i class="fa-brands fa-whatsapp"></i>
+            Pedir pelo WhatsApp
+
+          </a>
 
         </div>
+
       </div>
+
+      <a
+        href="#destaques"
+        class="scroll-down"
+        aria-label="Descer">
+        ↓
+      </a>
+
     </section>
 
-    <!-- ================= CONTACTOS ================= -->
-    <section class="section contact-section" id="contactos">
+
+    <!-- ================= DESTAQUES ================= -->
+
+    <section class="highlights" id="destaques">
+
+      <div class="container highlights-grid">
+
+        <div class="highlight">
+
+          <span>🌊</span>
+
+          <h3>Sabores do Mar</h3>
+
+          <p>
+            Peixes, camarões, lulas e mariscos.
+          </p>
+
+        </div>
+
+
+        <div class="highlight">
+
+          <span>🍽️</span>
+
+          <h3>Menu Variado</h3>
+
+          <p>
+            Opções para diferentes gostos e momentos.
+          </p>
+
+        </div>
+
+
+        <div class="highlight">
+
+          <span>📱</span>
+
+          <h3>Pedido Fácil</h3>
+
+          <p>
+            Faça o seu pedido através do WhatsApp.
+          </p>
+
+        </div>
+
+
+        <div class="highlight">
+
+          <span>🏝️</span>
+
+          <h3>Ilha de Inhaca</h3>
+
+          <p>
+            Uma experiência tropical junto ao mar.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= SOBRE ================= -->
+
+    <section class="section about" id="sobre">
+
+      <div class="container about-grid">
+
+
+        <div class="about-image reveal">
+
+          <img
+            src="images/restaurante.jpg"
+            alt="Restaurante Calor Tropical na Ilha de Inhaca"
+            loading="lazy">
+
+          <div class="image-badge">
+
+            <strong>Calor Tropical</strong>
+
+            <span>Ilha de Inhaca</span>
+
+          </div>
+
+        </div>
+
+
+        <div class="about-content reveal">
+
+          <span class="section-label">
+            SOBRE NÓS
+          </span>
+
+          <h2>
+            O sabor da ilha<br>
+            em cada momento.
+          </h2>
+
+          <p>
+            O Calor Tropical é um restaurante localizado
+            na Ilha de Inhaca, em Maputo, Moçambique,
+            onde os sabores do mar encontram o ambiente
+            tropical da ilha.
+          </p>
+
+          <p>
+            No nosso menu encontrará pratos de peixe,
+            camarão, frango, mariscos, saladas, snacks,
+            bebidas e muito mais.
+          </p>
+
+          <a href="#menu" class="text-link">
+            Conhecer o nosso menu →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= VANTAGENS ================= -->
+
+    <section class="section advantages" id="vantagens">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="section-label">
+            A EXPERIÊNCIA
+          </span>
+
+          <h2>
+            Porquê visitar o<br>
+            Calor Tropical?
+          </h2>
+
+          <p>
+            Mais do que uma refeição, queremos proporcionar
+            uma experiência agradável na Ilha de Inhaca.
+          </p>
+
+        </div>
+
+
+        <div class="advantages-grid">
+
+
+          <article class="advantage-card reveal">
+
+            <span>🏝️</span>
+
+            <h3>
+              Experiência na Ilha
+            </h3>
+
+            <p>
+              Desfrute de uma experiência gastronómica
+              num ambiente tropical.
+            </p>
+
+          </article>
+
+
+          <article class="advantage-card reveal">
+
+            <span>🦐</span>
+
+            <h3>
+              Sabores do Mar
+            </h3>
+
+            <p>
+              Diversas opções de peixe, camarão,
+              lula e mariscos.
+            </p>
+
+          </article>
+
+
+          <article class="advantage-card reveal">
+
+            <span>🍴</span>
+
+            <h3>
+              Menu Variado
+            </h3>
+
+            <p>
+              Pratos principais, combos, saladas,
+              snacks e bebidas.
+            </p>
+
+          </article>
+
+
+          <article class="advantage-card reveal">
+
+            <span>📲</span>
+
+            <h3>
+              Pedido pelo WhatsApp
+            </h3>
+
+            <p>
+              Consulte o menu e envie o seu pedido
+              diretamente pelo WhatsApp.
+            </p>
+
+          </article>
+
+
+          <article class="advantage-card reveal">
+
+            <span>👨‍👩‍👧‍👦</span>
+
+            <h3>
+              Diferentes Opções
+            </h3>
+
+            <p>
+              Opções para refeições individuais,
+              casais e grupos.
+            </p>
+
+          </article>
+
+
+          <article class="advantage-card reveal">
+
+            <span>✨</span>
+
+            <h3>
+              Momentos Especiais
+            </h3>
+
+            <p>
+              Um espaço para aproveitar refeições
+              e bons momentos na ilha.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= MENU ================= -->
+
+    <section class="section menu-section" id="menu">
+
+      <div class="container">
+
+        <div class="section-heading center reveal">
+
+          <span class="section-label">
+            SABORES
+          </span>
+
+          <h2>
+            O Nosso Menu
+          </h2>
+
+          <p>
+            Explore as opções disponíveis e clique
+            num prato para conhecer os detalhes.
+          </p>
+
+        </div>
+
+
+        <div class="menu-tools">
+
+          <div class="search-box">
+
+            <span>⌕</span>
+
+            <input
+              type="search"
+              id="menuSearch"
+              placeholder="Pesquisar no menu..."
+              aria-label="Pesquisar no menu">
+
+          </div>
+
+
+          <div class="filters" id="filters">
+
+            <button
+              class="filter active"
+              data-category="Todos">
+              🍽️ Todos
+            </button>
+
+            <button
+              class="filter"
+              data-category="Café / Chá">
+              ☕ Café & Chá
+            </button>
+
+            <button
+              class="filter"
+              data-category="Saladas">
+              🥗 Saladas
+            </button>
+
+            <button
+              class="filter"
+              data-category="Entradas">
+              🍤 Entradas
+            </button>
+
+            <button
+              class="filter"
+              data-category="Snacks & Sandwich">
+              🥪 Snacks
+            </button>
+
+            <button
+              class="filter"
+              data-category="Omeletes">
+              🍳 Omeletes
+            </button>
+
+            <button
+              class="filter"
+              data-category="Combo's">
+              🍱 Combo's
+            </button>
+
+            <button
+              class="filter"
+              data-category="Principais">
+              🍽️ Principais
+            </button>
+
+            <button
+              class="filter"
+              data-category="Mariscos">
+              🦐 Mariscos
+            </button>
+
+            <button
+              class="filter"
+              data-category="Refrescos">
+              🥤 Refrescos
+            </button>
+
+            <button
+              class="filter"
+              data-category="Sumos / Águas">
+              🧃 Sumos & Águas
+            </button>
+
+            <button
+              class="filter"
+              data-category="Cervejas">
+              🍺 Cervejas
+            </button>
+
+            <button
+              class="filter"
+              data-category="Cocktail">
+              🍹 Cocktail
+            </button>
+
+            <button
+              class="filter"
+              data-category="Aperitivos">
+              🥃 Aperitivos
+            </button>
+
+            <button
+              class="filter"
+              data-category="Digestivos">
+              🥃 Digestivos
+            </button>
+
+            <button
+              class="filter"
+              data-category="Shoots">
+              🥂 Shoots
+            </button>
+
+            <button
+              class="filter"
+              data-category="Vinhos">
+              🍷 Vinhos
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!--
+          IMPORTANTE:
+          O JavaScript vai preencher esta área
+          automaticamente com os pratos.
+        -->
+
+        <div
+          class="menu-grid"
+          id="menuGrid">
+        </div>
+
+
+        <div class="menu-note reveal">
+
+          <strong>NOTA</strong>
+
+          <p>
+            Todos os pratos principais são servidos
+            com arroz, batatas fritas e salada.
+          </p>
+
+          <p>
+            Todos os combos e mariscos são servidos
+            com 1 ou 2 shamussas.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+          <!-- ================= DESTAQUES DO CHEF ================= -->
+
+    <section class="section featured">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="section-label">
+            RECOMENDADOS
+          </span>
+
+          <h2>
+            Sabores que merecem destaque
+          </h2>
+
+        </div>
+
+
+        <div class="featured-grid">
+
+
+          <article class="featured-card reveal">
+
+            <img
+              src="images/camarao.jpg"
+              alt="Prato de camarão"
+              loading="lazy">
+
+            <div class="featured-content">
+
+              <span>ESPECIAL</span>
+
+              <h3>
+                Camarão
+              </h3>
+
+              <p>
+                Uma das opções para quem aprecia
+                os sabores do mar.
+              </p>
+
+              <button
+                class="quick-order"
+                data-name="Camarão">
+
+                Ver no Menu
+
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <article class="featured-card reveal">
+
+            <img
+              src="images/peixe.jpg"
+              alt="Peixe"
+              loading="lazy">
+
+            <div class="featured-content">
+
+              <span>MAR</span>
+
+              <h3>
+                Peixe
+              </h3>
+
+              <p>
+                Diferentes opções de peixe para uma
+                verdadeira experiência tropical.
+              </p>
+
+              <button
+                class="quick-order"
+                data-name="Peixe inteiro / Whole fish">
+
+                Ver no Menu
+
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <article class="featured-card reveal">
+
+            <img
+              src="images/frango.jpg"
+              alt="Frango"
+              loading="lazy">
+
+            <div class="featured-content">
+
+              <span>ESPECIAL DA CASA</span>
+
+              <h3>
+                Frango
+              </h3>
+
+              <p>
+                Uma opção saborosa para quem prefere
+                os sabores da casa.
+              </p>
+
+              <button
+                class="quick-order"
+                data-name="1/4 frango / Chicken">
+
+                Ver no Menu
+
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <article class="featured-card reveal">
+
+            <img
+              src="images/seafood.jpg"
+              alt="Mariscos"
+              loading="lazy">
+
+            <div class="featured-content">
+
+              <span>ESPECIAL DA ILHA</span>
+
+              <h3>
+                Mariscos
+              </h3>
+
+              <p>
+                Combinações especiais para partilhar.
+              </p>
+
+              <button
+                class="quick-order"
+                data-name="Marisco / Seafood p2 pax">
+
+                Ver no Menu
+
+              </button>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= GALERIA ================= -->
+
+    <section
+      class="section gallery-section"
+      id="galeria">
+
+      <div class="container">
+
+
+        <div class="section-heading center reveal">
+
+          <span class="section-label">
+            GALERIA
+          </span>
+
+          <h2>
+            Viva a experiência
+          </h2>
+
+          <p>
+            Um pouco do ambiente e dos momentos
+            do Calor Tropical.
+          </p>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+
+          <div class="gallery-item">
+
+            <img
+              src="images/galeria1.jpg"
+              alt="Galeria 1"
+              loading="lazy">
+
+          </div>
+
+
+          <div class="gallery-item">
+
+            <img
+              src="images/galeria2.jpg"
+              alt="Galeria 2"
+              loading="lazy">
+
+          </div>
+
+
+          <div class="gallery-item">
+
+            <img
+              src="images/galeria3.jpg"
+              alt="Galeria 3"
+              loading="lazy">
+
+          </div>
+
+
+          <div class="gallery-item">
+
+            <img
+              src="images/galeria4.jpg"
+              alt="Galeria 4"
+              loading="lazy">
+
+          </div>
+
+
+          <div class="gallery-item">
+
+            <img
+              src="images/galeria5.jpg"
+              alt="Galeria 5"
+              loading="lazy">
+
+          </div>
+
+
+          <div class="gallery-item">
+
+            <img
+              src="images/galeria6.jpg"
+              alt="Galeria 6"
+              loading="lazy">
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+          <!-- ================= CONTACTOS ================= -->
+
+    <section
+      class="section contact-section"
+      id="contactos">
+
       <div class="container contact-grid">
+
+
         <div class="contact-content reveal">
-          <span class="section-label">VISITE-NOS</span>
-          <h2>Encontre o<br>Calor Tropical.</h2>
-          <p>Estamos na Ilha de Inhaca, Cidade de Maputo, Moçambique.</p>
+
+          <span class="section-label">
+            VISITE-NOS
+          </span>
+
+          <h2>
+            Encontre o<br>
+            Calor Tropical.
+          </h2>
+
+          <p>
+            Estamos na Ilha de Inhaca,
+            Cidade de Maputo, Moçambique.
+          </p>
+
 
           <div class="contact-list">
-            <a href="tel:+258874220984" class="contact-item">
+
+
+            <a
+              href="tel:+258874220984"
+              class="contact-item">
+
               <span>📞</span>
+
               <div>
+
                 <small>Telefone</small>
-                <strong>+258 87 422 0984</strong>
+
+                <strong>
+                  +258 87 422 0984
+                </strong>
+
               </div>
+
             </a>
 
-            <a href="tel:+258846220984" class="contact-item">
+
+            <a
+              href="tel:+258846220984"
+              class="contact-item">
+
               <span>📞</span>
+
               <div>
+
                 <small>Telefone</small>
-                <strong>+258 84 622 0984</strong>
+
+                <strong>
+                  +258 84 622 0984
+                </strong>
+
               </div>
+
             </a>
 
-            <a href="https://wa.me/258874220984" target="_blank" rel="noopener" class="contact-item">
+
+            <a
+              href="https://wa.me/258874220984"
+              target="_blank"
+              rel="noopener"
+              class="contact-item">
+
               <span>💬</span>
+
               <div>
+
                 <small>WhatsApp</small>
-                <strong>Enviar mensagem</strong>
+
+                <strong>
+                  Enviar mensagem
+                </strong>
+
               </div>
+
             </a>
 
-            <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Calor+Tropical%2C+Ilha+de+Inhaca%2C+Maputo%2C+Mo%C3%A7ambique" target="_blank" rel="noopener" class="contact-item">
+
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Restaurante+Calor+Tropical%2C+Ilha+de+Inhaca%2C+Maputo%2C+Mo%C3%A7ambique"
+              target="_blank"
+              rel="noopener"
+              class="contact-item">
+
               <span>📍</span>
+
               <div>
+
                 <small>Localização</small>
-                <strong>Ilha de Inhaca, Maputo</strong>
+
+                <strong>
+                  Ilha de Inhaca, Maputo
+                </strong>
+
               </div>
+
             </a>
+
+
           </div>
+
+
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Restaurante+Calor+Tropical%2C+Ilha+de+Inhaca%2C+Maputo%2C+Mo%C3%A7ambique"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-primary">
+
+            Abrir no Google Maps
+
+          </a>
+
         </div>
+
+
+        <div class="contact-map reveal">
+
+          <div class="map-card">
+
+            <span>📍</span>
+
+            <h3>
+              Calor Tropical
+            </h3>
+
+            <p>
+              Ilha de Inhaca<br>
+              Cidade de Maputo<br>
+              Moçambique
+            </p>
+
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Restaurante+Calor+Tropical%2C+Ilha+de+Inhaca%2C+Maputo%2C+Mo%C3%A7ambique"
+              target="_blank"
+              rel="noopener">
+
+              Ver localização →
+
+            </a>
+
+          </div>
+
+        </div>
+
+
       </div>
+
     </section>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section class="cta">
+
+      <div class="container cta-content">
+
+        <span>
+          UMA EXPERIÊNCIA TROPICAL
+        </span>
+
+        <h2>
+          Está pronto para<br>
+          saborear a ilha?
+        </h2>
+
+        <a
+          href="#menu"
+          class="btn btn-light">
+
+          Ver o Menu
+
+        </a>
+
+      </div>
+
+    </section>
+
 
   </main>
 
+
+  <!-- ================= FOOTER ================= -->
+
   <footer class="footer">
+
     <div class="container footer-content">
+
+
       <div>
+
         <div class="logo footer-logo">
-          <span>CALOR</span>
-          <strong>TROPICAL</strong>
+
+          <span>
+            CALOR
+          </span>
+
+          <strong>
+            TROPICAL
+          </strong>
+
         </div>
-        <p>Ilha de Inhaca • Maputo • Moçambique</p>
+
+        <p>
+          Ilha de Inhaca • Maputo • Moçambique
+        </p>
+
       </div>
+
 
       <div class="footer-links">
-        <a href="#inicio">Início</a>
-        <a href="#menu">Menu</a>
-        <a href="#contactos">Contactos</a>
+
+        <a href="#inicio">
+          Início
+        </a>
+
+        <a href="#menu">
+          Menu
+        </a>
+
+        <a href="#galeria">
+          Galeria
+        </a>
+
+        <a href="#contactos">
+          Contactos
+        </a>
+
       </div>
+
+
     </div>
+
 
     <div class="container footer-bottom">
-      <p>© 2026 Calor Tropical — Ilha de Inhaca</p>
+
+      <p>
+        © 2026 Calor Tropical — Ilha de Inhaca
+      </p>
+
       <p>
         Website desenvolvido por
-        <a href="https://arseniocyber.github.io" target="_blank" rel="noopener">
-          Arseniocyber
-        </a>
-      </p>
-    </div>
-  </footer>
 
-  <script src="script.js" defer></script>
+        <a
+          href="https://arseniocyber.github.io"
+          target="_blank"
+          rel="noopener">
+
+          Arseniocyber
+
+        </a>
+
+      </p>
+
+    </div>
+
+  </footer>
+      <!-- ================= WHATSAPP FLUTUANTE ================= -->
+
+  <a
+    href="https://wa.me/258874220984"
+    target="_blank"
+    rel="noopener"
+    class="floating-whatsapp"
+    aria-label="WhatsApp">
+
+    💬
+
+  </a>
+
+
+  <!-- ================= VOLTAR AO TOPO ================= -->
+
+  <button
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Voltar ao topo">
+
+    ↑
+
+  </button>
+
+
+  <!-- ================= OVERLAY ================= -->
+
+  <div
+    class="overlay"
+    id="overlay">
+  </div>
+
+
+  <!-- ================= MODAL DO PRODUTO ================= -->
+
+  <div
+    class="product-modal"
+    id="productModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalProductName">
+
+
+    <button
+      class="modal-close"
+      id="modalClose"
+      aria-label="Fechar">
+
+      ×
+
+    </button>
+
+
+    <img
+      id="modalProductImage"
+      src="images/menu.jpg"
+      alt="">
+
+
+    <div class="modal-content">
+
+      <span id="modalProductCategory"></span>
+
+      <h2 id="modalProductName"></h2>
+
+      <strong id="modalProductPrice"></strong>
+
+      <p id="modalProductDescription"></p>
+
+
+      <button
+        id="modalAddButton"
+        class="btn btn-primary full-width">
+
+        Adicionar ao pedido
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= CARRINHO ================= -->
+
+  <aside
+    class="cart-drawer"
+    id="cartDrawer"
+    aria-label="Seu pedido">
+
+
+    <div class="cart-header">
+
+      <div>
+
+        <span class="section-label">
+          SEU PEDIDO
+        </span>
+
+        <h2>
+          Pedido
+        </h2>
+
+      </div>
+
+
+      <button
+        id="closeCart"
+        class="modal-close">
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <div
+      class="cart-items"
+      id="cartItems">
+
+
+      <div class="empty-cart">
+
+        <span>🛒</span>
+
+        <p>
+          O seu pedido está vazio.
+        </p>
+
+        <a
+          href="#menu"
+          id="emptyCartLink">
+
+          Escolher pratos
+
+        </a>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="cart-footer">
+
+
+      <div class="cart-total">
+
+        <span>
+          Total
+        </span>
+
+        <strong id="cartTotal">
+          0 MTS
+        </strong>
+
+      </div>
+
+
+      <div class="customer-form">
+
+        <label for="customerName">
+          Nome
+        </label>
+
+        <input
+          type="text"
+          id="customerName"
+          placeholder="Seu nome">
+
+
+        <label for="customerNote">
+          Observação
+        </label>
+
+        <textarea
+          id="customerNote"
+          rows="3"
+          placeholder="Alguma observação sobre o pedido?">
+        </textarea>
+
+      </div>
+
+
+      <button
+        id="sendWhatsAppButton"
+        class="btn btn-whatsapp full-width">
+
+        Enviar pedido pelo WhatsApp
+
+      </button>
+
+
+    </div>
+
+  </aside>
+
+
+  <!-- ================= SCRIPT ================= -->
+
+  <script
+    src="script.js"
+    defer>
+  </script>
+
+
 </body>
-                </html>
+</html>
