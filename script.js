@@ -1,632 +1,144 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // --- BASE DE DADOS DO MENU (CALOR TROPICAL) ---
-var menuData = [
+const menuData = [
 
-  // CAFÉ / CHÁ
-  {
-    name: "Café eleite/ Coffee with Milk",
-    category: "Café / Chá",
-    price: 150,
-    description: "Café com leite."
-  },
-  {
-    name: "Chá e leite/ Tea with milk",
-    category: "Café / Chá",
-    price: 125,
-    description: "Chá com leite."
-  },
-  {
-    name: "Capuchinho/cappuccino",
-    category: "Café / Chá",
-    price: 150,
-    description: "Capuchinho."
-  },
-  {
-    name: "Expresso/Express",
-    category: "Café / Chá",
-    price: 150,
-    description: "Café expresso."
-  },
-  {
-    name: "Chocotale quente/ hot choc.",
-    category: "Café / Chá",
-    price: 175,
-    description: "Chocolate quente."
-  },
+  // CAFÉ E CHÁ / COFFEE & TEA
+  ["Café com leite", "Coffee with milk", 175, "Café / Chá"],
+  ["Chá com leite", "Tea with milk", 150, "Café / Chá"],
+  ["Capuchinho", "Cappuccino", 200, "Café / Chá"],
+  ["Expresso", "Espresso", 175, "Café / Chá"],
+  ["Chocolate quente", "Hot chocolate", 200, "Café / Chá"],
 
-  // SALADAS
-  {
-    name: "Salada grega/Greak salad",
-    category: "Saladas",
-    price: 250,
-    description: "Salada grega."
-  },
-  {
-    name: "Salada de Atum/Tuna salad",
-    category: "Saladas",
-    price: 250,
-    description: "Salada de atum."
-  },
-  {
-    name: "Salada Russa/ Russian salad",
-    category: "Saladas",
-    price: 250,
-    description: "Salada russa."
-  },
-  {
-    name: "Salada tropical/ Tropical salad",
-    category: "Saladas",
-    price: 200,
-    description: "Salada tropical."
-  },
-
-  // ENTRADAS
-  {
-    name: "Shamussas de peixe (uni)",
-    category: "Entradas",
-    price: 220,
-    description: "Shamussa de peixe. Preço por unidade."
-  },
-  {
-    name: "Caranguejo ao Natural/ Crab",
-    category: "Entradas",
-    price: 500,
-    description: "Caranguejo ao natural."
-  },
-  {
-    name: "Pão de alho/Garlic bread",
-    category: "Entradas",
-    price: 150,
-    description: "Pão de alho."
-  },
-  {
-    name: "Rissóis de camarão (4 uni)",
-    category: "Entradas",
-    price: 220,
-    description: "4 unidades de rissóis de camarão."
-  },
-  {
-    name: "Camarão alhinho",
-    category: "Entradas",
-    price: 550,
-    description: "Camarão preparado com alho."
-  },
-  {
-    name: "Caril de camarão",
-    category: "Entradas",
-    price: 880,
-    description: "Caril de camarão."
-  },
-  {
-    name: "Caril de caranguejo",
-    category: "Entradas",
-    price: 650,
-    description: "Caril de caranguejo."
-  },
-   // SNACKS & SANDWICH
-  {
-    name: "Tosta de queijo/ cheese tost",
-    category: "Snacks & Sandwich",
-    price: 250,
-    description: "Tosta de queijo."
-  },
-  {
-    name: "Tosta mista/HAM & CHEESE TOST",
-    category: "Snacks & Sandwich",
-    price: 300,
-    description: "Tosta mista de fiambre e queijo."
-  },
-  {
-    name: "Prego no pão/ steark N Roll",
-    category: "Snacks & Sandwich",
-    price: 285,
-    description: "Prego no pão."
-  },
-  {
-    name: "Cheese N Becon sandwich",
-    category: "Snacks & Sandwich",
-    price: 300,
-    description: "Sanduíche de queijo e bacon."
-  },
-  {
-    name: "Chicken Mayo/hamburger",
-    category: "Snacks & Sandwich",
-    price: 300,
-    description: "Chicken Mayo / hambúrguer."
-  },
+  // SNACKS E SANDES / SNACKS & SANDWICHES
+  ["Tosta mista", "Ham and cheese toast", 300, "Snacks & Sandwich"],
+  ["Sandes de ovo", "Egg sandwich", 85, "Snacks & Sandwich"],
+  ["Tosta de queijo", "Cheese toast", 250, "Snacks & Sandwich"],
+  ["Prego no pão", "Steak sandwich", 300, "Snacks & Sandwich"],
+  ["Queijo com bacon", "Cheese and bacon sandwich", 300, "Snacks & Sandwich"],
 
   // OMELETES
-  {
-    name: "Omelete simples",
-    category: "Omeletes",
-    price: 200,
-    description: "Omelete simples."
-  },
-  {
-    name: "Omelete de queijo",
-    category: "Omeletes",
-    price: 200,
-    description: "Omelete de queijo."
-  },
-  {
-    name: "Omelete misto",
-    category: "Omeletes",
-    price: 250,
-    description: "Omelete misto."
-  },
-  {
-    name: "Pequeno almoço/ breakfast",
-    category: "Omeletes",
-    price: 425,
-    description: "Pequeno almoço."
-  },
+  ["Omelete simples", "Plain omelette", 250, "Omeletes"],
+  ["Omelete de queijo", "Cheese omelette", 275, "Omeletes"],
+  ["Omelete mista", "Mixed omelette", 300, "Omeletes"],
+  ["Pequeno-almoço", "Breakfast", 550, "Omeletes"],
+  ["Frango com maionese", "Chicken mayo", 350, "Omeletes"],
 
-  // COMBO'S
-  {
-    name: "Chicken & calamari",
-    category: "Combo's",
-    price: 875,
-    description: "Chicken & calamari."
-  },
-  {
-    name: "Chicken & prawns",
-    category: "Combo's",
-    price: 875,
-    description: "Chicken & prawns."
-  },
-  {
-    name: "Prawns & calamari",
-    category: "Combo's",
-    price: 875,
-    description: "Prawns & calamari."
-  },
-  {
-    name: "Prawns & fish fillet",
-    category: "Combo's",
-    price: 875,
-    description: "Prawns & fish fillet."
-  },
-  {
-    name: "Calamari & fish fillet",
-    category: "Combo's",
-    price: 875,
-    description: "Calamari & fish fillet."
-  },
-  {
-    name: "Chicken & fish fillet",
-    category: "Combo's",
-    price: 875,
-    description: "Chicken & fish fillet."
-  },
-  {
-    name: "1/2 frango & prawns",
-    category: "Combo's",
-    price: 1325,
-    description: "1/2 frango & prawns."
-  },
+  // SALADAS / SALADS
+  ["Salada grega", "Greek salad", 350, "Saladas"],
+  ["Salada de atum", "Tuna salad", 300, "Saladas"],
+  ["Salada russa", "Russian salad", 500, "Saladas"],
+  ["Salada tropical", "Tropical salad", 300, "Saladas"],
 
-  // PRINCIPAIS PRATOS
-  {
-    name: "1/4 frango/chiken",
-    category: "Principais",
-    price: 305,
-    description: "1/4 de frango."
-  },
-  {
-    name: "1/2 frango/chiken",
-    category: "Principais",
-    price: 450,
-    description: "1/2 frango."
-  },
-  {
-    name: "Frango inteiro/chicken",
-    category: "Principais",
-    price: 850,
-    description: "Frango inteiro."
-  },
-  {
-    name: "Peixe inteiro/ whole fish",
-    category: "Principais",
-    price: 850,
-    description: "Peixe inteiro."
-  },
-  {
-    name: "Filete de peixe",
-    category: "Principais",
-    price: 600,
-    description: "Filete de peixe."
-  },
-  {
-    name: "Lula grelhada",
-    category: "Principais",
-    price: 550,
-    description: "Lula grelhada."
-  },
-  {
-    name: "Posta de peixe",
-    category: "Principais",
-    price: 500,
-    description: "Posta de peixe."
-  },
-  {
-    name: "Panado/ fish fingers",
-    category: "Principais",
-    price: 550,
-    description: "Panado / fish fingers."
-  },
-  {
-    name: "Camarão",
-    category: "Principais",
-    price: 895,
-    description: "Camarão."
-  },
-  {
-    name: "Bife / Beef",
-    category: "Principais",
-    price: 850,
-    description: "Bife."
-  },
-    // MARISCOS / SEAFOOD
-  {
-    name: "4(fish. Prawns, calamari)",
-    category: "Mariscos",
-    price: 1525,
-    description: "Fish, prawns e calamari."
-  },
-  {
-    name: "Marisco / seafood p2 pax",
-    category: "Mariscos",
-    price: 2500,
-    description: "Marisco para 2 pessoas."
-  },
-  {
-    name: "Lobstar & 6 prawns",
-    category: "Mariscos",
-    price: 1975,
-    description: "Lobstar com 6 camarões."
-  },
-  {
-    name: "Marisco/Seafood for 3 pax",
-    category: "Mariscos",
-    price: 3500,
-    description: "Marisco para 3 pessoas."
-  },
-  {
-    name: "12 camarões/prawns with chips",
-    category: "Mariscos",
-    price: 1275,
-    description: "12 camarões com chips."
-  },
+  // ENTRADAS / STARTERS
+  ["Chamussas de peixe (4 unidades)", "Fish samosas (4 pieces)", 250, "Entradas"],
+  ["Pão de alho", "Garlic bread", 150, "Entradas"],
+  ["Rissóis (4 unidades)", "Rissoles (4 pieces)", 250, "Entradas"],
+  ["Caranguejo ao natural (2 unidades)", "Natural crab (2 pieces)", 500, "Entradas"],
+  ["Camarão alhinho (8 unidades)", "Garlic prawns (8 pieces)", 825, "Entradas"],
 
-  // REFRESCOS / COLD DRINKS
-  {
-    name: "330 ml.",
-    category: "Refrescos",
-    price: 70,
-    description: "Refresco de 330 ml."
-  },
-  {
-    name: "Soda& Tônica",
-    category: "Refrescos",
-    price: 75,
-    description: "Soda e tónica."
-  },
-  {
-    name: "Appllestiser",
-    category: "Refrescos",
-    price: 100,
-    description: "Applestiser."
-  },
+  // COMBOS
+  ["Frango e lula", "Chicken & calamari", 1050, "Combo's"],
+  ["Frango e camarão", "Chicken & prawns", 1050, "Combo's"],
+  ["Camarão e lula", "Prawns & calamari", 1050, "Combo's"],
+  ["Camarão e filete de peixe", "Prawns & fish fillet", 1050, "Combo's"],
+  ["Lula e filete de peixe", "Calamari & fish fillet", 1050, "Combo's"],
+  ["Frango e filete de peixe", "Chicken & fish fillet", 1050, "Combo's"],
+  ["Meio frango e 5 camarões", "Half chicken & 5 prawns", 1575, "Combo's"],
 
-  // SUMOS / ÁGUAS
-  {
-    name: "Sumo cappy",
-    category: "Sumos / Águas",
-    price: 125,
-    description: "Sumo Cappy."
-  },
-  {
-    name: "Sumo 500 ml",
-    category: "Sumos / Águas",
-    price: 100,
-    description: "Sumo de 500 ml."
-  },
-  {
-    name: "Sumo 1l",
-    category: "Sumos / Águas",
-    price: 165,
-    description: "Sumo de 1 litro."
-  },
-  {
-    name: "Água 500ml",
-    category: "Sumos / Águas",
-    price: 50,
-    description: "Água de 500 ml."
-  },
-  {
-    name: "Água 1,5l",
-    category: "Sumos / Águas",
-    price: 95,
-    description: "Água de 1,5 litros."
-  },
-  {
-    name: "Água gaseificada",
-    category: "Sumos / Águas",
-    price: 100,
-    description: "Água gaseificada."
-  },
+  // MARISCOS / SEAFOOD
+  ["4 peças: peixe, camarão e lula", "4 pieces: fish, prawns & calamari", 1855, "Mariscos"],
+  ["Lagosta e 6 camarões", "Lobster & 6 prawns", 2575, "Mariscos"],
+  ["Marisco para 2 pessoas", "Seafood for 2 people", 3050, "Mariscos"],
+  ["Lagosta", "Lobster", 1375, "Mariscos"],
+  ["Marisco para 3 pessoas", "Seafood for 3 people", 1500, "Mariscos"],
+  ["12 camarões com batatas fritas", "12 prawns with chips", 1485, "Mariscos"],
 
-  // CERVEJAS / BEERS / CIDERS
-  {
-    name: "JC lata 250ml",
-    category: "Cervejas",
-    price: 150,
-    description: "JC lata 250 ml."
-  },
-  {
-    name: "Ciders/cidras",
-    category: "Cervejas",
-    price: 100,
-    description: "Ciders / cidras."
-  },
-  {
-    name: "Heineken",
-    category: "Cervejas",
-    price: 100,
-    description: "Heineken."
-  },
-  {
-    name: "Breezer/Brutal",
-    category: "Cervejas",
-    price: 100,
-    description: "Breezer / Brutal."
-  },
-  {
-    name: "corona",
-    category: "Cervejas",
-    price: 120,
-    description: "Corona."
-  },
-  {
-    name: "Txilar/preta",
-    category: "Cervejas",
-    price: 85,
-    description: "Txilar / preta."
-  },
-  {
-    name: "Manica/impala 330ml",
-    category: "Cervejas",
-    price: 80,
-    description: "Manica / Impala 330 ml."
-  },
-  {
-    name: "Fly-fishing/spin",
-    category: "Cervejas",
-    price: 100,
-    description: "Fly-fishing / Spin."
-  },
-  {
-    name: "Castle lite",
-    category: "Cervejas",
-    price: 100,
-    description: "Castle Lite."
-  },
-  {
-    name: "Castle D. Malte",
-    category: "Cervejas",
-    price: 100,
-    description: "Castle D. Malte."
-  },
-  {
-    name: "Bermin",
-    category: "Cervejas",
-    price: 125,
-    description: "Bermin."
-  },
-  {
-    name: "Red bull",
-    category: "Cervejas",
-    price: 100,
-    description: "Red Bull."
-  },
-  {
-    name: "Monster",
-    category: "Cervejas",
-    price: 100,
-    description: "Monster."
-  },
-    // COCKTAIL
-  {
-    name: "Vodka/sumo",
-    category: "Cocktail",
-    price: 150,
-    description: "Vodka com sumo."
-  },
-  {
-    name: "R & R",
-    category: "Cocktail",
-    price: 150,
-    description: "R & R."
-  },
-  {
-    name: "Passion fruit./ Sprite",
-    category: "Cocktail",
-    price: 125,
-    description: "Passion fruit com Sprite."
-  },
-  {
-    name: "Milk Pedro",
-    category: "Cocktail",
-    price: 325,
-    description: "Milk Pedro."
-  },
-  {
-    name: "Caipirinha",
-    category: "Cocktail",
-    price: 350,
-    description: "Caipirinha."
-  },
+  // PRATOS PRINCIPAIS / MAIN DISHES
+  ["Quarto de frango", "Quarter chicken", 325, "Principais"],
+  ["Meio frango", "Half chicken", 550, "Principais"],
+  ["Frango inteiro", "Whole chicken", 1000, "Principais"],
+  ["Peixe inteiro", "Whole fish", 550, "Principais"],
+  ["Filete de peixe", "Fish fillet", 700, "Principais"],
+  ["Lula grelhada", "Grilled calamari", 650, "Principais"],
+  ["Camarão médio (8 unidades)", "Medium prawns (8 pieces)", 1050, "Principais"],
+  ["Camarão tigre (2 unidades)", "Tiger prawns (2 pieces)", 1485, "Principais"],
+  ["Panado", "Breaded fish", 600, "Principais"],
+  ["Camarão King (5 unidades)", "King prawns (5 pieces)", 1325, "Principais"],
+  ["Bife", "Beef steak", 950, "Principais"],
+  ["Caril de camarão", "Prawn curry", 950, "Principais"],
+  ["Caril de caranguejo", "Crab curry", 650, "Principais"],
 
-  // APERITIVOS
-  {
-    name: "May fair",
-    category: "Aperitivos",
-    price: 125,
-    description: "May Fair."
-  },
-  {
-    name: "Gin Gordon/Belgravia",
-    category: "Aperitivos",
-    price: 80,
-    description: "Gin Gordon / Belgravia."
-  },
-  {
-    name: "Gin Tanquery",
-    category: "Aperitivos",
-    price: 100,
-    description: "Gin Tanquery."
-  },
-  {
-    name: "Whisky Novo",
-    category: "Aperitivos",
-    price: 100,
-    description: "Whisky novo."
-  },
-  {
-    name: "Whisky velho",
-    category: "Aperitivos",
-    price: 150,
-    description: "Whisky velho."
-  },
-  {
-    name: "Captain Morgan/Bacordi",
-    category: "Aperitivos",
-    price: 100,
-    description: "Captain Morgan / Bacordi."
-  },
-  {
-    name: "Klipidrift",
-    category: "Aperitivos",
-    price: 80,
-    description: "Klipidrift."
-  },
-  {
-    name: "Amarula DBL",
-    category: "Aperitivos",
-    price: 190,
-    description: "Amarula DBL."
-  },
-  {
-    name: "Vodka Absolut",
-    category: "Aperitivos",
-    price: 100,
-    description: "Vodka Absolut."
-  },
-  {
-    name: "Vodka Smirnoff",
-    category: "Aperitivos",
-    price: 80,
-    description: "Vodka Smirnoff."
-  },
+  // REFRESCOS / SOFT DRINKS
+  ["Refrigerante 330 ml", "Soft drink 330 ml", 85, "Refrescos"],
+  ["Soda e tónica", "Soda & tonic", 85, "Refrescos"],
+  ["Appletiser", "Appletiser", 150, "Refrescos"],
 
-  // DIGESTIVOS
-  {
-    name: "1920/s.Domingos",
-    category: "Digestivos",
-    price: 150,
-    description: "1920 / S. Domingos."
-  },
-  {
-    name: "Vinho do porto",
-    category: "Digestivos",
-    price: 150,
-    description: "Vinho do Porto."
-  },
+  // SUMOS E ÁGUAS / JUICES & WATER
+  ["Sumo Cappy", "Cappy juice", 120, "Sumos / Águas"],
+  ["Sumo 500 ml", "Juice 500 ml", 100, "Sumos / Águas"],
+  ["Sumo 1 litro", "Juice 1 litre", 185, "Sumos / Águas"],
+  ["Água 1,5 litros", "Water 1.5 litres", 95, "Sumos / Águas"],
+  ["Água gaseificada", "Sparkling water", 100, "Sumos / Águas"],
 
-  // SHOOTS
-  {
-    name: "Sambuca",
-    category: "Shoots",
-    price: 150,
-    description: "Sambuca."
-  },
-  {
-    name: "Tequila",
-    category: "Shoots",
-    price: 150,
-    description: "Tequila."
-  },
-  {
-    name: "Vinho do porto",
-    category: "Shoots",
-    price: 300,
-    description: "Vinho do Porto."
-  },
+  // CERVEJAS E CIDRAS / BEERS & CIDERS
+  ["JC lata 250 ml", "JC can 250 ml", 150, "Cervejas"],
+  ["Cidras", "Ciders", 150, "Cervejas"],
+  ["2M 550 ml", "2M 550 ml", 125, "Cervejas"],
+  ["Heineken", "Heineken", 120, "Cervejas"],
+  ["Breezer / Brutal", "Breezer / Brutal", 150, "Cervejas"],
+  ["Corona", "Corona", 150, "Cervejas"],
+  ["Txilar / Preta", "Txilar / Dark beer", 100, "Cervejas"],
+  ["Manica / Impala 330 ml", "Manica / Impala 330 ml", 100, "Cervejas"],
+  ["Fly Fishing / Spin", "Fly Fishing / Spin", 150, "Cervejas"],
+  ["Castle Lite", "Castle Lite", 100, "Cervejas"],
+  ["Castle Double Malt", "Castle Double Malt", 100, "Cervejas"],
+  ["Bermin", "Bermin", 150, "Cervejas"],
+  ["Red Bull", "Red Bull", 150, "Cervejas"],
+  ["Monster", "Monster", 150, "Cervejas"],
 
-  // VINHOS / WINES
-  {
-    name: "Vinho a copo",
-    category: "Vinhos",
-    price: 150,
-    description: "Vinho servido a copo."
-  },
-  {
-    name: "Boschendal/Kadete",
-    category: "Vinhos",
-    price: 1350,
-    description: "Vinho Boschendal / Kadete."
-  },
-  {
-    name: "F.Bostsrd/Roodenberg",
-    category: "Vinhos",
-    price: 1250,
-    description: "Vinho F.Bostsrd / Roodenberg."
-  },
-  {
-    name: "G.Carlou/C.sauvignon",
-    category: "Vinhos",
-    price: 1350,
-    description: "G.Carlou / C.sauvignon."
-  },
-  {
-    name: "Cabriz,gatão,Graca",
-    category: "Vinhos",
-    price: 850,
-    description: "Cabriz, Gatão, Graça."
-  },
-  {
-    name: "G.Garcia, Aveleda",
-    category: "Vinhos",
-    price: 850,
-    description: "G.Garcia / Aveleda."
-  },
-  {
-    name: "Portada",
-    category: "Vinhos",
-    price: 850,
-    description: "Portada."
-  },
-  {
-    name: "Chocotale Bloc",
-    category: "Vinhos",
-    price: 1750,
-    description: "Chocotale Bloc."
-  },
-  {
-    name: "JC -Keuroux grf.",
-    category: "Vinhos",
-    price: 650,
-    description: "JC - Keuroux."
-  },
-  {
-    name: "Krone, Tosti , Anabela",
-    category: "Vinhos",
-    price: 1100,
-    description: "Krone, Tosti, Anabela."
-  }
+  // COCKTAILS
+  ["Vodka com sumo", "Vodka with juice", 150, "Cocktail"],
+  ["R & R", "R & R", 150, "Cocktail"],
+  ["Maracujá com Sprite", "Passion fruit with Sprite", 125, "Cocktail"],
+  ["Milk Shake", "Milkshake", 350, "Cocktail"],
+  ["Dom Pedro", "Dom Pedro", 325, "Cocktail"],
+  ["Caipirinha", "Caipirinha", 350, "Cocktail"],
+
+  // APERITIVOS / APERITIFS
+  ["May Fair", "May Fair", 150, "Aperitivos"],
+  ["Gin Gordon / Belgravia", "Gordon / Belgravia gin", 100, "Aperitivos"],
+  ["Gin Tanqueray", "Tanqueray gin", 150, "Aperitivos"],
+  ["Whisky novo", "Young whisky", 150, "Aperitivos"],
+  ["Whisky velho", "Aged whisky", 180, "Aperitivos"],
+  ["Captain Morgan / Bacardi", "Captain Morgan / Bacardi", 150, "Aperitivos"],
+  ["Malibu / Richelieu", "Malibu / Richelieu", 150, "Aperitivos"],
+  ["Klipdrift", "Klipdrift", 100, "Aperitivos"],
+  ["Amarula DBL", "Amarula double", 200, "Aperitivos"],
+  ["Vodka Absolut", "Absolut vodka", 100, "Aperitivos"],
+  ["Vodka Smirnoff", "Smirnoff vodka", 100, "Aperitivos"],
+
+  // DIGESTIVOS / DIGESTIFS
+  ["1920 / São Domingos", "1920 / São Domingos", 185, "Digestivos"],
+  ["Vinho do Porto", "Port wine", 150, "Digestivos"],
+
+  // SHOTS
+  ["Sambuca", "Sambuca", 185, "Shoots"],
+  ["Tequila", "Tequila", 185, "Shoots"],
+  ["Jägermeister", "Jägermeister", 185, "Shoots"],
+  ["Rémy Martin", "Rémy Martin", 300, "Shoots"],
+  ["Kahlúa", "Kahlúa", 200, "Shoots"]
 
 ];
+  menuData = menuData.map(function(item) {
+  return {
+    name: item[0],
+    description: item[1],
+    price: item[2],
+    category: item[3]
+  };
+});
+
 
   var cart = [];
 
