@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // --- BASE DE DADOS DO MENU (CALOR TROPICAL) ---
-const menuData = [
+let menuData = [
 
   // CAFÉ E CHÁ / COFFEE & TEA
   ["Café com leite", "Coffee with milk", 175, "Café / Chá"],
