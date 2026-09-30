@@ -234,15 +234,18 @@ let menuData = [
   }
 
   function openModal(item) {
-    currentSelectedItem = item;
-    if (modalProductName) modalProductName.textContent = item.name;
-    if (modalProductCategory) modalProductCategory.textContent = item.category;
-    if (modalProductPrice) modalProductPrice.textContent = item.price.toFixed(2) + ' MTS';
-    if (modalProductDescription) modalProductDescription.textContent = item.description;
-    if (modalProductEmoji) modalProductEmoji.textContent = getMenuEmoji(item);
-    
-    if (productModal) productModal.className += ' active';
-    if (overlay) overlay.className += ' active';
+  closeCart();
+
+  currentSelectedItem = item;
+
+  if (modalProductName) modalProductName.textContent = item.name;
+  if (modalProductCategory) modalProductCategory.textContent = item.category;
+  if (modalProductPrice) modalProductPrice.textContent = item.price.toFixed(2) + ' MTS';
+  if (modalProductDescription) modalProductDescription.textContent = item.description;
+  if (modalProductEmoji) modalProductEmoji.textContent = getMenuEmoji(item);
+
+  if (productModal) productModal.className += ' active';
+  if (overlay) overlay.className += ' active';
   }
 
   function closeModal() {
