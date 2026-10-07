@@ -505,21 +505,28 @@ a {
 }
 
 .filters {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
-  flex-wrap: wrap;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .filter {
   background: white;
   color: var(--green-dark);
   border: 1px solid #e2ddd0;
-  padding: 9px 15px;
-  border-radius: 50px;
+  padding: 10px 5px;
+  border-radius: 10px;
   font-size: 11px;
   font-weight: 700;
   transition: var(--transition);
+  text-align: center;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .filter:hover,
@@ -527,6 +534,11 @@ a {
   background: var(--green);
   color: white;
   border-color: var(--green);
+}
+@media (min-width: 768px) {
+  .filters {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .menu-grid {
