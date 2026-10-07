@@ -276,26 +276,13 @@ let menuData = [
 function addToCart(item) {
   if (!item) return;
 
-  var existingItem = null;
-
-  for (var i = 0; i < cart.length; i++) {
-    if (cart[i].name === item.name) {
-      existingItem = cart[i];
-      break;
-    }
-  }
-
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    cart.push({
-      name: item.name,
-      description: item.description,
-      price: item.price,
-      category: item.category,
-      quantity: 1
-    });
-  }
+  cart = [{
+    name: item.name,
+    description: item.description,
+    price: item.price,
+    category: item.category,
+    quantity: 1
+  }];
 
   updateCartUI();
 }
