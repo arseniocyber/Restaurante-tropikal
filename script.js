@@ -272,72 +272,7 @@ let menuData = [
   }
 
   // --- CARRINHO ---
-  function addToCart(item) {
-    var existing = null;
-    for (var i = 0; i < cart.length; i++) {
-      if (cart[i].name === item.name) {
-        existing = cart[i];
-        break;
-      }
-    }
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      var newItem = {
-        name: item.name,
-        category: item.category,
-        price: item.price,
-        description: item.description,
-        emoji: item.emoji,
-        quantity: 1
-      };
-      cart.push(newItem);
-    }
-    updateCartUI();
-  }
-
-  function updateCartUI() {
-    if (!cartCount || !cartItemsContainer || !cartTotal) return;
-    
-    var totalItemsCount = 0;
-    for (var i = 0; i < cart.length; i++) {
-      totalItemsCount += cart[i].quantity;
-    }
-    cartCount.textContent = totalItemsCount;
-
-    if (cart.length === 0) {
-      cartItemsContainer.innerHTML = 
-        '<div class="empty-cart" style="text-align: center; padding: 30px;">' +
-          '<span style="font-size: 40px;">🛒</span>' +
-          '<p style="color: #bbb; margin: 10px 0;">O seu pedido está vazio.</p>' +
-          '<a href="#menu" id="emptyCartLink" class="text-link" style="color: #ff5c5c; text-decoration: underline;">Escolher pratos</a>' +
-        '</div>';
-      
-      var emptyLink = document.getElementById('emptyCartLink');
-      if (emptyLink) {
-        emptyLink.onclick = function(e) {
-          e.preventDefault();
-          closeCart();
-          var menuSec = document.getElementById('menu');
-          if (menuSec) menuSec.scrollIntoView(true);
-        };
-      }
-      cartTotal.textContent = "0.00 MTS";
-      return;
-    }
-
-    cartItemsContainer.innerHTML = '';
-    var totalPrice = 0;
-
-    for (var i = 0; i < cart.length; i++) {
-      var item = cart[i];
-      totalPrice += item.price * item.quantity;
-
-      var cartItemEl = document.createElement('div');
-      cartItemEl.className = 'cart-item';
-      cartItemEl.style.cssText = "padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 6px;";
-      
-      cartItemEl.innerHTML = 
+  cartItemEl.innerHTML = 
         '<div style="display: flex; justify-content: space-between; align-items: flex-start;">' +
           '<div>' +
             '<strong style="font-size: 15px; color: #fff;">' + (item.emoji || '🍽️') + ' ' + item.name + '</strong>' +
@@ -562,6 +497,32 @@ galleryImages.forEach(function(img) {
 
   // Inicializar menu e carrinho
   renderMenu(menuData);
+function addToCart(item) {
+  if (!item) return;
+
+  var existingItem = null;
+
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i].name === item.name) {
+      existingItem = cart[i];
+      break;
+    }
+  }
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      category: item.category,
+      quantity: 1
+    });
+  }
+
+  updateCartUI();
+}
   updateCartUI();
 
   // --- MENU MOBILE ---
