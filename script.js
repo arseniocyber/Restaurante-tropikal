@@ -577,8 +577,11 @@ galleryImages.forEach(function(img) {
 });
 
   // Inicializar menu e carrinho
-  renderMenu(menuData);
-  updateCartUI();
+  renderMenu(menuData.filter(function(item) {
+  return item.category === 'Café / Chá';
+}));
+  
+updateCartUI();
 
   // --- MENU MOBILE ---
   var menuToggle = document.getElementById('menuToggle');
